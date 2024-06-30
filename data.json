@@ -1,0 +1,12 @@
+{
+    "products": [
+        {
+        "id": 1,
+        "name": "Aspirin",
+        "category_id": 1,
+        "description": "Pain relief medication",
+        "price": 5.99,
+        "image": "assets/images/aspirin.png"
+        }
+    ]
+}
