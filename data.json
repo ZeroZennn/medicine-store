@@ -5,7 +5,7 @@
         "name": "Aspirin",
         "category_id": 1,
         "description": "Pain relief medication",
-        "price": 5.99,
+        "price": 5000,
         "image": "assets/images/aspirin.png"
         }
     ]
