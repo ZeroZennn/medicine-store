@@ -4,17 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 <body>
     <header></header>
 
-    <h1>INITIAL</h1>
-    <button id="fetch-products-btn">Fetch Products</button>
-    <div id="products-container"></div> </main>
+    <!-- main -->
+    <main>
+        <div class="container mx-auto px-5">
+            <!-- CAROUSEL -->
+            <div class="home_carousel">
+                <div class="card_carousel w-full bg-gray-300 h-96 my-[2rem] rounded-2xl"></div>
+            </div>
+            <!-- 3 Option -->
+            <div class="option">
+                <div class="title flex justify-center text-[32px]">
+                    <h2 class="font-semibold">Easy <span class="text-[#37B7C3]">Step </span>for your care</h2>
+                </div>
+                
+                <div class="card_options grid lg:grid-cols-3 gap-10 my-[4rem]">
+                    <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
+                        <i class="ti ti-vaccine-bottle text-[#37B7C3]"></i>
+                        <h3 class="font-semibold text-[24px] text-[#37B7C3]">Products</h3>
+                        <p class="text-center text-[14px] text-[#878787] px-20 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex fugiat </p>
+                    </div>
+                    <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
+                        <i class="ti ti-user-question text-[#37B7C3]"></i>
+                        <h3 class="font-semibold text-[24px] text-[#37B7C3]">Consultation</h3>
+                        <p class="text-center text-[14px] text-[#878787] px-20 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex fugiat </p>
+                    </div>
+                    <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
+                        <i class="ti ti-stethoscope text-[#37B7C3]"></i>
+                        <h3 class="font-semibold text-[24px] text-[#37B7C3]">Health Check</h3>
+                        <p class="text-center text-[14px] text-[#878787] px-20 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex fugiat </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Promotion -->
+            <div class="products_promo">
+                <div class="title flex justify-start text-[24px]">
+                    <h2 class="font-semibold">Products Promotion</h2>
+                </div>
+                <div class="wrapper">
+                    <div class="carousel grid lg:grid-cols-6 gap-6 mt-6">
+                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <div class="content px-3">
+                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                            </div>
+                        </div>
+                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <div class="content px-3">
+                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                            </div>
+                        </div>
+                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <div class="content px-3">
+                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                            </div>
+                        </div>
+                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <div class="content px-3">
+                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                            </div>
+                        </div>
+                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <div class="content px-3">
+                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                            </div>
+                        </div>
+                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <div class="content px-3">
+                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <footer></footer>
-    <script src="assets/js/template.js"></script>
+
+    <!-- script -->
     <script src="assets/js/main.js"></script>
+    <script src="templates/header.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons-react/dist/index.umd.min.js"></script>
 </body>
 </html>
