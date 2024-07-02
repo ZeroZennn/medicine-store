@@ -1,35 +1,14 @@
 function fetchDB(table) {
-  return fetch(`data/${table}.json`);
+  return fetch(`data/${table}.json`)
+    .then(response => response.json());
 }
 
-function userLogin(username, password) {
-    console.log(fetchDB("user"));
-
+let x = document.cookie;
+if (x != '') {
+  const login_div = document.getElementById('login_div');
+  const islogin_div = document.getElementById('islogin_div');
+  const username = document.getElementById('login_username');
+  login_div.classList.add('hidden');
+  islogin_div.classList.remove('hidden');
+  username.innerHTML = x.replace("username=", "");
 }
-
-function userRegister(username, password) {
-    
-}
-
-function handleLogin() {
-  
-}
-
-function handleRegister() {
-  alert("test");
-}
-
-function getProductsData() {
-  return fetch('data/products.json')
-    .then(response => response.json())
-    .then(data => data);
-}
-
-const fetchProductsButton = document.getElementById('fetch-products-btn');
-const productsContainer = document.getElementById('products-container');
-
-fetchProductsButton.addEventListener('click', () => {
-  getProductsData().then(data => {
-    console.log(data);
-  });
-});
