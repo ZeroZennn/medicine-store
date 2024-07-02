@@ -45,10 +45,15 @@ const header = document.querySelector("header");
 //         </nav>
 // `
 
-var login = document.getElementById('login_open');
-var dialog = document.getElementById('dialog');
-var closeButton = document.getElementById('close');
-var overlay = document.getElementById('overlay');
+const login = document.getElementById('login_open');
+const dialog = document.getElementById('dialog');
+const closeButton = document.getElementById('close');
+const overlay = document.getElementById('overlay');
+const form = document.getElementById('login_form');
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault()
+})
 
 login.addEventListener("click", function() {
     dialog.classList.remove('hidden');
@@ -65,4 +70,47 @@ window.onclick = function(event) {
     dialog.classList.add('hidden');
     overlay.classList.add('hidden');
   }
+}
+
+function handleLogin() {
+    const username = document.getElementById("username").value
+    const password = document.getElementById("password").value
+    fetchDB("user")
+      .then(data => {
+        const auth = data.user.filter(x => x.username == username && x.password == password)[0]
+        if (auth != '') {
+            setCookie(auth.username, null, 1, null, null);
+            location.href = 'index.html';
+        } else { 
+            alert("Username atau Password salah")
+        }
+      }
+    ) .catch(error => {
+        console.error("Error fetching user data:", error);
+      }
+    );
+}
+
+function setCookie(value, expireDays, expireHours, expireMinutes, expireSeconds) {
+    var expireDate = new Date();
+    if (expireDays) {
+        expireDate.setDate(expireDate.getDate() + expireDays);
+    }
+    if (expireHours) {
+        expireDate.setHours(expireDate.getHours() + expireHours);
+    }
+    if (expireMinutes) {
+        expireDate.setMinutes(expireDate.getMinutes() + expireMinutes);
+    }
+    if (expireSeconds) {
+        expireDate.setSeconds(expireDate.getSeconds() + expireSeconds);
+    }
+    document.cookie = "username" +"="+ value +
+        ";domain="+ window.location.hostname +
+        ";path=/"+
+        ";expires="+expireDate.toUTCString();
+}
+
+function deleteCookie() {
+    setCookie("username", "", null , null , null, 1);
 }
