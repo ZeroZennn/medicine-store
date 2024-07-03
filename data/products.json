@@ -18,7 +18,7 @@
         },
         {
             "id": 3,
-            "name": "Sanmol",
+            "name": "Paracetamol",
             "drugs_category": "Bebas",
             "description": "Test1",
             "price": 5000,
@@ -26,7 +26,7 @@
         },
         {
             "id": 4,
-            "name": "Morfine",
+            "name": "Amoxilin",
             "drugs_category": "Resep",
             "description": "Test2",
             "price": 10000,

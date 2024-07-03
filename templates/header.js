@@ -125,9 +125,9 @@ header.innerHTML = `
                 
                         <div class="carousel">
                             <div class="images-wrapper">
-                            <img src="./img/image1.png" class="image img-1 show" alt="" />
-                            <img src="./img/image2.png" class="image img-2" alt="" />
-                            <img src="./img/image3.png" class="image img-3" alt="" />
+                            <img src="" class="image img-1 show" alt="" />
+                            <img src="" class="image img-2" alt="" />
+                            <img src="" class="image img-3" alt="" />
                             </div>
                 
                             <div class="text-slider">
