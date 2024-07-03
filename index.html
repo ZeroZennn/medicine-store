@@ -12,11 +12,154 @@
     <header>
         <!-- overlay -->
         <link rel="stylesheet" href="assets/css/header.css">
-        <div id="overlay" class="fixed hidden z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
+        <div id="overlay" class="fixed z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
+
+        <div id="dialog" class=" fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
+            <main class="flex justify-center">
+                <!-- login register dialog -->
+                <div class="box">
+                    <div class="top w-full flex ms-10 mt-[-30px]">
+                        <button id="close" class="end-2.5 text-white bg-transparentrounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <div class="inner-box">
+                        <div class="forms-wrap">
+                            
+                            <form action="#" id="login_form" class="sign-in-form">
+                                <div class="logo">
+                                    <img src="assets/svg/logo_blue.png" alt="medicran" />
+                                </div>
+                    
+                                <div class="heading">
+                                    <h2>Welcome Back</h2>
+                                    <h6>Not registred yet?</h6>
+                                    <a href="#" class="toggle">Sign up</a>
+                                </div>
+                    
+                                <div class="actual-form">
+                                    <div class="input-wrap">
+                                    <input
+                                        type="username" 
+                                        name="username" 
+                                        id="username"
+                                        class="input-field"
+                                        autocomplete="off"
+                                        required
+                                    />
+                                    <label>Username</label>
+                                    </div>
+                    
+                                    <div class="input-wrap">
+                                    <input
+                                        type="password" 
+                                        name="password" 
+                                        id="password"
+                                        class="input-field"
+                                        autocomplete="off"
+                                        required
+                                    />
+                                    <label>Password</label>
+                                    </div>
+                    
+                                    <button id="submit" type="submit" onclick="handleLogin()" class="w-full text-white bg-gray-900 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4">Sign In</button>
+                    
+                                    <p class="text">
+                                    Forgotten your password or you login datails?
+                                    <a href="#">Get help</a> signing in
+                                    </p>
+                                </div>
+                            </form>
     
-        <!-- login register dialog -->
-        <div id="dialog" class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
-            <div class="relative p-4 w-full max-w-md max-h-full">
+                            <!-- REGISTERR -->
+                            <form class="sign-up-form">
+                                <div class="logo">
+                                    <img src="assets/svg/logo_blue.png" alt="medicran" />
+                                </div>
+                
+                                <div class="heading">
+                                    <h2>Get Started</h2>
+                                    <h6>Already have an account?</h6>
+                                    <a href="#" class="toggle">Sign in</a>
+                                </div>
+                    
+                                <div class="actual-form">
+                                    <div class="input-wrap">
+                                        <input
+                                            type="username" 
+                                            name="username" 
+                                            id="username"
+                                            minlength="4"
+                                            class="input-field"
+                                            autocomplete="off"
+                                            required
+                                        />
+                                        <label>Username</label>
+                                    </div>
+                    
+                                    <div class="input-wrap">
+                                        <input
+                                            type="email"
+                                            class="input-field"
+                                            autocomplete="off"
+                                            required
+                                        />
+                                        <label>Email</label>
+                                    </div>
+                    
+                                    <div class="input-wrap">
+                                        <input
+                                            type="password"
+                                            minlength="4"
+                                            class="input-field"
+                                            autocomplete="off"
+                                            required
+                                        />
+                                        <label>Password</label>
+                                    </div>
+                    
+                                    <input type="submit" value="Sign Up" class="sign-btn" />
+                    
+                                    <p class="text">
+                                    By signing up, I agree to the
+                                    <a href="#">Terms of Services</a> and
+                                    <a href="#">Privacy Policy</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                
+                        <div class="carousel">
+                            <div class="images-wrapper">
+                            <img src="./img/image1.png" class="image img-1 show" alt="" />
+                            <img src="./img/image2.png" class="image img-2" alt="" />
+                            <img src="./img/image3.png" class="image img-3" alt="" />
+                            </div>
+                
+                            <div class="text-slider">
+                            <div class="text-wrap">
+                                <div class="text-group">
+                                <h2>Create your own courses</h2>
+                                <h2>Customize as you like</h2>
+                                <h2>Invite students to your class</h2>
+                                </div>
+                            </div>
+                
+                            <div class="bullets">
+                                <span class="active" data-value="1"></span>
+                                <span data-value="2"></span>
+                                <span data-value="3"></span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </main>
+            <!-- <div class="relative p-4 w-full max-w-md max-h-full">
                 <div class="flex">
                     <h1 class="text-2xl font-semibold">Login</h1>
                     <button id="close" class="end-2.5 text-gray-900 bg-transparentrounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
@@ -43,7 +186,7 @@
                         <button id="submit" type="submit" onclick="handleLogin()" class="w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login</button>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- navbar -->
@@ -130,9 +273,9 @@
                     <h2 class="font-semibold">Products Promotion</h2>
                 </div>
                 <div class="wrapper">
-                    <div class="carousel grid lg:grid-cols-6 gap-6 mt-6">
+                    <div class="carousel_products grid lg:grid-cols-6 gap-6 mt-6">
                         <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
                             <div class="content px-3">
                                 <div class="name mt-2 font-semibold">Sanmol Tablet</div>
                                 <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
@@ -140,7 +283,7 @@
                             </div>
                         </div>
                         <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
                             <div class="content px-3">
                                 <div class="name mt-2 font-semibold">Sanmol Tablet</div>
                                 <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
@@ -148,7 +291,7 @@
                             </div>
                         </div>
                         <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
                             <div class="content px-3">
                                 <div class="name mt-2 font-semibold">Sanmol Tablet</div>
                                 <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
@@ -156,7 +299,7 @@
                             </div>
                         </div>
                         <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
                             <div class="content px-3">
                                 <div class="name mt-2 font-semibold">Sanmol Tablet</div>
                                 <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
@@ -164,7 +307,7 @@
                             </div>
                         </div>
                         <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
                             <div class="content px-3">
                                 <div class="name mt-2 font-semibold">Sanmol Tablet</div>
                                 <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
@@ -172,7 +315,7 @@
                             </div>
                         </div>
                         <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol.jpg" alt="">
+                            <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
                             <div class="content px-3">
                                 <div class="name mt-2 font-semibold">Sanmol Tablet</div>
                                 <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
@@ -182,6 +325,12 @@
                     </div>
                 </div>
             </div>
+            <!-- Testimonial -->
+            <div class="testimoni mt-12">
+                <div class="title flex justify-center text-[32px]">
+                    <h2 class="font-semibold">What our patients <span class="text-[#37B7C3]">says</span> about us</h2>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -189,6 +338,7 @@
 
     <!-- script -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/modal_login.js"></script>
     <script src="templates/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons-react/dist/index.umd.min.js"></script>
 </body>
