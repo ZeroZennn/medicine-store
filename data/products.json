@@ -1,12 +1,36 @@
 {
     "products": [
         {
-        "id": 1,
-        "name": "Aspirin",
-        "category_id": 1,
-        "description": "Pain relief medication",
-        "price": 5000,
-        "image": "assets/images/aspirin.png"
+            "id": 1,
+            "name": "Sanmol",
+            "drugs_category": "Bebas",
+            "description": "Test1",
+            "price": 5000,
+            "image": "assets/images/sanmol2.png"
+        },
+        {
+            "id": 2,
+            "name": "Morfine",
+            "drugs_category": "Resep",
+            "description": "Test2",
+            "price": 10000,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 3,
+            "name": "Sanmol",
+            "drugs_category": "Bebas",
+            "description": "Test1",
+            "price": 5000,
+            "image": "assets/images/sanmol2.png"
+        },
+        {
+            "id": 4,
+            "name": "Morfine",
+            "drugs_category": "Resep",
+            "description": "Test2",
+            "price": 10000,
+            "image": "assets/images/morfin.png"
         }
     ]
 }
