@@ -1,7 +1,8 @@
 (async () => {
 const productEle = document.getElementById("products");
 const searchEle = document.getElementById("simple-search");
-const product = await fetchDB("products");
+let product = await fetchDB("products");
+let cart = await fetchDB("cart");
 
 let currentPage = 1;
 const itemsPerPage = 10;
@@ -14,14 +15,12 @@ const options = {
 function displayItem(item) {
     productEle.innerHTML = item.map((item => {
         return (`
-            <a href="product_detail.html">
-                <div class="card cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl p-2">
-                    <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="${item.image}" alt="">
-                    <div class="content px-3">
-                        <div class="name mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
-                        <div class="price font-bold text-[#F8AE1C] text-[18px] mb-4">${"Rp. " + item.price}</div>
-                        <div class="cart_btn rounded-lg border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
-                    </div>
+            <div class="card cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="${item.image}" alt="">
+                <div class="content px-3">
+                    <div class="name mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
+                    <div class="price font-bold text-[#F8AE1C] text-[18px]">${"Rp. " + item.price}</div>
+                    <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
                 </div>
             </a>
         `)
@@ -58,23 +57,6 @@ function getProduct(pages, items, searchName = '') {
     }
     const products = productToShow.slice(start, start + items);
     displayItem(products)
-}
-
-function getProductbyJenis(jenis) {
-    fetchDB("products")
-      .then(data => {
-        const auth = data.user.filter(x => x.username == username && x.password == password)[0]
-        if (auth != '') {
-            setCookie(auth.username, null, 1, null, null);
-            location.href = 'index.html';
-        } else { 
-            alert("Username atau Password salah")
-        }
-      }
-    ) .catch(error => {
-        console.error("Error fetching user data:", error);
-      }
-    );
 }
 
 // handle pagination
@@ -116,4 +98,27 @@ document.querySelector('.pagination').addEventListener('click', handlePagination
 
 getProduct(currentPage, itemsPerPage);
 
+// Add to cart
+async function addToCart(productId) {
+    const cartIndex = cart.cart.findIndex(x => (x.user_id == user_id))
+    let tempCart = cart.cart[cartIndex];
+    const productIndex = tempCart.product.findIndex(x => (x.id == productId))
+    if (productIndex >= 0) {
+        tempCart.product[productIndex].qty++;
+    } else {
+        tempCart.product.push({id: parseInt(productId), qty: 1});
+    }
+    cart.cart[cartIndex] = tempCart;
+    const qtyCart = document.getElementById('qtyCart');
+    console.log(qtyCart)
+    qtyCart.innerHTML = await getCartQty(user_id);
+}
+
+document.querySelectorAll('.cart_btn').forEach(button => {
+    button.onclick = async function(event) {
+      event.preventDefault();
+      const productId = this.getAttribute('product-id');
+      addToCart(productId);
+    };
+  });
 })();

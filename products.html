@@ -10,12 +10,11 @@
 </head>
 <body>
     <header></header>
-
     <main>
         <div class="container mx-auto px-5">
             <div class="outer w-full bg-white my-10 lg:p-[50px] rounded-lg lg:shadow-[0_2px_4px_0_rgba(60,64,67,0.3)]">
                 <div class="inner">
-                    <form class="">   
+                    <form class="products_form">   
                         <!-- search bar -->
                         <div class="search_bar flex items-center mx-auto">
                             <label for="simple-search" class="sr-only">Search</label>
@@ -25,15 +24,8 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"/>
                                     </svg> -->
                                 </div>
-                                <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Search branch name..." required />
+                                <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Search branch name..." />
                             </div>
-                            <button type="submit" class="flex items-center gap-2 p-2.5 ms-2 text-sm font-medium text-white bg-[#37B7C3] rounded-lg border">
-                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                </svg>
-                                <p>Search</p>
-                                <span class="sr-only">Search</span>
-                            </button>
                         </div>
                         <div class="filter mt-8 flex justify-between">
                             <!-- Title Filter Produk -->
@@ -54,7 +46,7 @@
                                 </svg>
                             </button>
                             <!-- Dropdown menu -->
-                            <div id="dropdownRadio" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
+                            <!-- <div id="dropdownRadio" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
                                 <ul class="p-3 space-y-1 text-sm text-gray-700" aria-labelledby="dropdownRadioButton">
                                     <li>
                                         <div class="flex items-center p-2 rounded hover:bg-gray-100">
@@ -87,7 +79,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div id="products" class="products mt-4 grid grid-cols-2 lg:grid-cols-5 gap-6">
