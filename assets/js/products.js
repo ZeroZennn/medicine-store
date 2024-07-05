@@ -1,7 +1,8 @@
 (async () => {
 const productEle = document.getElementById("products");
 const searchEle = document.getElementById("simple-search");
-const product = await fetchDB("products");
+let product = await fetchDB("products");
+let cart = await fetchDB("cart");
 
 let currentPage = 1;
 const itemsPerPage = 12;
@@ -14,12 +15,12 @@ const options = {
 function displayItem(item) {
     productEle.innerHTML = item.map((item => {
         return (`
-            <div class="card cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+            <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
                 <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="${item.image}" alt="">
                 <div class="content px-3">
                     <div class="name mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
                     <div class="price font-bold text-[#F8AE1C] text-[18px]">${"Rp. " + item.price}</div>
-                    <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                    <button product-id="${item.id}" class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</button>
                 </div>
             </div>
         `)
@@ -97,4 +98,27 @@ document.querySelector('.pagination').addEventListener('click', handlePagination
 
 getProduct(currentPage, itemsPerPage);
 
+// Add to cart
+async function addToCart(productId) {
+    const cartIndex = cart.cart.findIndex(x => (x.user_id == user_id))
+    let tempCart = cart.cart[cartIndex];
+    const productIndex = tempCart.product.findIndex(x => (x.id == productId))
+    if (productIndex >= 0) {
+        tempCart.product[productIndex].qty++;
+    } else {
+        tempCart.product.push({id: parseInt(productId), qty: 1});
+    }
+    cart.cart[cartIndex] = tempCart;
+    const qtyCart = document.getElementById('qtyCart');
+    console.log(qtyCart)
+    qtyCart.innerHTML = await getCartQty(user_id);
+}
+
+document.querySelectorAll('.cart_btn').forEach(button => {
+    button.onclick = async function(event) {
+      event.preventDefault();
+      const productId = this.getAttribute('product-id');
+      addToCart(productId);
+    };
+  });
 })();

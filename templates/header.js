@@ -1,4 +1,5 @@
 const header = document.querySelector("header");
+let user_id;
 
 header.innerHTML = `
         <!-- overlay -->
@@ -19,7 +20,6 @@ header.innerHTML = `
                     </div>
                     <div class="inner-box">
                         <div class="forms-wrap">
-                            
                             <form action="#" id="login_form" class="form_sign sign-in-form">
                                 <div class="logo">
                                     <img src="assets/svg/logo_blue.png" alt="medicran" />
@@ -234,15 +234,17 @@ header.innerHTML = `
 `
 
 // Login checker
-isLogin().then(loginInfo => {
+isLogin().then(async loginInfo => {
     if (loginInfo) {
         const login_div = document.getElementById('login_div');
         const islogin_div = document.getElementById('islogin_div');
         const username = document.getElementById('login_username');
+        const qtyCart = document.getElementById('qtyCart');
         login_div.classList.add('hidden');
         islogin_div.classList.remove('hidden');
         username.innerHTML = loginInfo.username;
-        getCart(loginInfo.id)
+        user_id = loginInfo.id;
+        qtyCart.innerHTML = await getCartQty(user_id);
     } else {
         const login = document.getElementById('login_open');
         const dialog = document.getElementById('dialog');
@@ -365,14 +367,4 @@ function deleteCookie() {
 function logout() {
     deleteCookie();
     location.href = 'index.html';
-}
-
-// get Cart Quantity
-function getCart(id) {
-    let qtyCart = document.getElementById('qtyCart');
-    fetchDB('cart')
-      .then(data => {
-        const filter = data.cart.filter(x => x.userid == id)[0];
-        qtyCart.innerHTML = filter.product.length > 0 ? filter.product.length : '';
-    })
 }
