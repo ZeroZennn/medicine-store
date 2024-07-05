@@ -20,7 +20,7 @@
             "id": 3,
             "name": "Paracetamol",
             "drugs_category": "Bebas",
-            "description": "Test1",
+            "description": "Test3",
             "price": 5000,
             "image": "assets/images/sanmol2.png"
         },
@@ -28,8 +28,24 @@
             "id": 4,
             "name": "Amoxilin",
             "drugs_category": "Resep",
-            "description": "Test2",
+            "description": "Test4",
             "price": 10000,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 5,
+            "name": "Ambeven",
+            "drugs_category": "Bebas",
+            "description": "Test5",
+            "price": 22800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
             "image": "assets/images/morfin.png"
         }
     ]

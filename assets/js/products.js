@@ -3,6 +3,9 @@ const productEle = document.getElementById("products");
 const searchEle = document.getElementById("simple-search");
 const product = await fetchDB("products");
 
+let currentPage = 1;
+const itemsPerPage = 12;
+
 const options = {
     threshold: 0.3,
     keys: ['name']
@@ -72,5 +75,43 @@ function getProductbyJenis(jenis) {
     );
 }
 
-getProduct(1, 12)
+// handle pagination
+function handlePagination(event) {
+    event.preventDefault();
+    const target = event.target.closest('a');
+    if (!target) return;
+
+    const page = target.getAttribute('data-page');
+    // const totalPages = Math.ceil(products.length / productsPerPage);
+
+    if (page === "prev" && currentPage > 1) {
+        currentPage--;
+    } else if (page === "next") {
+        currentPage++;
+    } else if (!isNaN(page)) {
+        currentPage = parseInt(page);
+    }
+    getProduct(currentPage, itemsPerPage, searchEle.value);
+    updatePagination(currentPage);
+}
+
+// pagiantion when active
+function updatePagination(currentPage) {
+    const paginationButtons = document.querySelectorAll('.pagination a[data-page]');
+    paginationButtons.forEach(button => {
+        button.classList.remove('z-10', 'text-[#37B7C3]', 'border-[#37B7C3]', 'bg-blue-50', 'hover:bg-blue-100', 'hover:text-blue-700');
+        button.classList.add('text-gray-500', 'bg-white', 'border-gray-300', 'hover:bg-gray-100', 'hover:text-gray-700');
+
+        const page = button.getAttribute('data-page');
+        if (parseInt(page) === currentPage) {
+            button.classList.add('z-10', 'text-[#37B7C3]', 'border-[#37B7C3]', 'bg-blue-50', 'hover:bg-blue-100', 'hover:text-blue-700');
+            button.classList.remove('text-gray-500', 'bg-white', 'border-gray-300', 'hover:bg-gray-100', 'hover:text-gray-700');
+        }
+    });
+}
+
+document.querySelector('.pagination').addEventListener('click', handlePagination);
+
+getProduct(currentPage, itemsPerPage);
+
 })();

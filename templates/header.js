@@ -9,7 +9,7 @@ header.innerHTML = `
             <main class="flex justify-center">
                 <!-- login register dialog -->
                 <div class="box">
-                    <div class="top w-full flex ms-10 mt-[-30px]">
+                    <div class="top w-full flex ms-1 mt-[-40px]">
                         <button id="close" class="end-2.5 text-white bg-transparentrounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
                             <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>

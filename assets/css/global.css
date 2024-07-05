@@ -311,7 +311,7 @@ main.sign-up-mode .carousel {
     transform: none;
     width: revert;
     height: revert;
-    padding: 2rem;
+    padding: 1rem;
   }
 
   .forms-wrap {
@@ -364,28 +364,28 @@ main.sign-up-mode .carousel {
     padding: 1rem;
   }
 
-  .box {
+  header .box {
     border-radius: 2rem;
   }
 
-  .inner-box {
-    padding: 1rem;
+  header.inner-box {
+    padding: 0.1rem;
   }
 
-  .carousel {
+  header.carousel {
     padding: 1.5rem 1rem;
     border-radius: 1.6rem;
   }
 
-  .text-wrap {
+  header.text-wrap {
     margin-bottom: 1rem;
   }
 
-  .text-group h2 {
+  header.text-group h2 {
     font-size: 1.2rem;
   }
 
-  form {
+  header form {
     padding: 1rem 2rem 1.5rem;
   }
 }
