@@ -109,7 +109,7 @@ form.sign-up-form {
 }
 
 .toggle:hover {
-  color: #8371fd;
+  color: #37B7C3;
 }
 
 .input-wrap {
@@ -167,7 +167,7 @@ header label {
 }
 
 .sign-btn:hover {
-  background-color: #8371fd;
+  background-color: #37B7C3;
 }
 
 .text {
@@ -181,7 +181,7 @@ header label {
 }
 
 .text a:hover {
-  color: #8371fd;
+  color: #37B7C3;
 }
 
 main.sign-up-mode form.sign-in-form {

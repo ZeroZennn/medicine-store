@@ -56,7 +56,7 @@ header.innerHTML = `
                                     <label>Password</label>
                                     </div>
                     
-                                    <button id="submit" type="submit" onclick="handleLogin()" class="w-full text-white bg-gray-900 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4">Sign In</button>
+                                    <button id="submit" type="submit" onclick="handleLogin()" class="w-full text-white bg-gray-900 hover:bg-[#37B7C3] font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4">Sign In</button>
                     
                                     <p class="text">
                                     Forgotten your password or you login datails?
@@ -187,7 +187,7 @@ header.innerHTML = `
                     <img src="assets/svg/logo.svg" class="h-8" alt="MediCran Logo">
                 </a>
                 <div class="items-center justify-between">
-                    <ul class="flex flex-row font-medium">
+                    <ul class="flex flex-row font-medium gap-6">
                         <li>
                             <a href="./" class="block py-2 mx-2 text-white">Home</a>
                         </li>
@@ -200,7 +200,7 @@ header.innerHTML = `
                     </ul>
                 </div>
                 <div id="login_div">
-                    <button id="login_open" type="button" class="font-medium text-white">Login</button>
+                    <button id="login_open" type="button" class="font-medium text-white">Sign In</button>
                 </div>
                 <div id="islogin_div" class="hidden">
                     <ul class="flex flex-row font-medium">
