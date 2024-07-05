@@ -212,13 +212,19 @@ header.innerHTML = `
                         <li>
                             <a href="cart.html" class="flex items-center">
                                 <i class="ti ti-shopping-cart text-white text-[30px] mr-3"></i>
+                                <span id="qtyCart"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="./test" class="flex items-center">
+                            <a href="profile.html" class="flex items-center">
                                 <img src="assets/svg/avatar.svg" class="h-8 ml-2" alt="User Avatar">
                                 <p id="login_username" class="text-white block mx-1">test</p>
                             </a>
+                        </li>
+                        <li>
+                            <button onclick="logout()" class="end-2.5 text-gray-900 bg-transparentrounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                                Logout
+                            </button>
                         </li>
                     </ul>
                     
@@ -227,46 +233,48 @@ header.innerHTML = `
         </nav>
 `
 
-let x = document.cookie;
-
-if (x != '') {
-    const login_div = document.getElementById('login_div');
-    const islogin_div = document.getElementById('islogin_div');
-    const username = document.getElementById('login_username');
-    login_div.classList.add('hidden');
-    islogin_div.classList.remove('hidden');
-    username.innerHTML = x.replace("username=", "");
-} else {
-    const login = document.getElementById('login_open');
-    const dialog = document.getElementById('dialog');
-    const closeButton = document.getElementById('close');
-    const overlay = document.getElementById('overlay');
-    const form = document.getElementById('login_form');
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault()
-    })
-
-    login.addEventListener("click", function() {
-        dialog.classList.remove('hidden');
-        overlay.classList.remove('hidden');
-    });
-
-    closeButton.addEventListener('click', function () {
-        dialog.classList.add('hidden');
-        overlay.classList.add('hidden');
-    });
-
-    window.onclick = function(event) {
-        if (event.target == overlay) {
-          dialog.classList.add('hidden');
-          overlay.classList.add('hidden');
+// Login checker
+isLogin().then(loginInfo => {
+    if (loginInfo) {
+        const login_div = document.getElementById('login_div');
+        const islogin_div = document.getElementById('islogin_div');
+        const username = document.getElementById('login_username');
+        login_div.classList.add('hidden');
+        islogin_div.classList.remove('hidden');
+        username.innerHTML = loginInfo.username;
+        getCart(loginInfo.id)
+    } else {
+        const login = document.getElementById('login_open');
+        const dialog = document.getElementById('dialog');
+        const closeButton = document.getElementById('close');
+        const overlay = document.getElementById('overlay');
+        const form = document.getElementById('login_form');
+    
+        form.addEventListener('submit', (event) => {
+            event.preventDefault()
+        })
+    
+        login.addEventListener("click", function() {
+            dialog.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+        });
+    
+        closeButton.addEventListener('click', function () {
+            dialog.classList.add('hidden');
+            overlay.classList.add('hidden');
+        });
+    
+        window.onclick = function(event) {
+            if (event.target == overlay) {
+              dialog.classList.add('hidden');
+              overlay.classList.add('hidden');
+            }
         }
     }
-}
+})
 
-// LOGIN SLIDER
 
+// Login Form Slider
 const inputs = document.querySelectorAll(".input-field");
 const toggle_btn = document.querySelectorAll(".toggle");
 const main = document.querySelector("main");
@@ -307,14 +315,14 @@ bullets.forEach((bullet) => {
   bullet.addEventListener("click", moveSlider);
 });
 
-// LOGIN
+// Handle Login
 function handleLogin() {
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
     fetchDB("user")
       .then(data => {
         const auth = data.user.filter(x => x.username == username && x.password == password)[0]
-        if (auth != '') {
+        if (auth) {
             setCookie(auth.username, null, 1, null, null);
             location.href = 'index.html';
         } else { 
@@ -327,6 +335,7 @@ function handleLogin() {
     );
 }
 
+// Set Cookie for Login
 function setCookie(value, expireDays, expireHours, expireMinutes, expireSeconds) {
     var expireDate = new Date();
     if (expireDays) {
@@ -347,6 +356,23 @@ function setCookie(value, expireDays, expireHours, expireMinutes, expireSeconds)
         ";expires="+expireDate.toUTCString();
 }
 
+// Delete Cookie for Logout
 function deleteCookie() {
     setCookie("username", "", null , null , null, 1);
+}
+
+// Handle Logout then refresh
+function logout() {
+    deleteCookie();
+    location.href = 'index.html';
+}
+
+// get Cart Quantity
+function getCart(id) {
+    let qtyCart = document.getElementById('qtyCart');
+    fetchDB('cart')
+      .then(data => {
+        const filter = data.cart.filter(x => x.userid == id)[0];
+        qtyCart.innerHTML = filter.product.length > 0 ? filter.product.length : '';
+    })
 }

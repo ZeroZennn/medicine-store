@@ -58,23 +58,6 @@ function getProduct(pages, items, searchName = '') {
     displayItem(products)
 }
 
-function getProductbyJenis(jenis) {
-    fetchDB("products")
-      .then(data => {
-        const auth = data.user.filter(x => x.username == username && x.password == password)[0]
-        if (auth != '') {
-            setCookie(auth.username, null, 1, null, null);
-            location.href = 'index.html';
-        } else { 
-            alert("Username atau Password salah")
-        }
-      }
-    ) .catch(error => {
-        console.error("Error fetching user data:", error);
-      }
-    );
-}
-
 // handle pagination
 function handlePagination(event) {
     event.preventDefault();
