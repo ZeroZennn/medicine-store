@@ -47,6 +47,86 @@
             "description": "Test6",
             "price": 14800,
             "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
+        },
+        {
+            "id": 6,
+            "name": "Anacetine Sirup",
+            "drugs_category": "Bebas",
+            "description": "Test6",
+            "price": 14800,
+            "image": "assets/images/morfin.png"
         }
     ]
 }

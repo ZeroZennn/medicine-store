@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediCran</title>
+    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -15,18 +16,45 @@
     <main>
         <div class="container mx-auto px-5">
             <!-- CAROUSEL -->
-            <div class="home_carousel">
-                <div class="card_carousel w-full bg-gray-300 h-96 my-[2rem] rounded-2xl">
-                    
+            <div class="home_carousel mt-10">
+                <div class="slider rounded-lg">
+                    <div class="list">
+                        <div class="item">
+                            <img src="assets/svg/carousel-1.svg" alt="" class="object-cover">
+                        </div>
+                        <div class="item">
+                            <img src="assets/svg/carousel-2.svg" alt="" class="object-cover">
+                        </div>
+                        <div class="item">
+                            <img src="assets/svg/carousel-3.svg" alt="" class="object-cover">
+                        </div>
+                        <div class="item">
+                            <img src="assets/svg/carousel-4.svg" alt="" class="object-cover">
+                        </div>
+                        <div class="item">
+                            <img src="assets/svg/carousel-5.svg" alt="" class="object-cover">
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button id="prev_img" class="cursor-pointer bg-black"> < </button>
+                        <button id="next_img" class="cursor-pointer bg-black"> > </button>
+                    </div>
+                    <ul class="dots">
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
                 </div>
             </div>
             <!-- 3 Option -->
-            <div class="option">
+            <div class="option mt-10">
                 <div class="title flex justify-center text-[32px]">
                     <h2 class="font-semibold">Easy <span class="text-[#37B7C3]">Step </span>for your care</h2>
                 </div>
                 
-                <div class="card_options grid lg:grid-cols-3 gap-10 my-[4rem]">
+                <div class="card_options grid lg:grid-cols-3 gap-10 mt-10 mb-[4rem]">
                     <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
                         <i class="ti ti-vaccine-bottle text-[#37B7C3]"></i>
                         <h3 class="font-semibold text-[24px] text-[#37B7C3]">Products</h3>
@@ -116,6 +144,7 @@
     <!-- script -->
     <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons-react/dist/index.umd.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/home_slider.js"></script>
     <script src="templates/header.js"></script>
 </body>
 </html>
