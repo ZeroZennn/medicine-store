@@ -20,20 +20,11 @@ function displayItem(items) {
                 <div class="content px-3">
                     <div class="name mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
                     <div class="price font-bold text-[#F8AE1C] text-[18px]">${"Rp. " + item.price}</div>
-                    <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer" product-id="${item.id}">add to cart</div>
+                    <button product-id="${item.id}" class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</button>
                 </div>
             </div>
         `);
     }).join("");
-
-    // Bind event listeners after rendering
-    document.querySelectorAll('.cart_btn').forEach(button => {
-        button.addEventListener('click', async function(event) {
-            event.preventDefault();
-            const productId = this.getAttribute('product-id');
-            await addToCart(productId);
-        });
-    });
 }
 
 searchEle.addEventListener("input", (event) => {
@@ -119,7 +110,6 @@ async function addToCart(productId) {
     }
     cart.cart[cartIndex] = tempCart;
     const qtyCart = document.getElementById('qtyCart');
-    console.log(qtyCart)
     qtyCart.innerHTML = await getCartQty(user_id);
 }
 
