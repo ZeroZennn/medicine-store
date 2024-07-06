@@ -271,7 +271,7 @@ isLogin().then(async loginInfo => {
         username.innerHTML = loginInfo.username;
         user_id = loginInfo.id;
         qtyCart.innerHTML = await getCartQty(user_id);
-    } else {
+    } else {    
         const login = document.getElementById('login_open');
         const dialog = document.getElementById('dialog');
         const closeButton = document.getElementById('close');
