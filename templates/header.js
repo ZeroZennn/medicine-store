@@ -221,21 +221,34 @@ header.innerHTML = `
                                 <p id="login_username" class="text-white block mx-1">test</p>
                             </a>
                             <!-- Dropdown menu -->
-                            <div id="dropdownUser" class="hidden absolute mt-2 ms-[-5rem] z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <div id="dropdownUser" class="hidden absolute mt-2 ms-[-10rem] z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-64 dark:bg-gray-700">
                                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Carts</a>
-                                </li>
-                                
-                                <li>
-                                    <button onclick="logout()" class="w-full block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white gap-2 flex items-center">
-                                        <i class="ti ti-logout"></i>
-                                        <p>Logout</p>
-                                    </button>
-                                </li>
+                                    <li  class="px-4 py-2 flex gap-2 items-center">
+                                        <div class="user_img">
+                                            <img class="w=[50px] h-[50px] border border-gray-300 rounded-[50%]"src="assets/svg/avatar.svg" alt="" >
+                                        </div>
+                                        <div class="user_text">
+                                            <p class="font-semibold text-[1.1rem] text-gray-700">zikran</p>
+                                            <p class="text-[0.8rem]">zikran1234@gmail.com</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="border border-gray-200"></div>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="cart.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Carts</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <button onclick="logout()" class="w-full block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white gap-2 flex items-center">
+                                            <i class="ti ti-logout"></i>
+                                            <p>Logout</p>
+                                        </button>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
