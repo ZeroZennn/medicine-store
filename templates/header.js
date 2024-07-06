@@ -216,7 +216,7 @@ header.innerHTML = `
                             </a>
                         </li>
                         <li>
-                            <a id="dropdownUserBtn" href="profile.html" class="flex items-center">
+                            <a id="dropdownUserBtn" href="user_profile.html" class="flex items-center">
                                 <img src="assets/svg/avatar.svg" class="h-8 ml-2" alt="User Avatar">
                                 <p id="login_username" class="text-white block mx-1"></p>
                             </a>
