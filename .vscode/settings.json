@@ -1,0 +1,6 @@
+{
+    "liveServer.settings.multiRootWorkspaceName": "medicine-store",
+    "liveServer.settings.ignoreFiles": [
+        "**/*.json",
+        ]
+}

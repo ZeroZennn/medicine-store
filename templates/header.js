@@ -265,12 +265,10 @@ isLogin().then(async loginInfo => {
         const login_div = document.getElementById('login_div');
         const islogin_div = document.getElementById('islogin_div');
         const username = document.getElementById('login_username');
-        const qtyCart = document.getElementById('qtyCart');
         login_div.classList.add('hidden');
         islogin_div.classList.remove('hidden');
         username.innerHTML = loginInfo.username;
-        user_id = loginInfo.id;
-        qtyCart.innerHTML = await getCartQty(user_id);
+        await updateCartQty(loginInfo.id)
     } else {
         const login = document.getElementById('login_open');
         const dialog = document.getElementById('dialog');

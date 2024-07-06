@@ -20,12 +20,23 @@ async function isLogin() {
   return loginInfo
 }
 
-async function getCartQty(id) {
+async function getUser() {
+  let data = await isLogin();
+  return data;
+}
+
+async function getCartQty(user_id) {
   let result;
   await fetchDB('cart')
     .then(data => {
-      const filter = data.cart.filter(x => x.user_id == id)[0];
+      const filter = data.cart.filter(x => x.user_id == user_id)[0];
       result = filter.product.length > 0 ? filter.product.length : '';
   })
   return result;
+}
+
+async function updateCartQty(user_id) {
+  const qty = await getCartQty(user_id)
+  const qtyCart = document.getElementById('qtyCart');
+  qtyCart.innerHTML = qty;
 }

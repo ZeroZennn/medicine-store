@@ -2,7 +2,7 @@
 const productEle = document.getElementById("products");
 const searchEle = document.getElementById("simple-search");
 let product = await fetchDB("products");
-let cart = await fetchDB("cart");
+const user = await getUser();
 
 let currentPage = 1;
 const itemsPerPage = 10;
@@ -25,6 +25,14 @@ function displayItem(items) {
             </div>
         `);
     }).join("");
+
+    document.querySelectorAll('.cart_btn').forEach(button => {
+        button.onclick = async function(event) {
+          event.preventDefault();
+          const productId = this.getAttribute('product-id');
+          addToCart(productId);
+        };
+      });
 }
 
 searchEle.addEventListener("input", (event) => {
@@ -100,24 +108,18 @@ getProduct(currentPage, itemsPerPage);
 
 // Add to cart
 async function addToCart(productId) {
-    const cartIndex = cart.cart.findIndex(x => (x.user_id == user_id))
-    let tempCart = cart.cart[cartIndex];
-    const productIndex = tempCart.product.findIndex(x => (x.id == productId))
-    if (productIndex >= 0) {
-        tempCart.product[productIndex].qty++;
-    } else {
-        tempCart.product.push({id: parseInt(productId), qty: 1});
-    }
-    cart.cart[cartIndex] = tempCart;
-    const qtyCart = document.getElementById('qtyCart');
-    qtyCart.innerHTML = await getCartQty(user_id);
+    await fetch('http://localhost:3000/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({user_id: user.id, id: productId})
+    })
+      .then(response => response.json())
+      .then(data => console.log('Success:', data))
+      .catch(error => console.error('Error:', error));
+      
+    await updateCartQty(user.id)
 }
 
-document.querySelectorAll('.cart_btn').forEach(button => {
-    button.onclick = async function(event) {
-      event.preventDefault();
-      const productId = this.getAttribute('product-id');
-      addToCart(productId);
-    };
-  });
 })();
