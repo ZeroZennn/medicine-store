@@ -218,7 +218,7 @@ header.innerHTML = `
                         <li>
                             <a id="dropdownUserBtn" href="profile.html" class="flex items-center">
                                 <img src="assets/svg/avatar.svg" class="h-8 ml-2" alt="User Avatar">
-                                <p id="login_username" class="text-white block mx-1">test</p>
+                                <p id="login_username" class="text-white block mx-1"></p>
                             </a>
                             <!-- Dropdown menu -->
                             <div id="dropdownUser" class="hidden absolute mt-2 ms-[-10rem] z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-64 dark:bg-gray-700">
@@ -237,7 +237,7 @@ header.innerHTML = `
                                     </li>
 
                                     <li>
-                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                        <a href="user_profile.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
                                     </li>
                                     <li>
                                         <a href="cart.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Carts</a>
