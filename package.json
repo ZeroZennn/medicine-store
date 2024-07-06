@@ -98,7 +98,8 @@
     "yaml": "^2.4.5"
   },
   "scripts": {
-    "dev": "npx tailwindcss -i assets/css/input.css -o assets/css/style.css --watch"
+    "dev": "npx tailwindcss -i assets/css/input.css -o assets/css/style.css --watch",
+    "server": "node server.js"
   },
   "author": "",
   "license": "ISC",
