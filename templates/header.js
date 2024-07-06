@@ -182,7 +182,7 @@ header.innerHTML = `
 
         <!-- navbar -->
         <nav class="bg w-full">
-            <div class="px-14 flex flex-wrap items-center justify-between mx-auto py-2">
+            <div class="px-14 flex flex-wrap items-center justify-between mx-auto py-4  ">
                 <a href="./" class="flex items-center">
                     <img src="assets/svg/logo.svg" class="h-8" alt="MediCran Logo">
                 </a>
@@ -212,19 +212,32 @@ header.innerHTML = `
                         <li>
                             <a href="cart.html" class="flex items-center">
                                 <i class="ti ti-shopping-cart text-white text-[30px] mr-3"></i>
-                                <span id="qtyCart"></span>
+                                <span id="qtyCart" class="absolute mt-[-1.5rem] ms-[1.5rem] bg-red-600 flex justify-center items-center px-[5px] text-[12px] rounded-md text-white font-semibold" ></span>
                             </a>
                         </li>
                         <li>
-                            <a href="profile.html" class="flex items-center">
+                            <a id="dropdownUserBtn" href="profile.html" class="flex items-center">
                                 <img src="assets/svg/avatar.svg" class="h-8 ml-2" alt="User Avatar">
                                 <p id="login_username" class="text-white block mx-1">test</p>
                             </a>
-                        </li>
-                        <li>
-                            <button onclick="logout()" class="end-2.5 text-gray-900 bg-transparentrounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
-                                Logout
-                            </button>
+                            <!-- Dropdown menu -->
+                            <div id="dropdownUser" class="hidden absolute mt-2 ms-[-5rem] z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Carts</a>
+                                </li>
+                                
+                                <li>
+                                    <button onclick="logout()" class="w-full block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white gap-2 flex items-center">
+                                        <i class="ti ti-logout"></i>
+                                        <p>Logout</p>
+                                    </button>
+                                </li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                     
@@ -368,3 +381,29 @@ function logout() {
     deleteCookie();
     location.href = 'index.html';
 }
+
+// dropdown user
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownUserBtn = document.getElementById('dropdownUserBtn');
+    const dropdownUser = document.getElementById('dropdownUser');
+
+    dropdownUserBtn.addEventListener('mouseenter', () => {
+        dropdownUser.classList.remove('hidden');
+    });
+
+    dropdownUserBtn.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+            if (!dropdownUser.matches(':hover')) {
+                dropdownUser.classList.add('hidden');
+            }
+        }, 100);
+    });
+
+    dropdownUser.addEventListener('mouseleave', () => {
+        dropdownUser.classList.add('hidden');
+    });
+
+    dropdownUser.addEventListener('mouseenter', () => {
+        dropdownUser.classList.remove('hidden');
+    });
+});
