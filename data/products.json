@@ -4,129 +4,18 @@
             "id": 1,
             "name": "Sanmol",
             "drugs_category": "Bebas",
-            "description": "Test1",
-            "price": 5000,
-            "image": "assets/images/sanmol2.png"
-        },
-        {
-            "id": 2,
-            "name": "Morfine",
-            "drugs_category": "Resep",
-            "description": "Test2",
-            "price": 10000,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 3,
-            "name": "Paracetamol",
-            "drugs_category": "Bebas",
-            "description": "Test3",
-            "price": 5000,
-            "image": "assets/images/sanmol2.png"
-        },
-        {
-            "id": 4,
-            "name": "Amoxilin",
-            "drugs_category": "Resep",
-            "description": "Test4",
-            "price": 10000,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 5,
-            "name": "Ambeven",
-            "drugs_category": "Bebas",
-            "description": "Test5",
-            "price": 22800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 6,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 7,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 8,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 9,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 10,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 11,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 12,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 13,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 14,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 15,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
-        },
-        {
-            "id": 16,
-            "name": "Anacetine Sirup",
-            "drugs_category": "Bebas",
-            "description": "Test6",
-            "price": 14800,
-            "image": "assets/images/morfin.png"
+            "price": 2500,
+            "image": "assets/images/sanmol2.png",
+            "description": "SANMOL FORTE merupakan obat dengan kandungan Paracetamol 650 mg. Obat ini digunakan untuk meringankan rasa sakit pada keadaan sakit kepala, sakit gigi dan menurunkan demam. Sanmol Forte bekerja pada pusat pengatur suhu di hipotalamus untuk menurunkan suhu tubuh (antipiretik) serta menghambat sintesis prostaglandin sehingga dapat mengurangi nyeri ringan sampai sedang (analgetik).",
+            "indication": "Obat ini digunakan untuk meringankan rasa sakit pada keadaan sakit kepala, sakit gigi dan menurunkan demam.",
+            "composition": "Paracetamol 650 mg",
+            "dosis": "Dewasa dan anak usia lebih dari 12 tahun : 1 tablet, diberikan 3-4 kali sehari.",
+            "usage": "Dikonsumsi sebelum atau sesudah makan.",
+            "side_effect": "Pemakaian obat umumnya memiliki efek samping tertentu dan sesuai dengan masing-masing individu. Jika terjadi efek samping yang berlebih dan berbahaya, harap konsultasikan kepada tenaga medis. Efek samping yang mungkin terjadi dalam penggunaan obat adalah: Hematologi, reaksi kulit, reaksi alergi lainnya, kerusakan hati (penggunaan jangka panjang dan overdosis).",
+            "packaging": "Dus, 25 Catch Cover @1 Strip @ 4 Tablet",
+            "manufactured": "Sanbe Farma",
+            "reg_num": "BPOM: DBL1122235610B1"
+            
         }
     ]
 }
