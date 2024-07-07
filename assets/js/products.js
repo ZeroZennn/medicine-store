@@ -16,7 +16,7 @@ function displayItem(items) {
         return (`
             <div class="card cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
                 <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="${item.image}" alt="">
-                <div class="content px-3">
+                <div product-id="${item.id}" class="content px-3">
                     <div class="name mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
                     <div class="price font-bold text-[#F8AE1C] text-[18px]">${"Rp. " + item.price}</div>
                     <button product-id="${item.id}" class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</button>
@@ -25,29 +25,30 @@ function displayItem(items) {
         `);
     }).join("");
 
+    document.querySelectorAll('.content').forEach(button => {
+        button.onclick = async function() {
+            const productId = this.getAttribute('product-id');
+            location.href = `detail.html?id=${productId}`
+        }
+    });
+
     document.querySelectorAll('.cart_btn').forEach(button => {
         button.onclick = async function(event) {
-          event.preventDefault();
-          if (!user) {
-            dialog.classList.remove('hidden');
-            overlay.classList.remove('hidden');
-          } else {
-            const productId = this.getAttribute('product-id');
-            addToCart(productId);
+            event.preventDefault();
+            if (!user) {
+                dialog.classList.remove('hidden');
+                overlay.classList.remove('hidden');
+            } else {
+                const productId = this.getAttribute('product-id');
+                addToCart(productId);
           }
         };
-      });
+    });
 }
 
 searchEle.addEventListener("input", (event) => {
     getProduct(1, 10, event.target.value)
 });
-
-// GET URL PARAM
-function getArg(argName) {
-    const param = new URLSearchParams(window.location.search);
-    return param.get(argName);
-}
 
 // FILTER
 const category = [...new Set(product.products.map((item) =>
