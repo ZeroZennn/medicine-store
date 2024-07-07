@@ -15,6 +15,22 @@
             "packaging": "Dus, 25 Catch Cover @1 Strip @ 4 Tablet",
             "manufactured": "Sanbe Farma",
             "reg_num": "BPOM: DBL1122235610B1"
+        },
+        {
+            "id": 2,
+            "name": "Aspirin",
+            "drugs_category": "Keras",
+            "price": 2500,
+            "image": "assets/images/morfin.png",
+            "description": "test",
+            "indication": "test",
+            "composition": "test",
+            "dosis": "test",
+            "usage": "test",
+            "side_effect": "test",
+            "packaging": "test",
+            "manufactured": "test",
+            "reg_num": "BPOM: DBL1122235610B1"
             
         }
     ]

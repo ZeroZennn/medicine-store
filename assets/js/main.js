@@ -1,9 +1,9 @@
+let user;
+
 function fetchDB(table) {
   return fetch(`data/${table}.json`)
     .then(response => response.json());
 }
-
-let user;
 
 async function isLogin() {
   let cookie = document.cookie;
@@ -24,7 +24,6 @@ async function isLogin() {
 
 async function getUser() {
   user = await isLogin();
-  return user;
 }
 
 async function getCartQty(user_id) {
@@ -41,4 +40,9 @@ async function updateCartQty(user_id) {
   const qty = await getCartQty(user_id)
   const qtyCart = document.getElementById('qtyCart');
   qtyCart.innerHTML = qty;
+}
+
+function getArg(argName) {
+  const param = new URLSearchParams(window.location.search);
+  return param.get(argName);
 }
