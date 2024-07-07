@@ -2,7 +2,6 @@
 const productEle = document.getElementById("products");
 const searchEle = document.getElementById("simple-search");
 let product = await fetchDB("products");
-const user = await getUser();
 
 let currentPage = 1;
 const itemsPerPage = 10;
@@ -29,8 +28,13 @@ function displayItem(items) {
     document.querySelectorAll('.cart_btn').forEach(button => {
         button.onclick = async function(event) {
           event.preventDefault();
-          const productId = this.getAttribute('product-id');
-          addToCart(productId);
+          if (!user) {
+            dialog.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+          } else {
+            const productId = this.getAttribute('product-id');
+            addToCart(productId);
+          }
         };
       });
 }

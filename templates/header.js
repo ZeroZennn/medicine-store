@@ -259,51 +259,40 @@ header.innerHTML = `
         </nav>
 `
 
-// Login checker
-isLogin().then(async loginInfo => {
-    if (loginInfo) {
-        const login_div = document.getElementById('login_div');
-        const islogin_div = document.getElementById('islogin_div');
-        const username = document.getElementById('login_username');
-        login_div.classList.add('hidden');
-        islogin_div.classList.remove('hidden');
-        username.innerHTML = loginInfo.username;
-        await updateCartQty(loginInfo.id)
-    } else {
-        const login = document.getElementById('login_open');
-        const dialog = document.getElementById('dialog');
-        const closeButton = document.getElementById('close');
-        const overlay = document.getElementById('overlay');
-        const form = document.getElementById('login_form');
-    
-        form.addEventListener('submit', (event) => {
-            event.preventDefault()
-        })
-    
-        login.addEventListener("click", function() {
-            dialog.classList.remove('hidden');
-            overlay.classList.remove('hidden');
-        });
-    
-        closeButton.addEventListener('click', function () {
+function loginDialog() {
+    const login = document.getElementById('login_open');
+    const dialog = document.getElementById('dialog');
+    const closeButton = document.getElementById('close');
+    const overlay = document.getElementById('overlay');
+    const form = document.getElementById('login_form');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault()
+    })
+
+    login.addEventListener("click", function() {
+        dialog.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+    });
+
+    closeButton.addEventListener('click', function () {
+        dialog.classList.add('hidden');
+        overlay.classList.add('hidden');
+    });
+
+    window.onclick = function(event) {
+        if (event.target == overlay) {
             dialog.classList.add('hidden');
             overlay.classList.add('hidden');
-        });
-    
-        window.onclick = function(event) {
-            if (event.target == overlay) {
-              dialog.classList.add('hidden');
-              overlay.classList.add('hidden');
-            }
         }
     }
-})
+}
 
 
 // Login Form Slider
 const inputs = document.querySelectorAll(".input-field");
 const toggle_btn = document.querySelectorAll(".toggle");
-const main = document.querySelector("main");
+const mainEle = document.querySelector("main");
 const bullets = document.querySelectorAll(".bullets span");
 const images = document.querySelectorAll(".image");
 
@@ -319,7 +308,7 @@ inputs.forEach((inp) => {
 
 toggle_btn.forEach((btn) => {
   btn.addEventListener("click", () => {
-    main.classList.toggle("sign-up-mode");
+    mainEle.classList.toggle("sign-up-mode");
   });
 });
 
@@ -418,3 +407,24 @@ document.addEventListener('DOMContentLoaded', function() {
         dropdownUser.classList.remove('hidden');
     });
 });
+
+async function loginCheck() {
+    await getUser();
+    if (user) {
+        const login_div = document.getElementById('login_div');
+        const islogin_div = document.getElementById('islogin_div');
+        const username = document.getElementById('login_username');
+        login_div.classList.add('hidden');
+        islogin_div.classList.remove('hidden');
+        username.innerHTML = user.username;
+        await updateCartQty(user.id)
+    } else {
+        loginDialog();
+    }
+}
+
+async function main() {
+    await loginCheck()
+}
+
+main();
