@@ -15,9 +15,9 @@ function displayItem(items) {
     productEle.innerHTML = items.map(item => {
         return (`
             <div class="card cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                <img class="w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="${item.image}" alt="">
-                <div product-id="${item.id}" class="content px-3">
-                    <div class="name mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
+                <img product-id="${item.id}" class="detail w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="${item.image}" alt="">
+                <div product-id="${item.id}" class="detail name px-3 mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
+                <div class="content px-3">
                     <div class="price font-bold text-[#F8AE1C] text-[18px]">${"Rp. " + item.price}</div>
                     <button product-id="${item.id}" class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</button>
                 </div>
@@ -25,7 +25,7 @@ function displayItem(items) {
         `);
     }).join("");
 
-    document.querySelectorAll('.content').forEach(button => {
+    document.querySelectorAll('.detail').forEach(button => {
         button.onclick = async function() {
             const productId = this.getAttribute('product-id');
             location.href = `detail.html?id=${productId}`
