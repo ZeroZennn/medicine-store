@@ -24,6 +24,7 @@ async function isLogin() {
 
 async function getUser() {
   user = await isLogin();
+  return user;
 }
 
 async function getCartQty(user_id) {
