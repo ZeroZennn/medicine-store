@@ -3,6 +3,8 @@ function fetchDB(table) {
     .then(response => response.json());
 }
 
+let user;
+
 async function isLogin() {
   let cookie = document.cookie;
   cookie = cookie.replace("username=", "")
@@ -21,8 +23,7 @@ async function isLogin() {
 }
 
 async function getUser() {
-  let data = await isLogin();
-  return data;
+  user = await isLogin();
 }
 
 async function getCartQty(user_id) {
