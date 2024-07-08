@@ -124,28 +124,28 @@ header.innerHTML = `
                         </div>
                 
                         <div class="carousel">
-                            <div class="images-wrapper">
+                            <!--<div class="images-wrapper">
                             <img src="" class="image img-1 show" alt="" />
                             <img src="" class="image img-2" alt="" />
                             <img src="" class="image img-3" alt="" />
                             </div>
                 
                             <div class="text-slider">
-                            <div class="text-wrap">
-                                <div class="text-group">
-                                <h2>Create your own courses</h2>
-                                <h2>Customize as you like</h2>
-                                <h2>Invite students to your class</h2>
+                                <div class="text-wrap">
+                                    <div class="text-group">
+                                    <h2>Create your own courses</h2>
+                                    <h2>Customize as you like</h2>
+                                    <h2>Invite students to your class</h2>
+                                    </div>
                                 </div>
-                            </div>
-                
-                            <div class="bullets">
-                                <span class="active" data-value="1"></span>
-                                <span data-value="2"></span>
-                                <span data-value="3"></span>
-                            </div>
-                            </div>
-                        </div>
+                    
+                                <div class="bullets">
+                                    <span class="active" data-value="1"></span>
+                                    <span data-value="2"></span>
+                                    <span data-value="3"></span>
+                                </div>
+                            </div>-->
+                        </div> 
                     </div>
                 </div>
     
