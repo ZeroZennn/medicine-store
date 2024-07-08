@@ -1,12 +1,11 @@
-(async () => {
 const id = getArg('id');
-const products = await fetchDB("products")
+const products = getLS("products")
 
 if (id == null) location.href = "product.html";
 
 const imageEle = document.querySelector(".product_wrapper");
 const detailEle = document.querySelector(".product_detail");
-const productToShow = products.products.filter(x => x.id == id)[0];
+const productToShow = products.product.filter(x => x.id == id)[0];
 
 imageEle.innerHTML = `
     <!-- product image -->
@@ -84,5 +83,3 @@ detailEle.innerHTML = `
         <p class="content text-gray-500">${productToShow.reg_num}</p>
     </div>
 `
-
-})();

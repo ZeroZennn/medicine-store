@@ -5,39 +5,40 @@ function fetchDB(table) {
     .then(response => response.json());
 }
 
-async function isLogin() {
+function setLS(key, data) {
+  if (typeof data != "string") {data = JSON.stringify(data);}
+  localStorage.setItem(key, data);
+}
+
+function getLS(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
+function isLogin() {
   let cookie = document.cookie;
   cookie = cookie.replace("username=", "")
   let loginInfo;
   if (cookie != '') {
-    await fetchDB("user")
-    .then(data => {
-      loginInfo = data.user.filter(x => x.username == cookie)[0];
-      return loginInfo;
-    }) .catch(error => {
-        console.error("Error fetching user data:", error);
-      }
-    );
+    let data = getLS("users")
+    loginInfo = data.user.filter(x => x.username == cookie)[0];
+    return loginInfo;
   }
   return loginInfo
 }
 
-async function getUser() {
-  user = await isLogin();
+function getUser() {
+  user = isLogin();
 }
 
-async function getCartQty(user_id) {
-  let result;
-  await fetchDB('cart')
-    .then(data => {
-      const filter = data.cart.filter(x => x.user_id == user_id)[0];
-      result = filter.product.length > 0 ? filter.product.length : '';
-  })
+function getCartQty(user_id) {
+  const data = getLS("carts");
+  const filter = data.cart.filter(x => x.user_id == user_id)[0];
+  const result = filter.product.length > 0 ? filter.product.length : '';
   return result;
 }
 
-async function updateCartQty(user_id) {
-  const qty = await getCartQty(user_id)
+function updateCartQty(user_id) {
+  const qty = getCartQty(user_id)
   const qtyCart = document.getElementById('qtyCart');
   qtyCart.innerHTML = qty;
 }
