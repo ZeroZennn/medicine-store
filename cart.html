@@ -21,72 +21,20 @@
       <div class="grid lg:grid-cols-12 gap-10 mt-5">
         <div class="left lg:col-span-7">
           <!-- select all -->
-          <div class="flex items-center justify-between ps-4 border border-gray-200 rounded dark:border-gray-700">
+          <div id="delete" class="flex items-center justify-between ps-4 border border-gray-200 rounded dark:border-gray-700">
             <div class="select_all flex items-center ">
               <input id="select_all" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
               <label for="select_all" class="py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select All</label>
             </div>
             <p class="mr-4 cursor-pointer font-semibold">Delete All</p>
           </div>
+
           <!-- product cart -->
-          <div class="product_item flex items-center justify-between p-4 border border-gray-200 rounded dark:border-gray-700 mt-4">
-            <div class="wrapper flex items-center justify-between w-full">
-              <!-- product detail -->
-              <div class="product_left flex gap-4">
-                <input id="select_item" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <div class="product_detail lg:flex gap-4">
-                  <img class="w-[80px] h-[80px] lg:w-[128px] lg:h-[120px] bg-slate-500" src="assets/images/sanmol2.png" alt="">
-                  <div class="product_name">Sanmol Tablet</div>
-
-                </div>
-              </div>
-              <div class="product_right flex flex-col justify-between items-end gap-14">
-                <div class="product_price font-semibold">Rp. 2.600</div>
-                <div class="right_bottom flex gap-4">
-                  <div class="icon_trash">
-                    <i class="ti ti-trash text-[28px] cursor-pointer"></i>
-                  </div>
-                  <div class="qty flex justify-between px-6 py-1 gap-8 rounded-md border border-[#8f8f8f]">
-                    <div class="minus cursor-pointer">-</div>
-                    <div class="total_items">1</div>
-                    <div class="plus cursor-pointer">+</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+          <div id="product_cart">
           </div>
-          <!-- Product #2 -->
-          <div class="product_item flex items-center justify-between p-4 border border-gray-200 rounded dark:border-gray-700 mt-4">
-            <div class="wrapper flex items-center justify-between w-full">
-              <!-- product detail -->
-              <div class="product_left flex gap-4">
-                <input id="select_item" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <div class="product_detail lg:flex gap-4">
-                  <img class="w-[80px] h-[80px] lg:w-[128px] lg:h-[120px] bg-slate-500" src="assets/images/sanmol2.png" alt="">
-                  <div class="product_name">Sanmol Tablet</div>
-
-                </div>
-              </div>
-              <div class="product_right flex flex-col justify-between items-end gap-14">
-                <div class="product_price font-semibold">Rp. 2.600</div>
-                <div class="right_bottom flex gap-4">
-                  <div class="icon_trash">
-                    <i class="ti ti-trash text-[28px] cursor-pointer"></i>
-                  </div>
-                  <div class="qty flex justify-between px-6 py-1 gap-8 rounded-md border border-[#8f8f8f]">
-                    <div class="minus cursor-pointer">-</div>
-                    <div class="total_items">1</div>
-                    <div class="plus cursor-pointer">+</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
+          
         </div>
-        <div class="right lg:col-span-5">
+        <div id="detail_cart" class="right lg:col-span-5">
           <div class="shopping_summary lg:shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] p-[38px] rounded-lg">
             <h3 class="font-semibold text-[18px]">Ringkasan Pembayaran</h3>
             <!-- keranjang -->
@@ -138,6 +86,7 @@
             <button class="py-2 bg-[#37B7C3] w-full mt-4 rounded-md text-white active:bg-[#1394a0]">Pilih Pembayaran</button>
           </div>
         </div>
+
       </div>
     </div>
   </main>
@@ -147,5 +96,6 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/block.js"></script>
   <script src="templates/header.js"></script>
+  <script src="assets/js/cart.js"></script>
 </body>
 </html>

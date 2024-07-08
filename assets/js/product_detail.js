@@ -2,13 +2,11 @@
 const id = getArg('id');
 const products = await fetchDB("products")
 
-
 if (id == null) location.href = "product.html";
 
 const imageEle = document.querySelector(".product_wrapper");
 const detailEle = document.querySelector(".product_detail");
 const productToShow = products.products.filter(x => x.id == id)[0];
-console.log(imageEle)
 
 imageEle.innerHTML = `
     <!-- product image -->

@@ -20,7 +20,7 @@
             "id": 2,
             "name": "Aspirin",
             "drugs_category": "Keras",
-            "price": 2500,
+            "price": 3000,
             "image": "assets/images/morfin.png",
             "description": "test",
             "indication": "test",
@@ -30,8 +30,7 @@
             "side_effect": "test",
             "packaging": "test",
             "manufactured": "test",
-            "reg_num": "BPOM: DBL1122235610B1"
-            
+            "reg_num": "BPOM: DBL1122235610B1"   
         }
     ]
 }
