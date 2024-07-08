@@ -19,7 +19,7 @@ function displayItem(items) {
                 <div product-id="${item.id}" class="detail name px-3 mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
                 <div class="content px-3">
                     <div class="price font-bold text-[#F8AE1C] text-[18px]">${"Rp. " + item.price}</div>
-                    <button product-id="${item.id}" class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</button>
+                    <button product-id="${item.id}" class="w-full cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</button>
                 </div>
             </div>
         `);
@@ -112,19 +112,19 @@ document.querySelector('.pagination').addEventListener('click', handlePagination
 getProduct(currentPage, itemsPerPage);
 
 // Add to cart
-async function addToCart(productId) {
-    await fetch('http://localhost:3000/cart/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({user_id: user.id, id: productId})
-    })
-      .then(response => response.json())
-      .then(data => console.log('Success:', data))
-      .catch(error => console.error('Error:', error));
+// async function addToCart(productId) {
+//     await fetch('http://localhost:3000/cart/add', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({user_id: user.id, id: productId})
+//     })
+//       .then(response => response.json())
+//       .then(data => console.log('Success:', data))
+//       .catch(error => console.error('Error:', error));
       
-    await updateCartQty(user.id)
-}
+//     await updateCartQty(user.id)
+// }
 
 })();
