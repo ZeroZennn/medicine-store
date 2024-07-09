@@ -1,4 +1,5 @@
 const header = document.querySelector("header");
+let user_id;
 
 header.innerHTML = `
         <!-- overlay -->
@@ -333,14 +334,20 @@ bullets.forEach((bullet) => {
 function handleLogin() {
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
-    const data = getLS("users");
-    const auth = data.user.filter(x => x.username == username && x.password == password)[0]
-    if (auth) {
-        setCookie(auth.username, null, 1, null, null);
-        location.href = 'index.html';
-    } else { 
-        alert("Username atau Password salah")
-    }
+    fetchDB("user")
+      .then(data => {
+        const auth = data.user.filter(x => x.username == username && x.password == password)[0]
+        if (auth) {
+            setCookie(auth.username, null, 1, null, null);
+            location.href = 'index.html';
+        } else { 
+            alert("Username atau Password salah")
+        }
+      }
+    ) .catch(error => {
+        console.error("Error fetching user data:", error);
+      }
+    );
 }
 
 // Set Cookie for Login
@@ -401,8 +408,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function loginCheck() {
-    getUser();
+async function loginCheck() {
+    await getUser();
     if (user) {
         const login_div = document.getElementById('login_div');
         const islogin_div = document.getElementById('islogin_div');
@@ -410,10 +417,14 @@ function loginCheck() {
         login_div.classList.add('hidden');
         islogin_div.classList.remove('hidden');
         username.innerHTML = user.username;
-        updateCartQty(user.id)
+        await updateCartQty(user.id)
     } else {
         loginDialog();
     }
 }
 
-loginCheck();
+async function main() {
+    await loginCheck()
+}
+
+main();
