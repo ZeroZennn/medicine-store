@@ -1,5 +1,4 @@
-{
-    "product": [
+[
         {
             "id": 1,
             "name": "Sanmol",
@@ -33,4 +32,3 @@
             "reg_num": "BPOM: DBL1122235610B1"   
         }
     ]
-}

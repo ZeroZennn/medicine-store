@@ -51,13 +51,13 @@ searchEle.addEventListener("input", (event) => {
 });
 
 // FILTER
-const category = [...new Set(products.product.map((item) =>
+const category = [...new Set(products.map((item) =>
     {return item}))];
 
 // GET PRODUCT
 function getProduct(pages, items, searchName = '') {
     const start = (pages - 1) * items;
-    let productToShow = products.product
+    let productToShow = products
     if (getArg('category') != null) {
         productToShow = category.filter(x => (x.drugs_category == getArg("category")))
     }
@@ -66,7 +66,7 @@ function getProduct(pages, items, searchName = '') {
         productToShow = (fuse.search(searchName)).map((item) => item.item)
     }
     if (searchName == '') {
-        productToShow = products.product
+        productToShow = products
     }
     productToShow = productToShow.slice(start, start + items);
     displayItem(productToShow)
@@ -110,21 +110,5 @@ function updatePagination(currentPage) {
 document.querySelector('.pagination').addEventListener('click', handlePagination);
 
 getProduct(currentPage, itemsPerPage);
-
-// Add to cart
-async function addToCart(productId) {
-    await fetch('http://localhost:3000/carts/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({user_id: user.id, id: productId})
-    })
-      .then(response => response.json())
-      .then(data => console.log('Success:', data))
-      .catch(error => console.error('Error:', error));
-      
-    await updateCartQty(user.id)
-}
 
 })();

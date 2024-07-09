@@ -334,8 +334,8 @@ function handleLogin() {
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
     fetchDB("users")
-      .then(data => {
-        const auth = data.user.filter(x => x.username == username && x.password == password)[0]
+      .then(user => {
+        const auth = user.filter(x => x.username == username && x.password == password)[0]
         if (auth) {
             setCookie(auth.username, null, 1, null, null);
             location.reload();

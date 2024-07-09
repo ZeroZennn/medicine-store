@@ -6,7 +6,7 @@ if (id == null) location.href = "product.html";
 
 const imageEle = document.querySelector(".product_wrapper");
 const detailEle = document.querySelector(".product_detail");
-const productToShow = products.product.filter(x => x.id == id)[0];
+const productToShow = products.find(x => x.id == id);
 
 imageEle.innerHTML = `
     <!-- product image -->

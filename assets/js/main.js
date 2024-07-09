@@ -11,8 +11,8 @@ async function isLogin() {
   let loginInfo;
   if (cookie != '') {
     await fetchDB("users")
-    .then(data => {
-      loginInfo = data.user.filter(x => x.username == cookie)[0];
+    .then(user => {
+      loginInfo = user.find(x => x.username == cookie);
       return loginInfo;
     }) .catch(error => {
         console.error("Error fetching user data:", error);
@@ -29,9 +29,9 @@ async function getUser() {
 async function getCartQty(user_id) {
   let result;
   await fetchDB('carts')
-    .then(data => {
-      const filter = data.cart.filter(x => x.user_id == user_id)[0];
-      result = filter.product.length > 0 ? filter.product.length : '';
+    .then(cart => {
+      const account_cart = cart.find(x => x.user_id == user_id);
+      result = account_cart.product.length > 0 ? account_cart.product.length : '';
   })
   return result;
 }
@@ -45,4 +45,16 @@ async function updateCartQty(user_id) {
 function getArg(argName) {
   const param = new URLSearchParams(window.location.search);
   return param.get(argName);
+}
+
+// Add to cart
+async function addToCart(productId, increase = null) {
+  await fetch('http://localhost:3000/carts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user_id: user.id, id: productId, increase: increase})
+  })
+  increase == null ? await updateCartQty(user.id) : false;
 }

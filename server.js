@@ -7,9 +7,29 @@ const port = 3000;
 app.use(cors())
 app.use(express.json());
 
+function carts(body, data) {
+  let cart = JSON.parse(data);
+  const checkUserId = cart.findIndex(x => x.user_id == body.user_id);
+  const checkProductId = cart[checkUserId].product.findIndex(x => x.id == body.id);
+  if (checkProductId >= 0) {
+    if (body.increase == false) {
+      cart[checkUserId].product[checkProductId].qty--;
+      if(cart[checkUserId].product[checkProductId].qty == 0) {
+        cart[checkUserId].product.splice(checkProductId, 1)
+      }
+    } else {
+      cart[checkUserId].product[checkProductId].qty++;
+    }
+  } else {
+    cart[checkUserId].product.push({id: parseInt(body.id), qty: 1});
+  }
+  return cart;
+}
+
 // add or update the qty cart of user_id
-app.post('/carts/add', (req, res) => {
+app.post('/carts', (req, res) => {
   const body = req.body;
+  console.log(body)
 
   // Read existing data from JSON file
   fs.readFile('data/carts.json', 'utf8', (err, data) => {
@@ -18,17 +38,10 @@ app.post('/carts/add', (req, res) => {
       return res.status(500).json({ message: 'Error reading file' });
     }
 
-    let cart = JSON.parse(data);
-    const checkUserId = cart.cart.findIndex(x => x.user_id == body.user_id);
-    const checkProductId = cart.cart[checkUserId].product.findIndex(x => x.id == body.id);
-    if (checkProductId >= 0) {
-      cart.cart[checkUserId].product[checkProductId].qty++;
-    } else {
-      cart.cart[checkUserId].product.push({id: parseInt(body.id), qty: 1});
-    }
+    let result = carts(body, data);
 
     // Write updated data back to JSON file
-    fs.writeFile('data/carts.json', JSON.stringify(cart, null, 2), (err) => {
+    fs.writeFile('data/carts.json', JSON.stringify(result, null, 2), (err) => {
       if (err) {
         console.error('Error writing file:', err);
         return res.status(500).json({ message: 'Error writing file' });
