@@ -10,7 +10,7 @@ async function isLogin() {
   cookie = cookie.replace("username=", "")
   let loginInfo;
   if (cookie != '') {
-    await fetchDB("user")
+    await fetchDB("users")
     .then(data => {
       loginInfo = data.user.filter(x => x.username == cookie)[0];
       return loginInfo;
@@ -28,7 +28,7 @@ async function getUser() {
 
 async function getCartQty(user_id) {
   let result;
-  await fetchDB('cart')
+  await fetchDB('carts')
     .then(data => {
       const filter = data.cart.filter(x => x.user_id == user_id)[0];
       result = filter.product.length > 0 ? filter.product.length : '';

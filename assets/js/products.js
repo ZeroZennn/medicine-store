@@ -1,7 +1,7 @@
 (async () => {
 const productEle = document.getElementById("products");
 const searchEle = document.getElementById("simple-search");
-let product = await fetchDB("products");
+let products = await fetchDB("products");
 
 let currentPage = 1;
 const itemsPerPage = 10;
@@ -51,13 +51,13 @@ searchEle.addEventListener("input", (event) => {
 });
 
 // FILTER
-const category = [...new Set(product.products.map((item) =>
+const category = [...new Set(products.product.map((item) =>
     {return item}))];
 
 // GET PRODUCT
 function getProduct(pages, items, searchName = '') {
     const start = (pages - 1) * items;
-    let productToShow = product.products
+    let productToShow = products.product
     if (getArg('category') != null) {
         productToShow = category.filter(x => (x.drugs_category == getArg("category")))
     }
@@ -66,10 +66,10 @@ function getProduct(pages, items, searchName = '') {
         productToShow = (fuse.search(searchName)).map((item) => item.item)
     }
     if (searchName == '') {
-        productToShow = product.products
+        productToShow = products.product
     }
-    const products = productToShow.slice(start, start + items);
-    displayItem(products)
+    productToShow = productToShow.slice(start, start + items);
+    displayItem(productToShow)
 }
 
 // handle pagination
@@ -112,19 +112,19 @@ document.querySelector('.pagination').addEventListener('click', handlePagination
 getProduct(currentPage, itemsPerPage);
 
 // Add to cart
-// async function addToCart(productId) {
-//     await fetch('http://localhost:3000/cart/add', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({user_id: user.id, id: productId})
-//     })
-//       .then(response => response.json())
-//       .then(data => console.log('Success:', data))
-//       .catch(error => console.error('Error:', error));
+async function addToCart(productId) {
+    await fetch('http://localhost:3000/carts/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({user_id: user.id, id: productId})
+    })
+      .then(response => response.json())
+      .then(data => console.log('Success:', data))
+      .catch(error => console.error('Error:', error));
       
-//     await updateCartQty(user.id)
-// }
+    await updateCartQty(user.id)
+}
 
 })();

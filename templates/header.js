@@ -1,5 +1,4 @@
 const header = document.querySelector("header");
-let user_id;
 
 header.innerHTML = `
         <!-- overlay -->
@@ -334,12 +333,12 @@ bullets.forEach((bullet) => {
 function handleLogin() {
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
-    fetchDB("user")
+    fetchDB("users")
       .then(data => {
         const auth = data.user.filter(x => x.username == username && x.password == password)[0]
         if (auth) {
             setCookie(auth.username, null, 1, null, null);
-            location.href = 'index.html';
+            location.reload();
         } else { 
             alert("Username atau Password salah")
         }
@@ -408,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-async function loginCheck() {
+async function main() {
     await getUser();
     if (user) {
         const login_div = document.getElementById('login_div');
@@ -421,10 +420,6 @@ async function loginCheck() {
     } else {
         loginDialog();
     }
-}
-
-async function main() {
-    await loginCheck()
 }
 
 main();

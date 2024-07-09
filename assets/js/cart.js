@@ -1,5 +1,5 @@
 (async () => {
-    const carts = await fetchDB("cart");
+    const carts = await fetchDB("carts");
     const products = await fetchDB("products");
 
     let price_temp, total
@@ -7,9 +7,10 @@
     const productCartEle = document.getElementById("product_cart");
     const productDetailELe = document.getElementById("detail_cart");
     const cart = carts.cart.filter(x => x.user_id == user.id)[0];
+    console.log(cart)
 
     const getProduct = (id) => {
-        return products.products.filter(x => x.id == id)[0];
+        return products.product.filter(x => x.id == id)[0];
     }
 
     productCartEle.innerHTML = cart.product.map(item => {
