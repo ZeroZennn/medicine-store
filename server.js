@@ -29,7 +29,6 @@ function carts(body, data) {
 // add or update the qty cart of user_id
 app.post('/carts', (req, res) => {
   const body = req.body;
-  console.log(body)
 
   // Read existing data from JSON file
   fs.readFile('data/carts.json', 'utf8', (err, data) => {
@@ -42,6 +41,39 @@ app.post('/carts', (req, res) => {
 
     // Write updated data back to JSON file
     fs.writeFile('data/carts.json', JSON.stringify(result, null, 2), (err) => {
+      if (err) {
+        console.error('Error writing file:', err);
+        return res.status(500).json({ message: 'Error writing file' });
+      }
+
+      res.status(200).json({ message: 'cart updated successfully' });
+    });
+  });
+});
+
+app.post('/carts/delete', (req, res) => {
+  const body = req.body;
+
+  // Read existing data from JSON file
+  fs.readFile('data/carts.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      return res.status(500).json({ message: 'Error reading file' });
+    }
+
+    let cart = JSON.parse(data)
+
+    const checkUserId = cart.findIndex(x => x.user_id == body.user_id);
+    const checkProductId = cart[checkUserId].product.findIndex(x => x.id == body.id);
+
+    if (body.all == true) {
+      cart.splice(checkUserId, 1)
+    } else {
+      cart[checkUserId].product.splice(checkProductId, 1)
+    }
+
+    // Write updated data back to JSON file
+    fs.writeFile('data/carts.json', JSON.stringify(cart, null, 2), (err) => {
       if (err) {
         console.error('Error writing file:', err);
         return res.status(500).json({ message: 'Error writing file' });

@@ -1,9 +1,10 @@
+let carts;
 (async () => {
-  let carts;
   const products = await fetchDB("products");
   
   const productCartEle = document.getElementById("product_cart");
   const productDetailELe = document.getElementById("detail_cart");
+  const delSelected = document.getElementById('deleteSelected');
 
   const getProduct = (id) => {
       return products.filter(x => x.id == id)[0];
@@ -15,9 +16,7 @@
     price.forEach(cb => {
       if (cb.checked) {
         const productEle = document.getElementById(`product_qty_${cb.getAttribute('product-id')}`);
-        console.log(productEle)
         total = total + (parseInt(productEle.getAttribute('price')) * parseInt(productEle.innerText));
-        console.log(total)
       }
     })
     productDetailELe.innerHTML = `
@@ -67,6 +66,31 @@
         <button class="py-2 bg-[#37B7C3] w-full mt-4 rounded-md text-white active:bg-[#1394a0]">Pilih Pembayaran</button>
       </div>
     `
+  }
+
+  async function updateSelectAll() {
+    const select_child = document.querySelectorAll('#select_item');
+    let falseCount = 0;
+    let trueCount = 0;
+    for (const x of select_child) {
+      if (x.checked == false) {
+        falseCount++;
+      } else {
+        trueCount++;
+      }
+    }
+    if (falseCount == 0 && trueCount == 0) {delSelected.innerText = ""; return false;}
+    if (falseCount > 0 && trueCount > 0) {
+      delSelected.innerText = "Delete Selected"
+      delSelected.setAttribute("del-all", false)
+      return false;
+    } else if (falseCount > 0) {
+      delSelected.innerText = ""
+      return false;
+    }
+    delSelected.innerText = "Delete All"
+    delSelected.setAttribute("del-all", true)
+    return true;
   }
 
   async function startCart() {
@@ -125,23 +149,57 @@
     const select = document.getElementById('select_all');
     const select_child = document.querySelectorAll('#select_item');
 
-    let checked = false;
-
-    select.addEventListener("click", () => {
-      checked = !checked;
+    select.addEventListener("change", () => {
       select_child.forEach((cb) => {
-        cb.checked = checked;
+        cb.checked = select.checked;
       });
+      updateSelectAll();
       updateCartDetail();
     });
 
     select_child.forEach(cb => {
-      cb.addEventListener("change", () => {
+      cb.addEventListener("change", async () => {
+        select.checked = await updateSelectAll()
         updateCartDetail();
       });
     })
+
+    document.querySelectorAll('.ti-trash').forEach(button => {
+      button.onclick = async function() {
+        let productId = this.getAttribute('product-id');
+        await deleteCart(user.id, productId);
+        document.getElementById(`cart_product_${productId}`).remove();
+      }
+    })
+
+    document.getElementById('deleteSelected').addEventListener('click', async () => {
+      const all = delSelected.getAttribute('del-all')
+      if (all == "false") {
+        select_child.forEach(async cb => {
+          if (cb.checked) {
+            const productId = cb.getAttribute("product-id")
+            await deleteCart(user.id, productId);
+            document.getElementById(`cart_product_${productId}`).remove();
+          }
+        })
+      } else {
+        await deleteCart(user.id, 0, all);
+      }
+    })
+  }
+
+  async function deleteCart(user_id, productId, all = false) {
+    await fetch('http://localhost:3000/carts/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user_id: user_id, id: productId, all: all})
+    })
+    await updateCartQty(user_id);
   }
 
   startCart();
+  updateSelectAll();
 
 })();
