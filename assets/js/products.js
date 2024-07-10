@@ -11,6 +11,18 @@ const options = {
     keys: ['name']
 }
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  iconColor: 'white',
+  customClass: {
+    popup: 'colored-toast',
+  },
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+})
+
 function displayItem(items) {
     productEle.innerHTML = items.map(item => {
         return (`
@@ -40,7 +52,11 @@ function displayItem(items) {
                 overlay.classList.remove('hidden');
             } else {
                 const productId = this.getAttribute('product-id');
-                addToCart(productId);
+                await addToCart(productId);
+                await Toast.fire({
+                    icon: 'success',
+                    title: 'Item ditambahkan ke cart',
+                })
           }
         };
     });
