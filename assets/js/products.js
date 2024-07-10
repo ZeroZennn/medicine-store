@@ -11,6 +11,13 @@ const options = {
     keys: ['name']
 }
 
+const rupiah = (number)=>{
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR"
+    }).format(number);
+  }
+
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -30,7 +37,7 @@ function displayItem(items) {
                 <img product-id="${item.id}" class="detail w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="${item.image}" alt="">
                 <div product-id="${item.id}" class="detail name px-3 mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
                 <div class="content px-3">
-                    <div class="price font-bold text-[#F8AE1C] text-[18px]">${"Rp. " + item.price}</div>
+                    <div class="price font-bold text-[#F8AE1C] text-[18px]">${rupiah(item.price)}</div>
                     <button product-id="${item.id}" class="w-full cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</button>
                 </div>
             </div>

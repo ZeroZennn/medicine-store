@@ -9,6 +9,13 @@
       return products.filter(x => x.id == id)[0];
   }
 
+  const rupiah = (number)=>{
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR"
+    }).format(number);
+  }
+
   async function updateCartDetail() {
     let price = document.querySelectorAll('#select_item')
     let total = 0;
@@ -26,24 +33,24 @@
         <!-- keranjang -->
         <div class="total_cart flex justify-between mt-4">
           <p class="text-[14px] text-gray-500">Keranjang ( 1 Produk )</p>
-          <p class="text-[14px] text-gray-500">Rp. ${total ? total : '-'}</p>
+          <p class="text-[14px] text-gray-500">${rupiah(total ? total : '-')}</p>
         </div>
         <!-- total Ongkir -->
         <div class="total_cart flex justify-between mt-2">
           <p class="text-[14px] text-gray-500">Total Ongkir</p>
-          <p class="text-[14px] text-gray-500">Rp. ${total > 0 ? '10000': '-'}</p>
+          <p class="text-[14px] text-gray-500">${rupiah(total > 0 ? '10000': '-')}</p>
         </div>
         <!-- Biaya Pelayanan -->
         <div class="total_cart flex justify-between mt-2">
           <p class="text-[14px] text-gray-500">Biaya Penanganan</p>
-          <p class="text-[14px] text-gray-500">Rp. ${total > 0 ? '5000': '-'}</p>
+          <p class="text-[14px] text-gray-500">${rupiah(total > 0 ? '5000': '-')}</p>
         </div>
         <!-- line -->
         <div class="border w-full border-gray-200 mt-4"></div>
         <!-- total belanja -->
         <div class="shopping_total flex justify-between mt-4">
           <h3 class="font-semibold">Total Belanja</h3>
-          <h3 class="font-semibold">Rp. ${total > 0 ? total + 15000 : '-'}</h3>
+          <h3 class="font-semibold">${rupiah(total > 0 ? total + 15000 : '-')}</h3>
         </div>
         <!-- alamat -->
         <div class="address_wrap p-4 bg-gray-100 rounded-lg mt-4">
