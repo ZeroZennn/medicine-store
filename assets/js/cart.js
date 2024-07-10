@@ -14,7 +14,10 @@
     let total = 0;
     price.forEach(cb => {
       if (cb.checked) {
-        total += parseInt(cb.getAttribute('price'));
+        const productEle = document.getElementById(`product_qty_${cb.getAttribute('product-id')}`);
+        console.log(productEle)
+        total = total + (parseInt(productEle.getAttribute('price')) * parseInt(productEle.innerText));
+        console.log(total)
       }
     })
     productDetailELe.innerHTML = `
@@ -68,15 +71,15 @@
 
   async function startCart() {
     carts = await fetchDB("carts");
-    const cart = carts.filter(x => x.user_id == user.id)[0];
+    const cart = carts.find(x => x.user_id == user.id);
     productCartEle.innerHTML = cart.product.map(item => {
       let product = getProduct(item.id)
         return (`
-            <div class="product_item flex items-center justify-between p-4 border border-gray-200 rounded dark:border-gray-700 mt-4">
+            <div id="cart_product_${item.id}" class="product_item flex items-center justify-between p-4 border border-gray-200 rounded dark:border-gray-700 mt-4">
               <div class="wrapper flex items-center justify-between w-full">
                 <!-- product detail -->
                 <div class="product_left flex gap-4">
-                  <input price="${item.qty * product.price}" id="select_item" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <input product-id="${item.id}" id="select_item" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                   <div class="product_detail lg:flex gap-4">
                     <img class="w-[80px] h-[80px] lg:w-[128px] lg:h-[120px] bg-slate-500" src="${product.image}" alt="">
                     <div class="product_name">${product.name}</div>
@@ -90,7 +93,7 @@
                     </div>
                     <div class="qty flex justify-between px-6 py-1 gap-8 rounded-md border border-[#8f8f8f]">
                       <div product-id="${item.id}" class="minus cursor-pointer">-</div>
-                      <div id="product_qty_${item.id}" class="total_items">${item.qty}</div>
+                      <div id="product_qty_${item.id}" price="${product.price}" class="total_items">${item.qty}</div>
                       <div product-id="${item.id}" class="plus cursor-pointer">+</div>
                     </div>
                   </div>
@@ -104,8 +107,9 @@
       button.onclick = async function() {
         let productId = this.getAttribute('product-id');
         await addToCart(productId, false)
-        document.getElementById(`product_qty_${productId}`).innerText--;
-        await startCart();
+        const qty = document.getElementById(`product_qty_${productId}`).innerText--;
+        if ((qty - 1) == 0) document.getElementById(`cart_product_${productId}`).remove();
+        await updateCartDetail();
       }
     });
 
@@ -114,7 +118,7 @@
         let productId = this.getAttribute('product-id');
         await addToCart(productId, true);
         document.getElementById(`product_qty_${productId}`).innerText++;
-        await startCart();
+        await updateCartDetail();
       }
     });
 
