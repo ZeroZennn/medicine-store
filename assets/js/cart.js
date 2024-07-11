@@ -103,7 +103,7 @@ let carts;
   async function startCart() {
     carts = await fetchDB("carts");
     const cart = carts.find(x => x.user_id == user.id);
-    productCartEle.innerHTML = cart.product.map(item => {
+    productCartEle.innerHTML = !cart ? '' : cart.product.map(item => {
       let product = getProduct(item.id)
         return (`
             <div id="cart_product_${item.id}" class="product_item flex items-center justify-between p-4 border border-gray-200 rounded dark:border-gray-700 mt-4">
@@ -187,10 +187,12 @@ let carts;
             const productId = cb.getAttribute("product-id")
             await deleteCart(user.id, productId);
             document.getElementById(`cart_product_${productId}`).remove();
+            updateSelectAll();
           }
         })
       } else {
-        await deleteCart(user.id, 0, all);
+        await deleteCart(user.id, 0, true);
+        updateSelectAll();
       }
     })
   }

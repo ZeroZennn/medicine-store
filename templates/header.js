@@ -243,7 +243,7 @@ header.innerHTML = `
                                     </li>
                                     
                                     <li>
-                                        <button onclick="logout()" class="w-full block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white gap-2 flex items-center">
+                                        <button onclick="logout()" class="w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white gap-2 flex items-center">
                                             <i class="ti ti-logout"></i>
                                             <p>Logout</p>
                                         </button>

@@ -10,12 +10,32 @@ app.use(express.json());
 function carts(body, data) {
   let cart = JSON.parse(data);
   const checkUserId = cart.findIndex(x => x.user_id == body.user_id);
-  const checkProductId = cart[checkUserId].product.findIndex(x => x.id == body.id);
+  let checkProductId;
+  if (checkUserId >= 0) {
+    checkProductId = cart[checkUserId].product.findIndex(x => x.id == parseInt(body.id));
+  } else {
+    console.log(typeof(body.id))
+    const newCart = {
+      "user_id": body.user_id,
+      "product": [
+        {
+          "id": parseInt(body.id),
+          "qty": 1
+        }
+      ]
+    }
+    cart.push(newCart);
+    return cart;
+  }
   if (checkProductId >= 0) {
     if (body.increase == false) {
       cart[checkUserId].product[checkProductId].qty--;
       if(cart[checkUserId].product[checkProductId].qty == 0) {
-        cart[checkUserId].product.splice(checkProductId, 1)
+        if(cart[checkUserId].product.length == 1) {
+          cart.splice(checkUserId, 1)
+        } else {
+          cart[checkUserId].product.splice(checkProductId, 1)
+        }
       }
     } else {
       cart[checkUserId].product[checkProductId].qty++;
@@ -64,12 +84,15 @@ app.post('/carts/delete', (req, res) => {
     let cart = JSON.parse(data)
 
     const checkUserId = cart.findIndex(x => x.user_id == body.user_id);
-    const checkProductId = cart[checkUserId].product.findIndex(x => x.id == body.id);
-
-    if (body.all == true) {
+    const checkProductId = cart[checkUserId].product.findIndex(x => x.id == parseInt(body.id));
+    if (body.all) {
       cart.splice(checkUserId, 1)
     } else {
-      cart[checkUserId].product.splice(checkProductId, 1)
+      if(cart[checkUserId].product.length == 1) {
+        cart.splice(checkUserId, 1)
+      } else {
+        cart[checkUserId].product.splice(checkProductId, 1)
+      }
     }
 
     // Write updated data back to JSON file
@@ -88,4 +111,3 @@ app.post('/carts/delete', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
