@@ -24,10 +24,10 @@ header.innerHTML = `
                                     <img src="assets/svg/logo_blue.png" alt="medicran" />
                                 </div>
                     
-                                <div class="heading">
+                                <div class="heading_login">
                                     <h2>Welcome Back</h2>
                                     <h6>Not registred yet?</h6>
-                                    <a href="#" class="toggle">Sign up</a>
+                                    <a href="#" class="toggle_login">Sign up</a>
                                 </div>
                     
                                 <div class="actual-form">
@@ -70,10 +70,10 @@ header.innerHTML = `
                                     <img src="assets/svg/logo_blue.png" alt="medicran" />
                                 </div>
                 
-                                <div class="heading">
+                                <div class="heading_login">
                                     <h2>Get Started</h2>
                                     <h6>Already have an account?</h6>
-                                    <a href="#" class="toggle">Sign in</a>
+                                    <a href="#" class="toggle_login">Sign in</a>
                                 </div>
                     
                                 <div class="actual-form">
@@ -122,7 +122,7 @@ header.innerHTML = `
                             </form>
                         </div>
                 
-                        <div class="carousel">
+                        <div class="carousel_login">
                             <!--<div class="images-wrapper">
                             <img src="" class="image img-1 show" alt="" />
                             <img src="" class="image img-2" alt="" />
@@ -290,7 +290,7 @@ function loginDialog() {
 
 // Login Form Slider
 const inputs = document.querySelectorAll(".input-field");
-const toggle_btn = document.querySelectorAll(".toggle");
+const toggle_login_btn = document.querySelectorAll(".toggle_login");
 const mainEle = document.querySelector("main");
 const bullets = document.querySelectorAll(".bullets span");
 const images = document.querySelectorAll(".image");
@@ -305,7 +305,7 @@ inputs.forEach((inp) => {
   });
 });
 
-toggle_btn.forEach((btn) => {
+toggle_login_btn.forEach((btn) => {
   btn.addEventListener("click", () => {
     mainEle.classList.toggle("sign-up-mode");
   });

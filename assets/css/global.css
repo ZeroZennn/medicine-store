@@ -87,20 +87,20 @@ form.sign-up-form {
   color: #151111;
 }
 
-.heading h2 {
+.heading_login h2 {
   font-size: 2.1rem;
   font-weight: 600;
   color: #151111;
 }
 
-.heading h6 {
+.heading_login h6 {
   color: #bababa;
   font-weight: 400;
   font-size: 0.75rem;
   display: inline;
 }
 
-.toggle {
+.toggle_login {
   color: #151111;
   text-decoration: none;
   font-size: 0.75rem;
@@ -108,7 +108,7 @@ form.sign-up-form {
   transition: 0.3s;
 }
 
-.toggle:hover {
+.toggle_login:hover {
   color: #37B7C3;
 }
 
@@ -198,11 +198,11 @@ main.sign-up-mode .forms-wrap {
   left: 55%;
 }
 
-main.sign-up-mode .carousel {
+main.sign-up-mode .carousel_login {
   left: 0%;
 }
 
-.carousel {
+.carousel_login {
   position: absolute;
   height: 100%;
   width: 55%;
@@ -319,6 +319,7 @@ main.sign-up-mode .carousel {
     width: 100%;
     height: auto;
     padding: 0;
+    transition: 0.5s ease-in-out;
   }
 
   header form {
@@ -327,7 +328,7 @@ main.sign-up-mode .carousel {
     transition: transform 0.8s ease-in-out, opacity 0.45s linear;
   }
 
-  .heading {
+  .heading_login {
     margin: 2rem 0;
   }
 
@@ -343,7 +344,7 @@ main.sign-up-mode .carousel {
     transform: translateX(0%);
   }
 
-  .carousel {
+  .carousel_login {
     position: revert;
     height: auto;
     width: 100%;
@@ -373,7 +374,7 @@ main.sign-up-mode .carousel {
     padding: 0.1rem;
   }
 
-  header.carousel {
+  header.carousel_login {
     padding: 1.5rem 1rem;
     border-radius: 1.6rem;
   }
