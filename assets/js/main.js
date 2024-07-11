@@ -31,8 +31,13 @@ async function getCartQty(user_id) {
   await fetchDB('carts')
     .then(cart => {
       const account_cart = cart.find(x => x.user_id == user_id);
-      result = account_cart.product.length > 0 ? account_cart.product.length : '';
-  })
+      if(!account_cart) {
+        result = '';
+      } else {
+        result = account_cart.product.length;
+      }
+    }
+  )
   return result;
 }
 
