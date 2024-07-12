@@ -192,6 +192,7 @@ let carts;
         })
       } else {
         await deleteCart(user.id, 0, true);
+        location.reload();
         updateSelectAll();
       }
     })

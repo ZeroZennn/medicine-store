@@ -8,13 +8,14 @@ app.use(cors())
 app.use(express.json());
 
 function carts(body, data) {
-  let cart = JSON.parse(data);
+  let cart;
+  if (data == '') data = "[]"
+  cart = JSON.parse(data);
   const checkUserId = cart.findIndex(x => x.user_id == body.user_id);
   let checkProductId;
   if (checkUserId >= 0) {
     checkProductId = cart[checkUserId].product.findIndex(x => x.id == parseInt(body.id));
   } else {
-    console.log(typeof(body.id))
     const newCart = {
       "user_id": body.user_id,
       "product": [
@@ -46,7 +47,6 @@ function carts(body, data) {
   return cart;
 }
 
-// add or update the qty cart of user_id
 app.post('/carts', (req, res) => {
   const body = req.body;
 
@@ -59,14 +59,16 @@ app.post('/carts', (req, res) => {
 
     let result = carts(body, data);
 
-    // Write updated data back to JSON file
     fs.writeFile('data/carts.json', JSON.stringify(result, null, 2), (err) => {
       if (err) {
         console.error('Error writing file:', err);
         return res.status(500).json({ message: 'Error writing file' });
       }
-
-      res.status(200).json({ message: 'cart updated successfully' });
+      if (body.increase == null) {
+        res.status(200).json({ message: 'Item berhasil ditambahkan' });
+      } else {
+        res.status(200).json({ message: 'Item berhasil diupdate' });
+      }
     });
   });
 });
@@ -74,7 +76,6 @@ app.post('/carts', (req, res) => {
 app.post('/carts/delete', (req, res) => {
   const body = req.body;
 
-  // Read existing data from JSON file
   fs.readFile('data/carts.json', 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading file:', err);

@@ -59,10 +59,10 @@ function displayItem(items) {
                 overlay.classList.remove('hidden');
             } else {
                 const productId = this.getAttribute('product-id');
-                await addToCart(productId);
+                let message = await addToCart(productId);
                 await Toast.fire({
                     icon: 'success',
-                    title: 'Item ditambahkan ke cart',
+                    title: message.message,
                 })
           }
         };

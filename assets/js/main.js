@@ -1,8 +1,25 @@
 let user;
 
-function fetchDB(table) {
-  return fetch(`data/${table}.json`)
-    .then(response => response.json());
+async function fetchDB(table) {
+  try {
+    const response = await fetch(`data/${table}.json`);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const text = await response.text();
+
+    if (!text.trim()) {
+      return [];
+    }
+
+    const result = JSON.parse(text);
+    return result;
+  } catch (error) {
+    console.error('Error fetching data:', error.message);
+    throw error; // Propagate the error up to the caller
+  }
 }
 
 async function isLogin() {
@@ -54,12 +71,17 @@ function getArg(argName) {
 
 // Add to cart
 async function addToCart(productId, increase = null) {
-  await fetch('http://localhost:3000/carts', {
+  try {
+    const response = await fetch('http://localhost:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user_id: user.id, id: productId, increase: increase})
-  })
+      body: JSON.stringify({ user_id: user.id, id: productId, increase: increase })
+    });
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
   increase == null ? await updateCartQty(user.id) : false;
 }
