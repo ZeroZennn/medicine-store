@@ -81,6 +81,28 @@
       </div>
     </dialog>
 
+    <!-- Open the modal using ID.showModal() method -->
+    <dialog id="user_address" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text font-semibold">Ganti Alamat</span>
+          </div>
+          <textarea class="textarea" placeholder="Tulis alamat disini"></textarea>
+        </label>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Batal</button>
+          </form>
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn bg-[#37B7C3] text-white">Simpan</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
 
     <div class="container mx-auto px-5">
       <div class="title_cart mt-10 font-bold text-[24px] text-gray-600">
@@ -133,7 +155,7 @@
               <div class="address_wrap p-4 bg-gray-100 rounded-lg mt-4">
                 <div class="title flex justify-between">
                   <p class="font-semibold text-[14px] text-gray-600">Alamat Pengiriman</p>
-                  <p class="font-semibold text-[14px] text-[#37B7C3] mt-1 cursor-pointer">Ubah</p>
+                  <p class="font-semibold text-[14px] text-[#37B7C3] mt-1 cursor-pointer" onclick="user_address.showModal()">Ubah</p>
                 </div>
                 <div class="address">
                   <p id="address" class="text-[14px]">jl.albaidho 1 RT100/RW100 no.187, Cipayung, Jakarta Timur, DKI j...</p>
