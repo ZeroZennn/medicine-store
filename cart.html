@@ -24,7 +24,7 @@
             <div class="h2 text-lg font-bold">Ringkasan Pembayaran</div>
             <div class="flex justify-between font-semibold text-gray-500">
               <p>Total Tagihan</p>
-              <p>Rp. 15,000</p>
+              <p id="checkout-price">Rp. -</p>
             </div>
             
             <div class="close flex gap-2">
@@ -37,16 +37,16 @@
                 <div class="collapse-content">
                   <div class="elec_wrap">
                     <div class="bca bg-gray-100 mt-2 px-4 rounded-lg py-2 flex justify-between">
-                      <Label for="payment_type">bca</Label>
-                      <input type="radio" name="payment_type" class="radio radio-info" />
+                      <Label for="payment_type">BCA</Label>
+                      <input type="radio" payment="BCA" class="payment_type" name="payment_type" class="radio radio-info" />
                     </div>
                     <div class="bri bg-gray-100 mt-2 px-4 rounded-lg py-2 flex justify-between">
-                      <Label for="payment_type">bri</Label>
-                      <input type="radio" name="payment_type" class="radio radio-info" />
+                      <Label for="payment_type">BRI</Label>
+                      <input type="radio" payment="BRI" class="payment_type" name="payment_type" class="radio radio-info" />
                     </div>
                     <div class="mandiri bg-gray-100 mt-2 px-4 rounded-lg py-2 flex justify-between">
-                      <Label for="payment_type">mandiri</Label>
-                      <input type="radio" name="payment_type" class="radio radio-info" />
+                      <Label for="payment_type">Mandiri</Label>
+                      <input type="radio" payment="Mandiri" class="payment_type" name="payment_type" class="radio radio-info" />
                     </div>
                   </div>
                 </div>
@@ -60,15 +60,15 @@
                   <div class="va_wrap">
                     <div class="dana bg-gray-100 mt-2 px-4 rounded-lg py-2 flex justify-between">
                       <Label for="payment_type">Dana</Label>
-                      <input type="radio" name="payment_type" class="radio radio-info" />
+                      <input type="radio" payment="Dana" class="payment_type" name="payment_type" class="radio radio-info" />
                     </div>
                     <div class="gopay bg-gray-100 mt-2 px-4 rounded-lg py-2 flex justify-between">
                       <Label for="payment_type">Gopay</Label>
-                      <input type="radio" name="payment_type" class="radio radio-info" />
+                      <input type="radio" payment="Gopay" class="payment_type" name="payment_type" class="radio radio-info" />
                     </div>
                     <div class="spay bg-gray-100 mt-2 px-4 rounded-lg py-2 flex justify-between">
-                      <Label for="payment_type">Spay</Label>
-                      <input type="radio" name="payment_type" class="radio radio-info" />
+                      <Label for="payment_type">Shopee Pay</Label>
+                      <input type="radio" payment="Shopee Pay" class="payment_type" name="payment_type" class="radio radio-info" />
                     </div>
                   </div>
                 </div>
