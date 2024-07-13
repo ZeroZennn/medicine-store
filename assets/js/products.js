@@ -59,11 +59,12 @@ function displayItem(items) {
                 overlay.classList.remove('hidden');
             } else {
                 const productId = this.getAttribute('product-id');
-                let message = await addToCart(productId);
+                let res = await addToCart(productId);
                 await Toast.fire({
                     icon: 'success',
-                    title: message.message,
+                    title: res.msg,
                 })
+                await updateCartQty(user.id)
           }
         };
     });

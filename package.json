@@ -101,7 +101,12 @@
     "yaml": "^2.4.5"
   },
   "scripts": {
-    "start": "concurrently \"npx tailwindcss -i assets/css/input.css -o assets/css/style.css --watch\" \"node server.js\""
+    "start": "concurrently \"npx tailwindcss -i assets/css/input.css -o assets/css/style.css --watch\" \"nodemon api/index.js\""
+  },
+  "nodemonConfig": {
+    "watch": [
+      "api/"
+    ]
   },
   "author": "",
   "license": "ISC",

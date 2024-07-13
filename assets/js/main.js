@@ -18,7 +18,7 @@ async function fetchDB(table) {
     return result;
   } catch (error) {
     console.error('Error fetching data:', error.message);
-    throw error; // Propagate the error up to the caller
+    throw error;
   }
 }
 
@@ -75,9 +75,10 @@ async function addToCart(productId, increase = null) {
     const response = await fetch('http://localhost:3000/carts', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth': JSON.stringify(user)
       },
-      body: JSON.stringify({ user_id: user.id, id: productId, increase: increase })
+      body: JSON.stringify({ id: productId, increase: increase })
     });
     return response.json();
   } catch (error) {

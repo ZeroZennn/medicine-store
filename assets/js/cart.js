@@ -3,8 +3,14 @@ let carts;
   const products = await fetchDB("products");
   
   const productCartEle = document.getElementById("product_cart");
-  const productDetailELe = document.getElementById("detail_cart");
+  const productDetailELe = document.getElementById("shopping_summary");
   const delSelected = document.getElementById('deleteSelected');
+  const btn_modal = document.getElementById("button-modal");
+  const checkout = document.getElementById("checkout");
+
+  btn_modal.addEventListener("click", () => {
+    checkout.showModal();
+  });
 
   const getProduct = (id) => {
       return products.filter(x => x.id == id)[0];
@@ -27,7 +33,6 @@ let carts;
       }
     })
     productDetailELe.innerHTML = `
-      <div class="shopping_summary lg:shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] p-[38px] rounded-lg">
         <h3 class="font-semibold text-[18px]">Ringkasan Pembayaran</h3>
         <!-- keranjang -->
         <div class="total_cart flex justify-between mt-4">
@@ -58,20 +63,9 @@ let carts;
             <p class="font-semibold text-[14px] text-[#37B7C3] mt-1 cursor-pointer">Ubah</p>
           </div>
           <div class="address">
-            <p class="text-[14px]">jl.albaidho 1 RT100/RW100 no.187, Cipayung, Jakarta Timur, DKI j...</p>
+            <p id="address" class="text-[14px]">jl.albaidho 1 RT100/RW100 no.187, Cipayung, Jakarta Timur, DKI j...</p>
           </div>
         </div>
-        <!-- catatan -->
-        <div class="notes mt-4">
-          <label for="notes" class="title flex gap-2 items-center">
-            <i class="ti ti-clipboard-text"></i>
-            <p class="font-semibold text-[14px] text-gray-600">Tambah Catatan</p>
-          </label>
-          <input type="text" id="notes" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        </div>
-        <!-- Pembayaran -->
-        <button class="py-2 bg-[#37B7C3] w-full mt-4 rounded-md text-white active:bg-[#1394a0]">Pilih Pembayaran</button>
-      </div>
     `
   }
 
@@ -173,8 +167,8 @@ let carts;
 
     document.querySelectorAll('.ti-trash').forEach(button => {
       button.onclick = async function() {
-        let productId = this.getAttribute('product-id');
-        await deleteCart(user.id, productId);
+        const productId = this.getAttribute('product-id');
+        await deleteCart(productId);
         document.getElementById(`cart_product_${productId}`).remove();
       }
     })
@@ -185,28 +179,30 @@ let carts;
         select_child.forEach(async cb => {
           if (cb.checked) {
             const productId = cb.getAttribute("product-id")
-            await deleteCart(user.id, productId);
+            await deleteCart(productId);
             document.getElementById(`cart_product_${productId}`).remove();
             updateSelectAll();
           }
         })
       } else {
-        await deleteCart(user.id, 0, true);
+        await deleteCart(0, true);
         location.reload();
         updateSelectAll();
       }
     })
   }
 
-  async function deleteCart(user_id, productId, all = false) {
-    await fetch('http://localhost:3000/carts/delete', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({user_id: user_id, id: productId, all: all})
-    })
-    await updateCartQty(user_id);
+  async function deleteCart(productId, deleteAll = false) {
+      await fetch(`http://localhost:3000/carts/delete/${productId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'auth': JSON.stringify(user)
+        },
+        body: JSON.stringify({ all: deleteAll })
+      });
+
+      await updateCartQty(user.id);
   }
 
   startCart();

@@ -287,7 +287,6 @@ function loginDialog() {
     }
 }
 
-
 // Login Form Slider
 const inputs = document.querySelectorAll(".input-field");
 const toggle_login_btn = document.querySelectorAll(".toggle_login");
@@ -370,14 +369,9 @@ function setCookie(value, expireDays, expireHours, expireMinutes, expireSeconds)
         ";expires="+expireDate.toUTCString();
 }
 
-// Delete Cookie for Logout
-function deleteCookie() {
-    setCookie("username", "", null , null , null, 1);
-}
-
 // Handle Logout then refresh
 function logout() {
-    deleteCookie();
+    setCookie("username", "", null , null , null, 1);
     location.href = 'index.html';
 }
 
