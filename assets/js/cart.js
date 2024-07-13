@@ -44,8 +44,10 @@ let carts;
     } else {
       data.product.forEach(async cb => {
         await deleteCart(cb.id)
+        document.getElementById(`cart_product_${cb.id}`).remove();
       })
     }
+    location.reload();
   }
 
   async function prepareToCheckout() {

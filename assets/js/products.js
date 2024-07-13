@@ -25,7 +25,7 @@ const Toast = Swal.mixin({
   customClass: {
     popup: 'colored-toast',
   },
-  showConfirmButton: false,
+  showConfirmButton: true,
   timer: 1500,
   timerProgressBar: true,
 })

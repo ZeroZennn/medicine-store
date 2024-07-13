@@ -1,5 +1,17 @@
 const header = document.querySelector("header");
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    iconColor: 'white',
+    customClass: {
+      popup: 'colored-toast',
+    },
+    showConfirmButton: true,
+    timer: 1500,
+    timerProgressBar: true,
+  })
+
 header.innerHTML = `
         <!-- overlay -->
         <link rel="stylesheet" href="assets/css/header.css">
@@ -19,7 +31,7 @@ header.innerHTML = `
                     </div>
                     <div class="inner-box">
                         <div class="forms-wrap">
-                            <form action="#" id="login_form" class="form_sign sign-in-form">
+                            <form onSubmit="handleLogin(event)" id="login_form" class="form_sign sign-in-form">
                                 <div class="logo">
                                     <img src="assets/svg/logo_blue.png" alt="medicran" />
                                 </div>
@@ -55,7 +67,7 @@ header.innerHTML = `
                                     <label>Password</label>
                                     </div>
                     
-                                    <button id="submit" type="submit" onclick="handleLogin()" class="w-full text-white bg-gray-900 hover:bg-[#37B7C3] font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4">Sign In</button>
+                                    <button id="submit" type="submit" class="w-full text-white bg-gray-900 hover:bg-[#37B7C3] font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4">Sign In</button>
                     
                                     <p class="text">
                                     Forgotten your password or you login datails?
@@ -65,7 +77,7 @@ header.innerHTML = `
                             </form>
     
                             <!-- REGISTERR -->
-                            <form class="form_sign sign-up-form">
+                            <form onsubmit="handleRegister(event)" class="form_sign sign-up-form">
                                 <div class="logo">
                                     <img src="assets/svg/logo_blue.png" alt="medicran" />
                                 </div>
@@ -81,7 +93,7 @@ header.innerHTML = `
                                         <input
                                             type="username" 
                                             name="username" 
-                                            id="username"
+                                            id="username-register"
                                             minlength="4"
                                             class="input-field"
                                             autocomplete="off"
@@ -93,6 +105,7 @@ header.innerHTML = `
                                     <div class="input-wrap">
                                         <input
                                             type="email"
+                                            id="email-register"
                                             class="input-field"
                                             autocomplete="off"
                                             required
@@ -103,6 +116,7 @@ header.innerHTML = `
                                     <div class="input-wrap">
                                         <input
                                             type="password"
+                                            id="password-register"
                                             minlength="4"
                                             class="input-field"
                                             autocomplete="off"
@@ -111,7 +125,7 @@ header.innerHTML = `
                                         <label>Password</label>
                                     </div>
                     
-                                    <input type="submit" value="Sign Up" class="sign-btn" />
+                                    <button id="submit" type="submit" class="w-full text-white bg-gray-900 hover:bg-[#37B7C3] font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4">Register</button>
                     
                                     <p class="text">
                                     By signing up, I agree to the
@@ -147,36 +161,7 @@ header.innerHTML = `
                         </div> 
                     </div>
                 </div>
-    
             </main>
-            <!-- <div class="relative p-4 w-full max-w-md max-h-full">
-                <div class="flex">
-                    <h1 class="text-2xl font-semibold">Login</h1>
-                    <button id="close" class="end-2.5 text-gray-900 bg-transparentrounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                
-                <div class="p-4 md:p-5">
-                    <div class="block mb-2 text-sm font-medium text-gray-500">
-                        Not registered? <a href="#" class="text-blue-700 hover:underline">Create account</a>
-                    </div>
-                    <form id="login_form" class="space-y-4" action="#">
-                        <div>
-                            <label for="username" class="block mb-2 text-sm font-medium">Your Username</label>
-                            <input type="username" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-                        </div>
-                        <div>
-                            <label for="password" class="block mb-2 text-sm font-medium">Your password</label>
-                            <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-                        </div>
-                        <button id="submit" type="submit" onclick="handleLogin()" class="w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login</button>
-                    </form>
-                </div>
-            </div> -->
         </div>
 
         <!-- navbar -->
@@ -309,6 +294,9 @@ inputs.forEach((inp) => {
 toggle_login_btn.forEach((btn) => {
   btn.addEventListener("click", () => {
     mainEle.classList.toggle("sign-up-mode");
+    inputs.forEach(cb => {
+        cb.value = ""
+      })
   });
 });
 
@@ -324,6 +312,9 @@ function moveSlider() {
 
   bullets.forEach((bull) => bull.classList.remove("active"));
   this.classList.add("active");
+  inputs.forEach(cb => {
+      cb.value = ""
+    })
 }
 
 bullets.forEach((bullet) => {
@@ -331,7 +322,8 @@ bullets.forEach((bullet) => {
 });
 
 // Handle Login
-function handleLogin() {
+function handleLogin(event) {
+    event.preventDefault();
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
     fetchDB("users")
@@ -348,6 +340,34 @@ function handleLogin() {
         console.error("Error fetching user data:", error);
       }
     );
+}
+
+async function handleRegister(event) {
+    event.preventDefault();
+    const username = document.getElementById("username-register").value
+    const password = document.getElementById("password-register").value
+    const email = document.getElementById("email-register").value
+
+    const res = await fetch(`http://localhost:3000/register`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email, username: username, password: password })
+      });
+    const response = await res.json()
+    if (res.status == 409) {
+        await Toast.fire({
+            icon: 'error',
+            title: response.msg,
+        })
+    } else if (res.status == 200) {
+        await Toast.fire({
+            icon: 'success',
+            title: response.msg,
+        })
+    }
+    
 }
 
 // Set Cookie for Login
