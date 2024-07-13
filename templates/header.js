@@ -201,6 +201,7 @@ header.innerHTML = `
                 <div id="login_div">
                     <button id="login_open" type="button" class="font-medium text-white">Sign In</button>
                 </div>
+                
                 <div id="islogin_div" class="hidden">
                     <ul class="flex flex-row font-medium">
                         <li>
@@ -254,6 +255,7 @@ header.innerHTML = `
                     </ul>
                     
                 </div>
+                
             </div>
         </nav>
 `
