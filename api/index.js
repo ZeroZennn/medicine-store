@@ -131,12 +131,6 @@ app.delete('/carts/delete/:id', async (req, res) => {
   }
 });
 
-function sort(arr, attribute) {
-  return arr.sort(function(a,b) { 
-    return parseInt(((a[attribute]).split('-'))[1]) < parseInt(((b[attribute]).split('-'))[1]);
-  });
-}
-
 async function transactions(creds, body, data) {
   let transaction = JSON.parse(data);
   const userTransaction = transaction.filter(x => x.user_id == creds.id);
@@ -184,6 +178,50 @@ app.post('/transactions', async (req, res) => {
 
     res.status(200).json({ msg: 'Transaksi berhasil' });
 
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Internal server error' });
+  }
+});
+
+app.post('/register', async (req, res) => {
+  try {
+    const body = req.body;
+    const file = await fs.readFile('data/users.json', 'utf8');
+    const data = JSON.parse(file);
+
+    const checkUser = data.findIndex(x => x.username == body.username)
+    const checkEmail = data.findIndex(x => x.email == body.email)
+
+    if (checkUser != -1 && checkEmail != -1) {
+      return res.status(409).json({ msg: 'Username dan Email telah terpakai' });
+    } else if (checkEmail != -1) {
+      return res.status(409).json({ msg: 'Email telah terpakai' });
+    } else if (checkUser != -1) {
+      return res.status(409).json({ msg: 'Username telah terpakai' });
+    }
+
+    let user_id = 1;
+    if (data.length > 0) {
+      user_id = data.sort( 
+        function(a, b) {
+          return (b['id']) - (a['id'])
+        })[0].id + 1
+    }
+
+    const newUser = {
+      "id": user_id,
+      "username": body.username,
+      "name": body.username,
+      "password": body.password,
+      "no_telp": "",
+      "email": body.email
+    }
+
+    data.push(newUser);
+
+    await fs.writeFile('data/users.json', JSON.stringify(data, null, 2));
+    res.status(200).json({ msg: 'Berhasil Register' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: 'Internal server error' });
