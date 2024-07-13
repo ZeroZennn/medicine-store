@@ -1,33 +1,98 @@
 let carts;
 (async () => {
   const products = await fetchDB("products");
-  
+
   const productCartEle = document.getElementById("product_cart");
   const productDetailELe = document.getElementById("shopping_summary");
   const delSelected = document.getElementById('deleteSelected');
-  const btn_modal = document.getElementById("button-modal");
-  const checkout = document.getElementById("checkout");
+  const checkout_dialog_btn = document.getElementById("button-modal");
+  const checkout_dialog = document.getElementById("checkout");
+  const checkout_price = document.getElementById("checkout-price");
+  const payment_btn = document.querySelector(".payment_btn");
 
-  btn_modal.addEventListener("click", () => {
-    checkout.showModal();
+  checkout_dialog_btn.addEventListener("click", () => {
+    checkout_dialog.showModal();
+  });
+
+  payment_btn.addEventListener("click", () => {
+    prepareToCheckout();
   });
 
   const getProduct = (id) => {
       return products.filter(x => x.id == id)[0];
   }
 
-  const rupiah = (number)=>{
+  const rupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR"
     }).format(number);
   }
 
+  async function checkout(data, all) {
+    await fetch(`http://localhost:3000/transactions`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'auth': JSON.stringify(user)
+      },
+      body: JSON.stringify(data)
+    });
+    
+    if (all) {
+      await deleteCart(0, true);
+    } else {
+      data.product.forEach(async cb => {
+        await deleteCart(cb.id)
+      })
+    }
+  }
+
+  async function prepareToCheckout() {
+    let product = [];
+    let drugsPrice = 0;
+    let payment_type;
+    let all = true;
+    const payment_select = document.querySelectorAll('.payment_type');
+    payment_select.forEach(async cb => {
+      if (cb.checked) {
+        payment_type = cb.getAttribute('payment')
+      }
+    })
+    const notes = document.getElementById("notes");
+    const select_child = document.querySelectorAll('#select_item');
+    select_child.forEach(async cb => {
+      if (cb.checked) {
+        const productId = cb.getAttribute("product-id")
+        const productEle = document.getElementById(`product_qty_${productId}`);
+        drugsPrice = drugsPrice + (parseInt(productEle.getAttribute('price')) * parseInt(productEle.innerText));
+        const data = {
+          "id": parseInt(productId),
+          "qty": parseInt(productEle.innerText),
+          "price": parseFloat(productEle.getAttribute("price"))
+        }
+        product.push(data);
+      } else {
+        all = false;
+      }
+    })
+    const data = {
+      "notes": notes.value,
+      "product": product,
+      "subTotal": drugsPrice,
+      "additionalPrice": 15000,
+      "paymentType": payment_type
+    }
+    await checkout(data, all)
+  }
+
   async function updateCartDetail() {
     let price = document.querySelectorAll('#select_item')
+    let checkbox_checked = false;
     let total = 0;
     price.forEach(cb => {
       if (cb.checked) {
+        checkbox_checked = true;
         const productEle = document.getElementById(`product_qty_${cb.getAttribute('product-id')}`);
         total = total + (parseInt(productEle.getAttribute('price')) * parseInt(productEle.innerText));
       }
@@ -37,24 +102,24 @@ let carts;
         <!-- keranjang -->
         <div class="total_cart flex justify-between mt-4">
           <p class="text-[14px] text-gray-500">Keranjang ( 1 Produk )</p>
-          <p class="text-[14px] text-gray-500">${total ? rupiah(total) : 'Rp. -'}</p>
+          <p class="text-[14px] text-gray-500">${checkbox_checked ? rupiah(total) : 'Rp. -'}</p>
         </div>
         <!-- total Ongkir -->
         <div class="total_cart flex justify-between mt-2">
           <p class="text-[14px] text-gray-500">Total Ongkir</p>
-          <p class="text-[14px] text-gray-500">${total > 0 ? rupiah('10000'): 'Rp. -'}</p>
+          <p class="text-[14px] text-gray-500">${checkbox_checked ? rupiah('10000'): 'Rp. -'}</p>
         </div>
         <!-- Biaya Pelayanan -->
         <div class="total_cart flex justify-between mt-2">
           <p class="text-[14px] text-gray-500">Biaya Penanganan</p>
-          <p class="text-[14px] text-gray-500">${total > 0 ? rupiah('5000'): 'Rp. -'}</p>
+          <p class="text-[14px] text-gray-500">${checkbox_checked ? rupiah('5000'): 'Rp. -'}</p>
         </div>
         <!-- line -->
         <div class="border w-full border-gray-200 mt-4"></div>
         <!-- total belanja -->
         <div class="shopping_total flex justify-between mt-4">
           <h3 class="font-semibold">Total Belanja</h3>
-          <h3 class="font-semibold">${total > 0 ? rupiah(total + 15000) : 'Rp. -'}</h3>
+          <h3 class="font-semibold">${checkbox_checked ? rupiah(total + 15000) : 'Rp. -'}</h3>
         </div>
         <!-- alamat -->
         <div class="address_wrap p-4 bg-gray-100 rounded-lg mt-4">
@@ -63,10 +128,12 @@ let carts;
             <p class="font-semibold text-[14px] text-[#37B7C3] mt-1 cursor-pointer">Ubah</p>
           </div>
           <div class="address">
-            <p id="address" class="text-[14px]">jl.albaidho 1 RT100/RW100 no.187, Cipayung, Jakarta Timur, DKI j...</p>
+            <p id="address" class="text-[14px]"></p>
           </div>
         </div>
     `
+    total += 15000;
+    checkout_price.innerText = total ? rupiah(total) : 'Rp. -'
   }
 
   async function updateSelectAll() {
