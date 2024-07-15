@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-  
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-  
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-    <script src="assets/js/jquery.min.js"></script>
 
 </head>
 <body>
-    <header></header>
+    <header>
+      <div class="navbar bg-[#37B7C3] flex justify-between px-14">
+        <a class="text-xl font-bold text-white">Admin MediCran</a>
+        <button class="btn btn-ghost" onclick="logout()">Logout</button>
+      </div>
+    </header>
 
     <!-- main -->
     <main>
@@ -129,21 +129,37 @@
     </main>
 
     <footer></footer>
+    
 
     <script>
-      import DataTable from 'datatables.net-dt';
-      import 'datatables.net-responsive-dt';
-      
-      let table = new DataTable('#myTable', {
-          responsive: true
-      });
+
+      // Handle Logout then refresh
+      function logout() {
+          Swal.fire({
+              title: "Apakah kamu yakin?",
+              text: "Kamu akan logout !",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#d33",
+              cancelButtonColor: "#ACACAC",
+              confirmButtonText: "Logout"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: "Berhasil Logout",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+                  setCookie("username", "", null , null , null, 1);
+                  location.href = 'index.html';
+              }
+            });
+      }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons-react/dist/index.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/home_slider.js"></script>
-    <script src="templates/header.js"></script>
-    <script src="templates/footer.js"></script>
 </body>
 </html>
