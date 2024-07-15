@@ -341,7 +341,6 @@ function handleLogin(event) {
                 .then(() => {
                     location.reload();
             })
-
             
         } else { 
             Swal.fire({
