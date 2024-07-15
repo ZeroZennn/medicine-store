@@ -194,8 +194,8 @@ header.innerHTML = `
                                 <p id="login_username" class="text-white block mx-1"></p>
                             </a>
                             <!-- Dropdown menu -->
-                            <div id="dropdownUser" class="hidden absolute mt-2 ms-[-10rem] z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-64 dark:bg-gray-700">
-                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+                            <div id="dropdownUser" class="hidden absolute mt-2 ms-[-10rem] z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-64">
+                                <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
                                     <li  class="px-4 py-2 flex gap-2 items-center">
                                         <div class="user_img">
                                             <img class="w=[50px] h-[50px] border border-gray-300 rounded-[50%]"src="assets/svg/avatar.svg" alt="" >
@@ -210,14 +210,14 @@ header.innerHTML = `
                                     </li>
 
                                     <li>
-                                        <a href="profile.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                        <a href="profile.html" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
                                     </li>
                                     <li>
-                                        <a href="cart.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Carts</a>
+                                        <a href="cart.html" class="block px-4 py-2 hover:bg-gray-100">Carts</a>
                                     </li>
                                     
                                     <li>
-                                        <button onclick="logout()" class="w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white gap-2 flex items-center">
+                                        <button onclick="logout()" class="w-full px-4 py-2 hover:bg-gray-100 gap-2 flex items-center">
                                             <i class="ti ti-logout"></i>
                                             <p>Logout</p>
                                         </button>
