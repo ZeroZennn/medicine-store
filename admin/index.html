@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediCran - Home</title>
+    <title>MediCran - Admin</title>
     <link rel="icon" href="../assets/images/2hand.png" type="image/icon" />
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 <body>
-    <header></header>
+    <header>
+      <div class="navbar bg-[#37B7C3] flex justify-between px-14">
+        <a class="text-xl font-bold text-white">Admin MediCran</a>
+        <button class="btn btn-ghost" onclick="logout()">Logout</button>
+      </div>
+    </header>
 
     <!-- main -->
     <main>
@@ -92,6 +97,55 @@
     </main>
 
     <footer></footer>
+    <script>
+
+      // Set Cookie for Login
+      function setCookie(value, expireDays, expireHours, expireMinutes, expireSeconds) {
+          var expireDate = new Date();
+          if (expireDays) {
+              expireDate.setDate(expireDate.getDate() + expireDays);
+          }
+          if (expireHours) {
+              expireDate.setHours(expireDate.getHours() + expireHours);
+          }
+          if (expireMinutes) {
+              expireDate.setMinutes(expireDate.getMinutes() + expireMinutes);
+          }
+          if (expireSeconds) {
+              expireDate.setSeconds(expireDate.getSeconds() + expireSeconds);
+          }
+          document.cookie = "username" +"="+ value +
+              ";domain="+ window.location.hostname +
+              ";path=/"+
+              ";expires="+expireDate.toUTCString();
+      }
+
+      // Handle Logout then refresh
+      function logout() {
+          Swal.fire({
+              title: "Apakah kamu yakin?",
+              text: "Kamu akan logout !",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#d33",
+              cancelButtonColor: "#ACACAC",
+              confirmButtonText: "Logout"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: "Berhasil Logout",
+                  text: "Kamu akan kembali ke halaman utama",
+                  icon: "success",
+                  showConfirmButton: false,
+                  timer: 1300
+              }) .then(() => {
+                  setCookie("username", "", null , null , null, 1);
+                  location.href = '../index.html';
+              })
+              }
+            });
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons-react/dist/index.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="main.js"></script>
