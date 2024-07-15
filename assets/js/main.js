@@ -105,3 +105,15 @@ async function addToCart(productId, increase = null) {
   }
   increase == null ? await updateCartQty(user.id) : false;
 }
+
+async function getImage(productId) {
+  let result;
+  await fetchDB('products')
+    .then(product => {
+      const products = product.find(x => x.id == productId);
+      result = products.image
+    }
+  )
+  console.log(result)
+  return result;
+}

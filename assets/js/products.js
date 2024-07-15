@@ -56,16 +56,16 @@ searchEle.addEventListener("input", (event) => {
 });
 
 // FILTER
-const category = [...new Set(products.map((item) =>
-    {return item}))];
+// const category = [...new Set(products.map((item) =>
+//     {return item}))];
 
 // GET PRODUCT
 function getProduct(pages, items, searchName = '') {
     const start = (pages - 1) * items;
     let productToShow = products
-    if (getArg('category') != null) {
-        productToShow = category.filter(x => (x.drugs_category == getArg("category")))
-    }
+    // if (getArg('category') != null) {
+    //     productToShow = category.filter(x => (x.drugs_category == getArg("category")))
+    // }
     if (searchName != null) {
         const fuse = new Fuse(productToShow, options)
         productToShow = (fuse.search(searchName)).map((item) => item.item)

@@ -115,11 +115,7 @@ let carts;
         },
         body: JSON.stringify(data)
       });
-      const swal = res.json();
-      await Toast.fire({
-        icon: 'success',
-        title: swal.msg,
-      }) 
+      const swal = await res.json();
       if (all) {
         await deleteCart(0, true);
       } else {
@@ -128,6 +124,11 @@ let carts;
           document.getElementById(`cart_product_${cb.id}`).remove();
         })
       }
+      checkout_dialog.close();
+      await Toast.fire({
+        icon: 'success',
+        title: swal.msg,
+      }) 
       location.reload();
     }
   }
@@ -152,6 +153,7 @@ let carts;
         drugsPrice = drugsPrice + (parseInt(productEle.getAttribute('price')) * parseInt(productEle.innerText));
         const data = {
           "id": parseInt(productId),
+          "name": productEle.getAttribute("name"),
           "qty": parseInt(productEle.innerText),
           "price": parseFloat(productEle.getAttribute("price"))
         }
@@ -174,11 +176,13 @@ let carts;
     let price = document.querySelectorAll('#select_item')
     let checkbox_checked = false;
     let total = 0;
+    let count = 0;
     price.forEach(cb => {
       if (cb.checked) {
         checkbox_checked = true;
         const productEle = document.getElementById(`product_qty_${cb.getAttribute('product-id')}`);
         total = total + (parseInt(productEle.getAttribute('price')) * parseInt(productEle.innerText));
+        count++;
       }
     })
     if (checkbox_checked) {
@@ -190,7 +194,7 @@ let carts;
         <h3 class="font-semibold text-[18px]">Ringkasan Pembayaran</h3>
         <!-- keranjang -->
         <div class="total_cart flex justify-between mt-4">
-          <p class="text-[14px] text-gray-500">Keranjang ( 1 Produk )</p>
+          <p class="text-[14px] text-gray-500">Keranjang  ${count ? '( '+ count + ' Produk )' : ''} </p>
           <p class="text-[14px] text-gray-500">${checkbox_checked ? rupiah(total) : 'Rp. -'}</p>
         </div>
         <!-- total Ongkir -->
@@ -274,7 +278,7 @@ let carts;
                     </div>
                     <div class="qty flex justify-between px-6 py-1 gap-8 rounded-md border border-[#8f8f8f]">
                       <div product-id="${item.id}" class="minus cursor-pointer">-</div>
-                      <div id="product_qty_${item.id}" price="${product.price}" class="total_items">${item.qty}</div>
+                      <div id="product_qty_${item.id}" name="${product.name}" price="${product.price}" class="total_items">${item.qty}</div>
                       <div product-id="${item.id}" class="plus cursor-pointer">+</div>
                     </div>
                   </div>

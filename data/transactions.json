@@ -4,125 +4,30 @@
     "user_id": 1,
     "product": [
       {
-        "id": 1,
-        "qty": 4,
-        "price": 2500
-      }
-    ],
-    "subTotal": 10000,
-    "additionalPrice": 15000,
-    "notes": "",
-    "paymentType": "Dana",
-    "status": "Berlangsung",
-    "detail": "Menunggu Penjual",
-    "amount": 25000
-  },
-  {
-    "transaction_id": "tr1_2",
-    "user_id": 1,
-    "product": [
+        "id": 3,
+        "name": "Amoxicillin",
+        "qty": 1,
+        "price": 15000
+      },
       {
         "id": 2,
+        "name": "Panadol",
         "qty": 1,
         "price": 3000
       },
       {
-        "id": 4,
+        "id": 1,
+        "name": "Sanmol",
         "qty": 1,
-        "price": 5000
+        "price": 2500
       }
     ],
-    "subTotal": 8000,
+    "subTotal": 20500,
     "additionalPrice": 15000,
     "notes": "",
     "paymentType": "Dana",
     "status": "Berlangsung",
     "detail": "Menunggu Penjual",
     "amount": 23000
-  },
-  {
-    "transaction_id": "tr2_1",
-    "user_id": 2,
-    "product": [
-      {
-        "id": 1,
-        "qty": 3,
-        "price": 2500
-      },
-      {
-        "id": 2,
-        "qty": 1,
-        "price": 3000
-      }
-    ],
-    "subTotal": 10500,
-    "additionalPrice": 15000,
-    "notes": "",
-    "paymentType": "BCA",
-    "status": "Berlangsung",
-    "detail": "Menunggu Penjual",
-    "amount": 25500
-  },
-  {
-    "transaction_id": "tr2_2",
-    "user_id": 2,
-    "product": [
-      {
-        "id": 1,
-        "qty": 1,
-        "price": 2500
-      },
-      {
-        "id": 2,
-        "qty": 1,
-        "price": 3000
-      },
-      {
-        "id": 3,
-        "qty": 1,
-        "price": 15000
-      }
-    ],
-    "subTotal": 20500,
-    "additionalPrice": 15000,
-    "notes": "",
-    "status": "Berlangsung",
-    "detail": "Menunggu Penjual",
-    "amount": 35500
-  },
-  {
-    "transaction_id": "tr2_3",
-    "user_id": 2,
-    "product": [
-      {
-        "id": 2,
-        "qty": 1,
-        "price": 3000
-      }
-    ],
-    "subTotal": 3000,
-    "additionalPrice": 15000,
-    "notes": "",
-    "status": "Berlangsung",
-    "detail": "Menunggu Penjual",
-    "amount": 18000
-  },
-  {
-    "transaction_id": "tr2_4",
-    "user_id": 2,
-    "product": [
-      {
-        "id": 5,
-        "qty": 1,
-        "price": 7000
-      }
-    ],
-    "subTotal": 7000,
-    "additionalPrice": 15000,
-    "notes": "",
-    "paymentType": "BCA",
-    "status": "Berlangsung",
-    "detail": "Menunggu Penjual",
-    "amount": 22000
   }
 ]

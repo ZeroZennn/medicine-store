@@ -127,8 +127,8 @@ async function transactionLoader(status) {
                     <!-- product detail -->
                     <div class="product_left flex gap-4 flex-col">
                         <div class="product_detail lg:flex gap-4">
-                            <img class="w-[50px] h-[50px] lg:w-[80px] lg:h-[80px] bg-slate-500" src="" alt="">
-                            <div class="product_name">${item.product[0].id}</div>
+                            <img class="w-[50px] h-[50px] lg:w-[80px] lg:h-[80px] bg-slate-500" src="${item.product[0].image}" alt="">
+                            <div class="product_name">${item.product[0].name}</div>
                         </div>
                     </div>
                     <div class="product_right flex flex-col justify-between items-end gap-14">
@@ -141,7 +141,7 @@ async function transactionLoader(status) {
                                 <button class="border border-[#ffb20b] lg:py-1 px-2 lg:px-4 text-[12px] lg:text-sm rounded-md text-[#ffb20b] font-medium bg-[#ffb20b]/[.05]">${item.detail}</button>
                             </div>
                             <div class="detail_transaction flex justify-between px-6 py-1 gap-8 rounded-md border text-[#11b919] border-[#11b919] text-sm cursor-pointer">
-                                <button onclick="transaction_detail.showModal()">Detail Transaksi</button>
+                                <button trans-id="${item.transaction_id}" id="transaction_detail_btn" onclick="transaction_detail.showModal()">Detail Transaksi</button>
                             </div>
                         </div>
                     </div>
@@ -149,6 +149,12 @@ async function transactionLoader(status) {
             </div>
         `);
     }).join("");
+
+    const transaction_detail_btn = document.querySelectorAll('#transaction_detail_btn')
+    transaction_detail_btn.forEach(async btn => {
+        btn.addEventListener("click", () => {
+        })
+    })
 }
 
 })();
