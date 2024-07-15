@@ -131,7 +131,7 @@ app.delete('/carts/delete/:id', async (req, res) => {
   }
 });
 
-async function transactions(creds, body, data) {
+async function addTransactions(creds, body, data) {
   let transaction = JSON.parse(data);
   const userTransaction = transaction.filter(x => x.user_id == creds.id);
   let transaction_id = 1;
@@ -153,13 +153,45 @@ async function transactions(creds, body, data) {
     "additionalPrice": body.additionalPrice,
     "notes": body.notes,
     "paymentType": body.paymentType,
-    "status": "Waiting for seller",
+    "status": "Berlangsung",
+    "detail": "Menunggu Penjual",
     "amount": grandTotal
   }
 
   transaction.push(newTransaction);
   return transaction;
 }
+
+async function getTransactions(creds, status, data) {
+  const transaction = JSON.parse(data);
+  let userTransaction = transaction.filter(x => x.user_id == creds.id);
+  if (status != "Semua") {
+    userTransaction  = userTransaction.filter(x => x.status == status)
+  }
+  const result = userTransaction.sort((a, b) =>  b['transaction_id'].split("_")[1] - a['transaction_id'].split("_")[1])
+
+  return result;
+}
+
+app.get('/transactions', async (req, res) => {
+  try {
+    const creds = JSON.parse(req.headers.auth);
+    const status = JSON.parse(req.headers.status)
+    const check = await checkUser(creds);
+    if (!check) {
+      return res.status(404).json({ msg: 'user not found' });
+    }
+
+    const data = await fs.readFile('data/transactions.json', 'utf8');
+    const result = await getTransactions(creds, status, data == '' ? "[]" : data);
+
+    res.status(200).json({ data: result });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Internal server error' });
+  }
+});
 
 app.post('/transactions', async (req, res) => {
   try {
@@ -172,7 +204,7 @@ app.post('/transactions', async (req, res) => {
     const body = req.body;
 
     const data = await fs.readFile('data/transactions.json', 'utf8');
-    const result = await transactions(creds, body, data == '' ? "[]" : data);
+    const result = await addTransactions(creds, body, data == '' ? "[]" : data);
 
     await fs.writeFile('data/transactions.json', JSON.stringify(result, null, 2));
 

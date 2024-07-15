@@ -423,3 +423,11 @@ main.sign-up-mode .carousel_login {
 .colored-toast .swal2-html-container {
   color: gray;
 }
+
+.userbio_btn.active, .transaction_btn.active {
+  color: blue;
+  border-bottom: 2px solid blue;
+  border-bottom-width: 2px; 
+  color: #37B7C3;
+  border-color: #37B7C3;
+}

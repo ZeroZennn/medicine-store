@@ -99,6 +99,11 @@ let carts;
         total = total + (parseInt(productEle.getAttribute('price')) * parseInt(productEle.innerText));
       }
     })
+    if (checkbox_checked) {
+      checkout_dialog_btn.classList.remove("hidden");
+    } else {
+      checkout_dialog_btn.classList.add("hidden");
+    }
     productDetailELe.innerHTML = `
         <h3 class="font-semibold text-[18px]">Ringkasan Pembayaran</h3>
         <!-- keranjang -->
