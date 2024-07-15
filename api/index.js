@@ -183,7 +183,7 @@ async function getTransactions(creds, status, data) {
   return result;
 }
 
-app.get('/transactions/:id', async (req, res) => {
+app.get('/transactions', async (req, res) => {
   try {
     const creds = JSON.parse(req.headers.auth);
     const status = JSON.parse(req.headers.status)

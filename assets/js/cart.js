@@ -169,7 +169,7 @@ let carts;
         <h3 class="font-semibold text-[18px]">Ringkasan Pembayaran</h3>
         <!-- keranjang -->
         <div class="total_cart flex justify-between mt-4">
-          <p class="text-[14px] text-gray-500">Keranjang  ${count ? '( '+ count + ' Produk )' : ''} </p>
+          <p class="text-[14px] text-gray-500">Keranjang ${count ? '( '+ count + ' Produk )' : ''} </p>
           <p class="text-[14px] text-gray-500">${checkbox_checked ? rupiah(total) : 'Rp. -'}</p>
         </div>
         <!-- total Ongkir -->

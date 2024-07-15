@@ -153,6 +153,40 @@ async function transactionLoader(status) {
     const transaction_detail_btn = document.querySelectorAll('#transaction_detail_btn')
     transaction_detail_btn.forEach(async btn => {
         btn.addEventListener("click", () => {
+            const detail = res.data.find(x => x.transaction_id == btn.getAttribute('trans-id'))
+            const count = detail.product.length
+            const detail_modal = document.getElementById("shopping_summary")
+            detail_modal.innerHTML = `
+                <h3 class="font-semibold mt-6">Rincian Pembayaran</h3>
+                <!-- keranjang -->
+                <div class="total_cart flex justify-between mt-4">
+                    <p class="text-[14px] text-gray-500">Metode Pembayaran</p>
+                    <p class="text-[14px] text-gray-500">${detail.paymentType}</p>
+                </div>
+                <div class="border w-full border-gray-200 mt-4"></div>
+                <!-- keranjang -->
+                <div class="total_cart flex justify-between mt-4">
+                    <p class="text-[14px] text-gray-500">Keranjang ${count ? '( '+ count + ' Produk )' : ''}</p>
+                    <p class="text-[14px] text-gray-500">Rp. -</p>
+                </div>
+                <!-- total Ongkir -->
+                <div class="total_cart flex justify-between mt-2">
+                    <p class="text-[14px] text-gray-500">Total Ongkir</p>
+                    <p class="text-[14px] text-gray-500">Rp. -</p>
+                </div>
+                <!-- Biaya Pelayanan -->
+                <div class="total_cart flex justify-between mt-2">
+                    <p class="text-[14px] text-gray-500">Biaya Penanganan</p>
+                    <p class="text-[14px] text-gray-500">Rp. -</p>
+                </div>
+                <!-- line -->
+                <div class="border w-full border-gray-200 mt-4"></div>
+                <!-- total belanja -->
+                <div class="shopping_total flex justify-between mt-4">
+                    <h3 class="font-semibold">Total Belanja</h3>
+                    <h3 class="font-semibold">Rp. -</h3>
+                </div>
+            `
         })
     })
 }
