@@ -168,12 +168,22 @@ async function getTransactions(creds, status, data) {
   if (status != "Semua") {
     userTransaction  = userTransaction.filter(x => x.status == status)
   }
-  const result = userTransaction.sort((a, b) =>  b['transaction_id'].split("_")[1] - a['transaction_id'].split("_")[1])
-
+  let result = userTransaction.sort((a, b) =>  b['transaction_id'].split("_")[1] - a['transaction_id'].split("_")[1])
+  const produc = await fs.readFile('data/products.json', 'utf8');
+  const products = JSON.parse(produc)
+  const productMap = {};
+  products.forEach(product => {
+    productMap[product.id] = product.image;
+  });
+  result.forEach(transaction => {
+    transaction.product.forEach(product => {
+      product.image = productMap[product.id] || null;
+    });
+  });
   return result;
 }
 
-app.get('/transactions', async (req, res) => {
+app.get('/transactions/:id', async (req, res) => {
   try {
     const creds = JSON.parse(req.headers.auth);
     const status = JSON.parse(req.headers.status)

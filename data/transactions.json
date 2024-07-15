@@ -4,40 +4,30 @@
     "user_id": 1,
     "product": [
       {
-        "id": 1,
-        "qty": 4,
-        "price": 2500
-      }
-    ],
-    "subTotal": 10000,
-    "additionalPrice": 15000,
-    "notes": "",
-    "paymentType": "Dana",
-    "status": "Berlangsung",
-    "detail": "Menunggu Penjual",
-    "amount": 25000
-  },
-  {
-    "transaction_id": "tr1_2",
-    "user_id": 1,
-    "product": [
+        "id": 3,
+        "name": "Amoxicillin",
+        "qty": 1,
+        "price": 15000
+      },
       {
         "id": 2,
+        "name": "Panadol",
         "qty": 1,
         "price": 3000
       },
       {
-        "id": 4,
+        "id": 1,
+        "name": "Sanmol",
         "qty": 1,
-        "price": 5000
+        "price": 2500
       }
     ],
-    "subTotal": 8000,
+    "subTotal": 20500,
     "additionalPrice": 15000,
     "notes": "",
     "paymentType": "Dana",
     "status": "Berlangsung",
     "detail": "Menunggu Penjual",
-    "amount": 23000
+    "amount": 35500
   }
 ]
