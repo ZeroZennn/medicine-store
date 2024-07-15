@@ -25,6 +25,26 @@ async function checkUser(creds) {
   }
 }
 
+async function checkAdmin(creds) {
+  try {
+    const data = await fs.readFile('data/users.json', 'utf8');
+    const users = JSON.parse(data);
+    const user = users.find(e => 
+      e.id === creds.id && 
+      creds.id === 0 &&
+      e.username === creds.username &&
+      creds.username === "admin" &&
+      e.password === creds.password &&
+      creds.password === "admin"
+    );
+
+    return user ? true : false;
+  } catch (err) {
+    console.error('Error reading file:', err);
+    throw new Error('Error reading file');
+  }
+}
+
 // Function to create or update qty carts
 async function carts(creds, body, data) {
   let cart = JSON.parse(data);
@@ -164,22 +184,43 @@ async function addTransactions(creds, body, data) {
 
 async function getTransactions(creds, status, data) {
   const transaction = JSON.parse(data);
-  let userTransaction = transaction.filter(x => x.user_id == creds.id);
+  let userTransaction;
+  if (creds.id == 0) {
+    userTransaction = transaction;
+  } else {
+    userTransaction = transaction.filter(x => x.user_id == creds.id);
+  }
   if (status != "Semua") {
     userTransaction  = userTransaction.filter(x => x.status == status)
   }
   let result = userTransaction.sort((a, b) =>  b['transaction_id'].split("_")[1] - a['transaction_id'].split("_")[1])
-  const produc = await fs.readFile('data/products.json', 'utf8');
-  const products = JSON.parse(produc)
+
+  const file = await fs.readFile('data/products.json', 'utf8');
+  const products = JSON.parse(file)
+
   const productMap = {};
   products.forEach(product => {
     productMap[product.id] = product.image;
   });
+  
   result.forEach(transaction => {
     transaction.product.forEach(product => {
       product.image = productMap[product.id] || null;
     });
   });
+
+  const userFile = await fs.readFile('data/users.json', 'utf8');
+  const users = JSON.parse(userFile)
+
+  const userMap = {};
+  users.forEach(user => {
+    userMap[user.id] = user.name;
+  });
+  
+  result.forEach(transaction => {
+    transaction.name = userMap[transaction.user_id] || null;
+  });
+
   return result;
 }
 
@@ -219,6 +260,42 @@ app.post('/transactions', async (req, res) => {
     await fs.writeFile('data/transactions.json', JSON.stringify(result, null, 2));
 
     res.status(200).json({ msg: 'Transaksi berhasil' });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Internal server error' });
+  }
+});
+
+async function updateTransactions(creds, body, data) {
+  
+
+  console.log(filter)
+}
+
+app.put('/transactions', async (req, res) => {
+  try {
+    const creds = JSON.parse(req.headers.auth);
+    const check = await checkAdmin(creds);
+    if (!check) {
+      return res.status(404).json({ msg: 'Not Admin' });
+    }
+
+    const body = req.body;
+
+    const data = await fs.readFile('data/transactions.json', 'utf8');
+    let transactions = JSON.parse(data);
+    let filter = transactions.findIndex(x => x.transaction_id == body.id)
+
+    if (filter >= 0) {
+      transactions[filter].detail = "Dikonfirmasi dan Dikirim oleh Penjual"
+    } else {
+      res.status(404).json({msg: 'Transaksi tidak ditemukan'})
+    }
+
+    await fs.writeFile('data/transactions.json', JSON.stringify(transactions, null, 2));
+
+    res.status(200).json({ msg: 'Transaksi Diverifikasi' });
 
   } catch (err) {
     console.error(err);
