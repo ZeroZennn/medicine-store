@@ -331,9 +331,24 @@ function handleLogin(event) {
         const auth = user.filter(x => x.username == username && x.password == password)[0]
         if (auth) {
             setCookie(auth.username, null, 1, null, null);
-            location.reload();
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Berhasil Login',
+                showConfirmButton: false,
+                timer: 1800
+                })
+                .then(() => {
+                    location.reload();
+            })
+
+            
         } else { 
-            alert("Username atau Password salah")
+            Swal.fire({
+                title: "Oops...",
+                text: "Username atau password salah",
+                icon: "error"
+            });
         }
       }
     ) .catch(error => {
@@ -393,8 +408,26 @@ function setCookie(value, expireDays, expireHours, expireMinutes, expireSeconds)
 
 // Handle Logout then refresh
 function logout() {
-    setCookie("username", "", null , null , null, 1);
-    location.href = 'index.html';
+    Swal.fire({
+        title: "Apakah kamu yakin?",
+        text: "Kamu akan logout !",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#ACACAC",
+        confirmButtonText: "Logout"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Berhasil Logout",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+            setCookie("username", "", null , null , null, 1);
+            location.href = 'index.html';
+        }
+      });
+    
 }
 
 // dropdown user
