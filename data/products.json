@@ -4,7 +4,7 @@
             "name": "Sanmol",
             "drugs_category": "Bebas",
             "price": 2500,
-            "image": "assets/images/sanmol2.png",
+            "image": "assets/images/sanmoltab.png",
             "description": "SANMOL FORTE merupakan obat dengan kandungan Paracetamol 650 mg. Obat ini digunakan untuk meringankan rasa sakit pada keadaan sakit kepala, sakit gigi dan menurunkan demam. Sanmol Forte bekerja pada pusat pengatur suhu di hipotalamus untuk menurunkan suhu tubuh (antipiretik) serta menghambat sintesis prostaglandin sehingga dapat mengurangi nyeri ringan sampai sedang (analgetik).",
             "indication": "Obat ini digunakan untuk meringankan rasa sakit pada keadaan sakit kepala, sakit gigi dan menurunkan demam.",
             "composition": "Paracetamol 650 mg",
@@ -81,7 +81,7 @@
         },
         {
             "id": 6,
-            "name": "Antasida",
+            "name": "Antasida Doen",
             "drugs_category": "Bebas",
             "price": 2000,
             "image": "assets/images/antasida.png",
@@ -306,7 +306,7 @@
         {
             "id": 20,
             "name": "Aspirin",
-            "drugs_category": "Bebas",
+            "drugs_category": "Keras",
             "price": 3000,
             "image": "assets/images/aspirin.png",
             "description": "Aspirin adalah obat yang mengandung Asam Asetilsalisilat 100 mg. Digunakan untuk meredakan nyeri ringan hingga sedang dan menurunkan demam.",
@@ -350,21 +350,5 @@
             "packaging": "Botol 60 mL",
             "manufactured": "Kimia Farma",
             "reg_num": "BPOM: DBL1234567890U1"
-        },
-        {
-            "id": 23,
-            "name": "Aspirin",
-            "drugs_category": "Keras",
-            "price": 3000,
-            "image": "assets/images/morfin.png",
-            "description": "test",
-            "indication": "test",
-            "composition": "test",
-            "dosis": "test",
-            "usage": "test",
-            "side_effect": "test",
-            "packaging": "test",
-            "manufactured": "test",
-            "reg_num": "BPOM: DBL1122235610B1"   
         }
     ]
