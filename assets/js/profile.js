@@ -9,6 +9,13 @@ const user_detail = document.getElementById("left");
 const container = document.getElementById('content');
 const userbioBtn = document.querySelector('.userbio_btn');
 const transactionBtn = document.querySelector('.transaction_btn');
+const name = document.getElementById("name");
+const email = document.getElementById("email");
+const no_telp = document.getElementById("no_telp");
+
+name.value = user.name
+email.value = user.email
+no_telp.value = user.no_telp
 
 user_detail.innerHTML = `
     <div class="user_image">
@@ -189,6 +196,35 @@ async function transactionLoader(status) {
             `
         })
     })
+}
+
+const updateUserBtn = document.getElementById("update_user_btn");
+updateUserBtn.addEventListener("click", () => {
+    updateUser(name.value, email.value, no_telp.value);
+})
+
+async function updateUser(name, email, no_telp) {
+    let data = {
+        'name': name,
+        'email': email,
+        'no_telp': no_telp
+    }
+
+    const res = await fetch(`http://localhost:3000/user`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'auth': JSON.stringify(user),
+        },
+        body: JSON.stringify(data)
+    });
+
+    const swal = await res.json();
+    await Toast.fire({
+        icon: 'success',
+        title: swal.msg,
+      })
+    location.reload()
 }
 
 })();

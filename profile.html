@@ -24,13 +24,12 @@
                 <div class="transaction_wrapper grid lg:grid-cols-12 gap-8">
                     <div class="left lg:col-span-8">
                         <div class="order status">
-                            
                         </div>
-                        <div class="shipping_info">
+                        <!-- <div class="shipping_info">
                             <h3 class="font-semibold">Info Pengiriman</h3>
                             <p class="text-[14px] text-gray-500 mt-4">Nama : <span class="text-gray-700"> Zirkan</span></p>
                             <p class="text-[14px] text-gray-500 mt-2">Alamat : <span class="text-gray-700"> Jl jalan ke surabaya</span></p>
-                        </div>
+                        </div> -->
                         <div id="shopping_summary">
                         </div>
                     </div>
@@ -50,19 +49,19 @@
                     <div>
                         <div id="content" class="px-4 lg:px-12 mt-5">
                             <div class="mb-6">
-                                <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
-                                <input type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                                <input type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
                             <div class="mb-6">
-                                <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                <input type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                                <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
                             <div class="mb-6">
-                                <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">No HP</label>
-                                <input type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <label for="no_telp" class="block mb-2 text-sm font-medium text-gray-900">No HP</label>
+                                <input type="text" id="no_telp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
                             <div class="user_bt mt-10 mb-10">
-                                <button class="bg-[#37B7C3] w-full py-2 rounded-md text-white font-medium">Update Profile</button>
+                                <button id="update_user_btn" class="bg-[#37B7C3] w-full py-2 rounded-md text-white font-medium">Update Profile</button>
                             </div>
                         </div>
                     </div>
