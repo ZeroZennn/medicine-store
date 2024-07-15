@@ -1,6 +1,14 @@
 let carts;
 (async () => {
+  await getUser();
+    if (!user) {
+        alert("Please login first");
+        location.href = "index.html";
+    }
   const products = await fetchDB("products");
+  const address = document.getElementById("address_text")
+  address.value = user.address;
+  let addressGlobal = user.address;
 
   const productCartEle = document.getElementById("product_cart");
   const productDetailELe = document.getElementById("shopping_summary");
@@ -9,6 +17,7 @@ let carts;
   const checkout_dialog = document.getElementById("checkout");
   const checkout_price = document.getElementById("checkout-price");
   const payment_btn = document.querySelector(".payment_btn");
+  const update_address_btn = document.getElementById("update_address_btn")
 
   checkout_dialog_btn.addEventListener("click", () => {
     checkout_dialog.showModal();
@@ -17,6 +26,35 @@ let carts;
   payment_btn.addEventListener("click", () => {
     prepareToCheckout();
   });
+  
+  update_address_btn.addEventListener("click", async () => {
+    if (address.value == addressGlobal || address.value == '') {
+      await Toast.fire({
+        icon: 'error',
+        title: "Tolong masukkan alamat yang berbeda",
+      }) 
+      user_address.showModal()
+    } else {
+      const res = await fetch(`http://localhost:3000/user`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'auth': JSON.stringify(user)
+        },
+        body: JSON.stringify({address: address.value})
+      });
+      if (res.status == 200) {
+        user.address = address.value;
+        addressGlobal = address.value;
+        updateCartDetail()
+      }
+      const swal = await res.json()
+      await Toast.fire({
+        icon: res.status == 200 ? 'success' : 'error',
+        title: swal.msg,
+      })
+    }
+  })
 
   const getProduct = (id) => {
       return products.filter(x => x.id == id)[0];
@@ -30,24 +68,43 @@ let carts;
   }
 
   async function checkout(data, all) {
-    await fetch(`http://localhost:3000/transactions`, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'auth': JSON.stringify(user)
-      },
-      body: JSON.stringify(data)
-    });
-    
-    if (all) {
-      await deleteCart(0, true);
+    if (!user.address) {
+      checkout_dialog.close();
+      Swal.fire({
+        title: "Tolong tambahkan alamat terlebih dahulu",
+        icon: "warning",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#ACACAC",
+        confirmButtonText: "OK"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          user_address.showModal()
+        }
+      });
     } else {
-      data.product.forEach(async cb => {
-        await deleteCart(cb.id)
-        document.getElementById(`cart_product_${cb.id}`).remove();
-      })
+      const res = await fetch(`http://localhost:3000/transactions`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'auth': JSON.stringify(user)
+        },
+        body: JSON.stringify(data)
+      });
+      const swal = res.json();
+      await Toast.fire({
+        icon: 'success',
+        title: swal.msg,
+      }) 
+      if (all) {
+        await deleteCart(0, true);
+      } else {
+        data.product.forEach(async cb => {
+          await deleteCart(cb.id)
+          document.getElementById(`cart_product_${cb.id}`).remove();
+        })
+      }
+      location.reload();
     }
-    location.reload();
   }
 
   async function prepareToCheckout() {
@@ -132,10 +189,10 @@ let carts;
         <div class="address_wrap p-4 bg-gray-100 rounded-lg mt-4">
           <div class="title flex justify-between">
             <p class="font-semibold text-[14px] text-gray-600">Alamat Pengiriman</p>
-            <p class="font-semibold text-[14px] text-[#37B7C3] mt-1 cursor-pointer">Ubah</p>
+            <p class="font-semibold text-[14px] text-[#37B7C3] mt-1 cursor-pointer" onclick="user_address.showModal()">Ubah</p>
           </div>
           <div class="address">
-            <p id="address" class="text-[14px]"></p>
+            <p id="address" class="text-[14px]">${user.address ? user.address : "..."}</p>
           </div>
         </div>
     `
@@ -281,5 +338,6 @@ let carts;
 
   startCart();
   updateSelectAll();
+  updateCartDetail();
 
 })();

@@ -1,17 +1,5 @@
 const header = document.querySelector("header");
 
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    iconColor: 'white',
-    customClass: {
-      popup: 'colored-toast',
-    },
-    showConfirmButton: true,
-    timer: 1500,
-    timerProgressBar: true,
-  })
-
 header.innerHTML = `
         <!-- overlay -->
         <link rel="stylesheet" href="assets/css/header.css">
@@ -427,7 +415,6 @@ function logout() {
             location.href = 'index.html';
         }
       });
-    
 }
 
 // dropdown user

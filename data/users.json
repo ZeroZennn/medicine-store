@@ -5,7 +5,8 @@
     "name": "jose febrian",
     "password": "123",
     "no_telp": "085174151174",
-    "email": "jose1234@gmail.com"
+    "email": "jose1234@gmail.com",
+    "address": ""
   },
   {
     "id": 1,
@@ -13,7 +14,8 @@
     "name": "achmad zikran maulida",
     "password": "123",
     "no_telp": "085772047394",
-    "email": "achmad.zikran@gmail.com"
+    "email": "achmad.zikran@gmail.com",
+    "address": "asdadasdasdasdas"
   },
   {
     "id": 0,
@@ -27,6 +29,7 @@
     "name": "syhenn",
     "password": "syhen1234",
     "no_telp": "",
-    "email": "syhenn@gmail.com"
+    "email": "syhenn@gmail.com",
+    "address": ""
   }
 ]

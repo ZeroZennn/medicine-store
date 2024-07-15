@@ -33,7 +33,7 @@ imageEle.innerHTML = `
         </div>
         <div class="buttons grid lg:grid-cols-2 gap-2 lg:gap-10 mt-10 lg:mt-4">
             <button class="border-2 border-[#37B7C3] text-[1rem] py-2 rounded-lg text-[#37B7C3] font-medium">Chat</button>
-            <button class="bg-[#37B7C3] text-[1rem] py-2 rounded-lg text-white">Add to Cart</button>
+            <button product-id="${productToShow.id}" id="add_cart" class="bg-[#37B7C3] text-[1rem] py-2 rounded-lg text-white">Add to Cart</button>
         </div>
     </div>
 `
@@ -84,5 +84,21 @@ detailEle.innerHTML = `
         <p class="content text-gray-500">${productToShow.reg_num}</p>
     </div>
 `
+
+const add = document.getElementById('add_cart')
+add.addEventListener("click", async () => {
+    if (!user) {
+        dialog.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+    } else {
+        const productId = add.getAttribute('product-id');
+        let res = await addToCart(productId);
+        await Toast.fire({
+            icon: 'success',
+            title: res.msg,
+        })
+        await updateCartQty(user.id)
+    }
+})
 
 })();

@@ -247,13 +247,49 @@ app.post('/register', async (req, res) => {
       "name": body.username,
       "password": body.password,
       "no_telp": "",
-      "email": body.email
+      "email": body.email,
+      "address": ""
     }
 
     data.push(newUser);
 
     await fs.writeFile('data/users.json', JSON.stringify(data, null, 2));
     res.status(200).json({ msg: 'Berhasil Register' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Internal server error' });
+  }
+});
+
+async function updateUser(creds, body, data) {
+  let users = JSON.parse(data);
+  const userIndex = users.findIndex(x => x.id == creds.id)
+  console.log(userIndex)
+  if (userIndex !== -1) {
+    users[userIndex].email = body.email || users[userIndex].email;
+    users[userIndex].no_telp = body.no_telp || users[userIndex].no_telp;
+    users[userIndex].name = body.name || users[userIndex].name;
+    users[userIndex].address = body.address || users[userIndex].address;
+  }
+
+  return users;
+}
+
+app.put('/user', async (req, res) => {
+  try {
+    const creds = JSON.parse(req.headers.auth);
+    const check = await checkUser(creds);
+    if (!check) {
+      return res.status(404).json({ msg: 'user not found' });
+    }
+
+    const body = req.body;
+    const data = await fs.readFile('data/users.json', 'utf8');
+    const result = await updateUser(creds, body, data);
+
+    await fs.writeFile('data/users.json', JSON.stringify(result, null, 2));
+
+    res.status(200).json({ msg: "Update data berhasil" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: 'Internal server error' });

@@ -91,7 +91,15 @@ async function changeContent(contentName) {
         const transactions_filter = document.querySelectorAll('#filter-btn')
         transactions_filter.forEach(bt => {
             bt.addEventListener("click", function() {
-                transactionLoader(bt.getAttribute('filter'));
+                const filter = bt.getAttribute('filter');
+                transactionLoader(filter);
+                transactions_filter.forEach(btt => {
+                    if(btt.getAttribute('filter') == filter) {
+                        btt.setAttribute("class", "border border-[#37B7C3] lg:py-1 px-2 lg:px-4 text-[12px] lg:text-sm rounded-md text-[#37B7C3] font-medium bg-[#37B7C3]/[.05]")
+                    } else {
+                        btt.setAttribute("class", "border border-gray-400 lg:py-1 px-2 lg:px-4 text-[12px] lg:text-sm rounded-md text-gray-500")
+                    }
+                })
             })
         })
     }
@@ -126,7 +134,7 @@ async function transactionLoader(status) {
                     <div class="product_right flex flex-col justify-between items-end gap-14">
                         <div class="transaction_total flex flex-col">
                             <p class="text-sm ">Total Belanja</p>
-                            <p class="text-sm font-semibold">${item.amount}</p>
+                            <p class="text-sm font-semibold">${rupiah(item.amount)}</p>
                         </div>
                         <div class="right_bottom flex gap-4 items-center">
                             <div class="transaction_status">

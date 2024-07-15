@@ -22,6 +22,25 @@ async function fetchDB(table) {
   }
 }
 
+const rupiah = (number)=>{
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  }).format(number);
+}
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  iconColor: 'white',
+  customClass: {
+    popup: 'colored-toast',
+  },
+  showConfirmButton: true,
+  timer: 1500,
+  timerProgressBar: true,
+})
+
 async function isLogin() {
   let cookie = document.cookie;
   cookie = cookie.replace("username=", "")
