@@ -213,8 +213,8 @@ header.innerHTML = `
                                             <img class="w=[50px] h-[50px] border border-gray-300 rounded-[50%]"src="assets/svg/avatar.svg" alt="" >
                                         </div>
                                         <div class="user_text">
-                                            <p class="font-semibold text-[1.1rem] text-gray-700">zikran</p>
-                                            <p class="text-[0.8rem]">zikran1234@gmail.com</p>
+                                            <p class="name text-[0.9rem]">name</p>
+                                            <p class="email text-[0.7rem]">Email</p>
                                         </div>
                                     </li>
                                     <li>
@@ -429,9 +429,13 @@ async function main() {
         const login_div = document.getElementById('login_div');
         const islogin_div = document.getElementById('islogin_div');
         const username = document.getElementById('login_username');
+        const name = document.querySelector('.name')
+        const email = document.querySelector('.email')
         login_div.classList.add('hidden');
         islogin_div.classList.remove('hidden');
         username.innerHTML = user.username;
+        name.innerHTML = user.name;
+        email.innerHTML = user.email;
         await updateCartQty(user.id)
     } else {
         loginDialog();
