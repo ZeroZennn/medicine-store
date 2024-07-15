@@ -15,5 +15,15 @@
     "paymentType": "BCA",
     "status": "Waiting for seller",
     "amount": 27000
+  },
+  {
+    "transaction_id": "tr1_1",
+    "user_id": 1,
+    "product": [],
+    "subTotal": 0,
+    "additionalPrice": 15000,
+    "notes": "",
+    "status": "Waiting for seller",
+    "amount": 15000
   }
 ]

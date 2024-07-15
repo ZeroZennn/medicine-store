@@ -34,7 +34,7 @@ function displayItem(items) {
     productEle.innerHTML = items.map(item => {
         return (`
             <div class="card cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                <img product-id="${item.id}" class="detail w-full h-[240px] object-cover rounded-tl-2xl rounded-tr-2xl" src="${item.image}" alt="">
+                <img product-id="${item.id}" class="detail w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="${item.image}" alt="">
                 <div product-id="${item.id}" class="detail name px-3 mt-2 font-semibold">${item.name + " id:" + item.id + " category:" + item.drugs_category}</div>
                 <div class="content px-3">
                     <div class="price font-bold text-[#F8AE1C] text-[18px]">${rupiah(item.price)}</div>

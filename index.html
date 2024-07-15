@@ -168,23 +168,25 @@
 
         <div class="container mx-auto px-5">
             <!-- Health Check -->
-            <div class="bmi_check mt-[25rem] lg:mt-20">
+            <div class="bmi_check mt-[28rem] lg:mt-20">
                 <div class="title flex justify-center text-[32px]">
                     <h2 class="font-semibold">Want to try a <span class="text-[#37B7C3]">BMI</span> check?</h2>
                     
                 </div>
+
                 <!-- result bmi -->
                 <dialog id="bmi_result" class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                    <h3 class="text-lg font-bold">Hello!</h3>
-                    <p class="result py-4"></p>
-                    <div class="modal-action">
-                    <form method="dialog">
-                        <!-- if there is a button in form, it will close the modal -->
-                        <button class="btn">Close</button>
-                    </form>
+                    <div class="modal-box">
+                        <h3 class="text-lg font-bold">BMI Kamu</h3>
+                        <!-- result text -->
+                        <p class="result py-4"></p>
+                        <div class="modal-action">
+                        <form method="dialog">
+                            <!-- if there is a button in form, it will close the modal -->
+                            <button class="btn">Close</button>
+                        </form>
+                        </div>
                     </div>
-                </div>
                 </dialog>
                 <div class="bmi mt-10 grid lg:grid-cols-2 gap-10">
                     <div class="icon bg-slate-200">
@@ -196,7 +198,7 @@
                                 <input type="radio" name="gender" gender="1" class="absolute cursor-pointer opacity-0" required>
                                 <div class="male checkmark bg-white rounded-lg px-2 py-10 flex justify-center flex-col items-center w-full cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)]">
                                     <span class="gender_icon flex justify-center">
-                                        <i class="ti ti-gender-male text-9xl"></i>
+                                        <i class="ti ti-gender-male text-5xl lg:text-9xl"></i>
                                     </span>
                                     <div class="gender_text">Laki-Laki</div>
                                 </div>
@@ -205,7 +207,7 @@
                                 <input type="radio" name="gender" gender="2" class="absolute cursor-pointer opacity-0" required>
                                 <div class="male checkmark bg-white rounded-lg px-2 py-10 flex justify-center flex-col items-center w-full cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)]">
                                     <span class="gender_icon flex justify-center">
-                                        <i class="ti ti-gender-female text-9xl"></i>
+                                        <i class="ti ti-gender-female text-5xl lg:text-9xl"></i>
                                     </span>
                                 
                                     <div class="gender_text">Perempuan</div>
@@ -231,7 +233,7 @@
                             </label>
                         </div>
                         <div class="submit mt-4">
-                            <button type="submit" class="w-full bg-[#37B7C3] py-2 rounded-md text-white font-medium">Cek BMI</button>
+                            <button type="submit" name="bmiSubmit" class="w-full bg-[#37B7C3] py-2 rounded-md text-white font-medium">Cek BMI</button>
                         </div>
                     </div>
                 </div>
@@ -287,15 +289,12 @@
         const genderInput = document.querySelectorAll('input[name="gender"]');
         const weightInput = document.querySelector('input[name="berat_badan"]');
         const heightInput = document.querySelector('input[name="tinggi_badan"]');
-        const submitButton = document.querySelector('button[type="submit"]');
-        const resultDiv = document.querySelector('.result');
+        const submitButton = document.querySelector('button[name="bmiSubmit"]');
+        const resultDiv = document.querySelector('.resultBMI');
 
         // Add event listener to the submit button
         submitButton.addEventListener('click', calculateBMI);
         
-
-        
-
         // Function to calculate BMI
         function calculateBMI() {
         let gender;
@@ -312,7 +311,12 @@
         })
 
         if (gender == null || isNaN(weight) || isNaN(height)) {
-            alert('Please enter valid gender, weight and height values');
+            // alert('Please enter valid gender, weight and height values');
+            Swal.fire({
+                title: "Invalid data input",
+                text: "Please enter valid gender, weight and height values!",
+                icon: "warning"
+            });
             return;
         } else {
             bmi_result.showModal();
@@ -326,15 +330,15 @@
 
         // Function to get BMI category
         function getBMICategory(bmi) {
-        if (bmi < 18.5) {
-            return 'Underweight';
-        } else if (bmi < 25) {
-            return 'Normal weight';
-        } else if (bmi < 30) {
-            return 'Overweight';
-        } else {
-            return 'Obese';
-        }
+            if (bmi < 18.5) {
+                return 'Underweight';
+            } else if (bmi < 25) {
+                return 'Normal weight';
+            } else if (bmi < 30) {
+                return 'Overweight';
+            } else {
+                return 'Obese';
+            }
         }
      </script>
     <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons-react/dist/index.umd.min.js"></script>

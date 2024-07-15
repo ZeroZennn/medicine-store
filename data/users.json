@@ -1,24 +1,32 @@
 [
-    {
-        "id": 0,
-        "username": "admin",
-        "password": "admin",
-        "no_telp": "085772047394"
-    },
-    {
-        "id": 1,
-        "username": "zikran",
-        "name": "achmad zikran maulida",
-        "password": "123",
-        "no_telp": "085772047394",
-        "email": "achmad.zikran@gmail.com"
-    },
-    {
-        "id": 2,
-        "username": "jose",
-        "name": "jose febrian",
-        "password": "123",
-        "no_telp": "085174151174",
-        "email": "jose1234@gmail.com"
-    }
+  {
+    "id": 2,
+    "username": "jose",
+    "name": "jose febrian",
+    "password": "123",
+    "no_telp": "085174151174",
+    "email": "jose1234@gmail.com"
+  },
+  {
+    "id": 1,
+    "username": "zikran",
+    "name": "achmad zikran maulida",
+    "password": "123",
+    "no_telp": "085772047394",
+    "email": "achmad.zikran@gmail.com"
+  },
+  {
+    "id": 0,
+    "username": "admin",
+    "password": "admin",
+    "no_telp": "085772047394"
+  },
+  {
+    "id": 3,
+    "username": "syhenn",
+    "name": "syhenn",
+    "password": "syhen1234",
+    "no_telp": "",
+    "email": "syhenn@gmail.com"
+  }
 ]

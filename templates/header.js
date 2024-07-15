@@ -258,7 +258,7 @@ function loginDialog() {
 
     login.addEventListener("click", function() {
         dialog.classList.remove('hidden');
-        overlay.classList.remove('hidden');
+        overlay.classList.Aremove('hidden');
     });
 
     closeButton.addEventListener('click', function () {
