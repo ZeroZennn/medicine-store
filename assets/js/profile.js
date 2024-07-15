@@ -9,13 +9,14 @@ const user_detail = document.getElementById("left");
 const container = document.getElementById('content');
 const userbioBtn = document.querySelector('.userbio_btn');
 const transactionBtn = document.querySelector('.transaction_btn');
-const name = document.getElementById("name");
-const email = document.getElementById("email");
-const no_telp = document.getElementById("no_telp");
+let name, email, no_telp;
 
-name.value = user.name
-email.value = user.email
-no_telp.value = user.no_telp
+name = document.getElementById("name");
+email = document.getElementById("email");
+no_telp = document.getElementById("no_telp");
+name.value = user.name;
+email.value = user.email;
+no_telp.value = user.no_telp;
 
 user_detail.innerHTML = `
     <div class="user_image">
@@ -46,19 +47,19 @@ user_detail.innerHTML = `
 
 const update_profile_content = `
     <div class="mb-6">
-        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
-        <input type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+        <input type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
     </div>
     <div class="mb-6">
-        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-        <input type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+        <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
     </div>
     <div class="mb-6">
-        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">No HP</label>
-        <input type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        <label for="no_telp" class="block mb-2 text-sm font-medium text-gray-900">No HP</label>
+        <input type="text" id="no_telp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
     </div>
     <div class="user_bt mt-10 mb-10">
-        <button class="bg-[#37B7C3] w-full py-2 rounded-md text-white font-medium">Update Profile</button>
+        <button id="update_user_btn" class="bg-[#37B7C3] w-full py-2 rounded-md text-white font-medium">Update Profile</button>
     </div>
 `
 
@@ -89,6 +90,12 @@ async function changeContent(contentName) {
         userbioBtn.classList.add('active');
         transactionBtn.classList.remove('active');
         container.innerHTML = update_profile_content;
+        name = document.getElementById("name");
+        email = document.getElementById("email");
+        no_telp = document.getElementById("no_telp");
+        name.value = user.name;
+        email.value = user.email;
+        no_telp.value = user.no_telp;
     } else {
         transactionBtn.classList.add('active');
         userbioBtn.classList.remove('active');
