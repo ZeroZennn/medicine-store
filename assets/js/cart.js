@@ -17,14 +17,39 @@ let carts;
   const checkout_dialog = document.getElementById("checkout");
   const checkout_price = document.getElementById("checkout-price");
   const payment_btn = document.querySelector(".payment_btn");
-  const update_address_btn = document.getElementById("update_address_btn")
+  const update_address_btn = document.getElementById("update_address_btn");
+  const radio_payment = document.querySelectorAll(".payment_type");
 
   checkout_dialog_btn.addEventListener("click", () => {
     checkout_dialog.showModal();
   });
 
   payment_btn.addEventListener("click", () => {
-    prepareToCheckout();
+    let isChecked = false;
+
+    // Periksa apakah ada tombol radio yang dicentang
+    radio_payment.forEach((radio) => {
+      if (radio.checked) {
+        isChecked = true;
+      }
+    });
+    // jika ada yang checked
+    if (isChecked) {
+      prepareToCheckout();
+    } else {
+      checkout_dialog.close();
+      Swal.fire({
+        title: "Invalid Payment Method",
+        text: "Tolong pilih metode pembayaran!",
+        icon: "warning",
+        customClass: {
+          popup: 'my-swal'
+        }
+      }).then((result) => {
+        checkout_dialog.showModal();
+      });
+      
+    }
   });
   
   update_address_btn.addEventListener("click", async () => {
@@ -335,6 +360,8 @@ let carts;
 
       await updateCartQty(user.id);
   }
+
+
 
   startCart();
   updateSelectAll();
