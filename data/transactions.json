@@ -1,29 +1,43 @@
 [
   {
-    "transaction_id": "tr2_1",
-    "user_id": 2,
+    "transaction_id": "tr1_1",
+    "user_id": 1,
+    "product": [
+      {
+        "id": 1,
+        "qty": 4,
+        "price": 2500
+      }
+    ],
+    "subTotal": 10000,
+    "additionalPrice": 15000,
+    "notes": "",
+    "paymentType": "Dana",
+    "status": "Berlangsung",
+    "detail": "Menunggu Penjual",
+    "amount": 25000
+  },
+  {
+    "transaction_id": "tr1_2",
+    "user_id": 1,
     "product": [
       {
         "id": 2,
-        "qty": 4,
+        "qty": 1,
         "price": 3000
+      },
+      {
+        "id": 4,
+        "qty": 1,
+        "price": 5000
       }
     ],
-    "subTotal": 12000,
+    "subTotal": 8000,
     "additionalPrice": 15000,
     "notes": "",
-    "paymentType": "BCA",
-    "status": "Waiting for seller",
-    "amount": 27000
-  },
-  {
-    "transaction_id": "tr1_1",
-    "user_id": 1,
-    "product": [],
-    "subTotal": 0,
-    "additionalPrice": 15000,
-    "notes": "",
-    "status": "Waiting for seller",
-    "amount": 15000
+    "paymentType": "Dana",
+    "status": "Berlangsung",
+    "detail": "Menunggu Penjual",
+    "amount": 23000
   }
 ]

@@ -87,7 +87,7 @@ async function changeContent(contentName) {
         userbioBtn.classList.remove('active');
         container.innerHTML = transaction_content;
         
-        transactionLoader('semua')
+        transactionLoader('Semua')
         const transactions_filter = document.querySelectorAll('#filter-btn')
         transactions_filter.forEach(bt => {
             bt.addEventListener("click", function() {
@@ -133,7 +133,7 @@ async function transactionLoader(status) {
                                 <button class="border border-[#ffb20b] lg:py-1 px-2 lg:px-4 text-[12px] lg:text-sm rounded-md text-[#ffb20b] font-medium bg-[#ffb20b]/[.05]">${item.detail}</button>
                             </div>
                             <div class="detail_transaction flex justify-between px-6 py-1 gap-8 rounded-md border text-[#11b919] border-[#11b919] text-sm cursor-pointer">
-                                <p>Detail Transaksi</p>
+                                <button onclick="transaction_detail.showModal()">Detail Transaksi</button>
                             </div>
                         </div>
                     </div>

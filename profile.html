@@ -15,6 +15,61 @@
 
     <!-- main -->
     <main>
+        <dialog id="transaction_detail" class="modal">
+            <div class="modal-box w-5/12 max-w-5xl">
+                <form method="dialog">
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-4 top-4 text-xl">✕</button>
+                </form>
+                <h3 class="text-xl text-gray-600 font-bold mb-4">Detail Transaksi</h3>
+                <div class="transaction_wrapper grid lg:grid-cols-12 gap-8">
+                    <div class="left lg:col-span-8">
+                        <div class="order status">
+                            
+                        </div>
+                        <div class="shipping_info">
+                            <h3 class="font-semibold">Info Pengiriman</h3>
+                            <p class="text-[14px] text-gray-500 mt-4">Nama : <span class="text-gray-700"> Zirkan</span></p>
+                            <p class="text-[14px] text-gray-500 mt-2">Alamat : <span class="text-gray-700"> Jl jalan ke surabaya</span></p>
+                        </div>
+                        <div id="shopping_summary">
+                            <h3 class="font-semibold mt-6">Rincian Pembayaran</h3>
+                            <!-- keranjang -->
+                            <div class="total_cart flex justify-between mt-4">
+                              <p class="text-[14px] text-gray-500">Metode Pembayaran</p>
+                              <p class="text-[14px] text-gray-500">Dana</p>
+                            </div>
+                            <div class="border w-full border-gray-200 mt-4"></div>
+                            <!-- keranjang -->
+                            <div class="total_cart flex justify-between mt-4">
+                              <p class="text-[14px] text-gray-500">Keranjang ( 1 Produk )</p>
+                              <p class="text-[14px] text-gray-500">Rp. -</p>
+                            </div>
+                            <!-- total Ongkir -->
+                            <div class="total_cart flex justify-between mt-2">
+                              <p class="text-[14px] text-gray-500">Total Ongkir</p>
+                              <p class="text-[14px] text-gray-500">Rp. -</p>
+                            </div>
+                            <!-- Biaya Pelayanan -->
+                            <div class="total_cart flex justify-between mt-2">
+                              <p class="text-[14px] text-gray-500">Biaya Penanganan</p>
+                              <p class="text-[14px] text-gray-500">Rp. -</p>
+                            </div>
+                            <!-- line -->
+                            <div class="border w-full border-gray-200 mt-4"></div>
+                            <!-- total belanja -->
+                            <div class="shopping_total flex justify-between mt-4">
+                              <h3 class="font-semibold">Total Belanja</h3>
+                              <h3 class="font-semibold">Rp. -</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right lg:col-span-4 border-l-2 px-4">
+                        <button filter="Semua" id="filter-btn" class="border w-full border-gray-500 lg:py-1 px-2 lg:px-4 text-[12px] lg:text-sm rounded-md text-gray-500 font-medium bg-gray-500/[.05]">Batalkan Pesanan</button>
+                    </div>
+                </div>
+                
+            </div>
+        </dialog>
         <div class="container mx-auto px-5">
             <div class="grid lg:grid-cols-12 gap-8 mt-10">
                 <div id="left" class="left py-10 lg:col-span-4 bg-white flex justify-center items-center flex-col rounded-lg shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] border border-gray-300 lg:h-[80vh]">
