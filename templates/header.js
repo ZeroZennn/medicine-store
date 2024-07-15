@@ -158,7 +158,7 @@ header.innerHTML = `
                 <a href="./" class="flex items-center">
                     <img src="assets/svg/logo.svg" class="h-8" alt="MediCran Logo">
                 </a>
-                <div class="items-center justify-between">
+                <div class="items-center justify-between hidden lg:flex">
                     <ul class="flex flex-row font-medium gap-6">
                         <li>
                             <a href="./" class="block py-2 mx-2 text-white">Home</a>
@@ -178,13 +178,13 @@ header.innerHTML = `
                 <div id="islogin_div" class="hidden">
                     <ul class="flex flex-row font-medium">
                         <li>
-                            <a href="./notif" class="flex items-center">
-                                <i class="ti ti-bell text-white text-[30px] mx-2"></i>
+                            <a href="./notif" class="flex items-center py-1">
+                                <i class="ti ti-bell text-white text-[25px] lg:text-[30px] mx-2"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="cart.html" class="flex items-center">
-                                <i class="ti ti-shopping-cart text-white text-[30px] mr-3"></i>
+                            <a href="cart.html" class="flex items-center py-1">
+                                <i class="ti ti-shopping-cart text-white text-[25px] lg:text-[30px] mr-3"></i>
                                 <span id="qtyCart" class="absolute mt-[-1.5rem] ms-[1.5rem] bg-red-600 flex justify-center items-center px-[5px] text-[12px] rounded-md text-white font-semibold" ></span>
                             </a>
                         </li>
@@ -227,6 +227,19 @@ header.innerHTML = `
                         </li>
                     </ul>
                     
+                </div>
+                <div class="items-center justify-between flex lg:hidden mx-auto mt-5">
+                    <ul class="flex flex-row font-medium gap-6">
+                        <li>
+                            <a href="./" class="block py-2 mx-2 text-white">Home</a>
+                        </li>
+                        <li>
+                            <a href="products.html" class="block py-2 mx-2 text-white">Products</a>
+                        </li>
+                        <li>
+                            <a href="about.html" class="block py-2 mx-2 text-white">About Us</a>
+                        </li>
+                    </ul>
                 </div>
                 
             </div>
