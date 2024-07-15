@@ -167,24 +167,24 @@ async function transactionLoader(status) {
                 <!-- keranjang -->
                 <div class="total_cart flex justify-between mt-4">
                     <p class="text-[14px] text-gray-500">Keranjang ${count ? '( '+ count + ' Produk )' : ''}</p>
-                    <p class="text-[14px] text-gray-500">Rp. -</p>
+                    <p class="text-[14px] text-gray-500">${rupiah(detail.subTotal)}</p>
                 </div>
                 <!-- total Ongkir -->
                 <div class="total_cart flex justify-between mt-2">
                     <p class="text-[14px] text-gray-500">Total Ongkir</p>
-                    <p class="text-[14px] text-gray-500">Rp. -</p>
+                    <p class="text-[14px] text-gray-500">${rupiah(5000)}</p>
                 </div>
                 <!-- Biaya Pelayanan -->
                 <div class="total_cart flex justify-between mt-2">
                     <p class="text-[14px] text-gray-500">Biaya Penanganan</p>
-                    <p class="text-[14px] text-gray-500">Rp. -</p>
+                    <p class="text-[14px] text-gray-500">${rupiah(5000)}</p>
                 </div>
                 <!-- line -->
                 <div class="border w-full border-gray-200 mt-4"></div>
                 <!-- total belanja -->
                 <div class="shopping_total flex justify-between mt-4">
                     <h3 class="font-semibold">Total Belanja</h3>
-                    <h3 class="font-semibold">Rp. -</h3>
+                    <h3 class="font-semibold">${detail.amount}</h3>
                 </div>
             `
         })
