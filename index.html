@@ -1,319 +1,319 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediCran - Home</title>
-    <link rel="icon" href="assets/images/2hand.png" type="image/icon" />
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <style>
-        .container_male input:checked ~ .checkmark {
-            border: 3px solid #56cfff;
-            color: #56cfff;
-        }
-        .container_female input:checked ~ .checkmark {
-            border: 3px solid #dd0e80;
-            color: #dd0e80;
-        }
-    </style>
-</head>
-<body>
-    <header></header>
+    <!DOCTYPE html>
+    <html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MediCran - Home</title>
+        <link rel="icon" href="assets/images/2hand.png" type="image/icon" />
+        <link rel="stylesheet" href="assets/css/index.css">
+        <link rel="stylesheet" href="assets/css/global.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+        <style>
+            .container_male input:checked ~ .checkmark {
+                border: 3px solid #56cfff;
+                color: #56cfff;
+            }
+            .container_female input:checked ~ .checkmark {
+                border: 3px solid #dd0e80;
+                color: #dd0e80;
+            }
+        </style>
+    </head>
+    <body>
+        <header></header>
 
-    <!-- main -->
-    <main>
-        <div class="container mx-auto px-5">
-            <!-- CAROUSEL -->
-            <div class="home_carousel mt-10">
-                <div class="slider rounded-lg">
-                    <div class="list">
-                        <div class="item">
-                            <img src="assets/images/banner_1.png" alt="" class="object-cover">
+        <!-- main -->
+        <main>
+            <div class="container mx-auto px-5">
+                <!-- CAROUSEL -->
+                <div class="home_carousel mt-10">
+                    <div class="slider rounded-lg">
+                        <div class="list">
+                            <div class="item">
+                                <img src="assets/images/banner_1.png" alt="" class="object-cover">
+                            </div>
+                            <div class="item">
+                                <img src="assets/images/banner_2.png" alt="" class="object-cover">
+                            </div>
+                            <!-- <div class="item">
+                                <img src="assets/svg/carousel-3.svg" alt="" class="object-cover">
+                            </div>
+                            <div class="item">
+                                <img src="assets/svg/carousel-4.svg" alt="" class="object-cover">
+                            </div>
+                            <div class="item">
+                                <img src="assets/svg/carousel-5.svg" alt="" class="object-cover">
+                            </div> -->
                         </div>
-                        <div class="item">
-                            <img src="assets/images/banner_2.png" alt="" class="object-cover">
+                        <div class="buttons">
+                            <button id="prev_img" class="cursor-pointer bg-black"> < </button>
+                            <button id="next_img" class="cursor-pointer bg-black"> > </button>
                         </div>
-                        <!-- <div class="item">
-                            <img src="assets/svg/carousel-3.svg" alt="" class="object-cover">
-                        </div>
-                        <div class="item">
-                            <img src="assets/svg/carousel-4.svg" alt="" class="object-cover">
-                        </div>
-                        <div class="item">
-                            <img src="assets/svg/carousel-5.svg" alt="" class="object-cover">
-                        </div> -->
+                        <ul class="dots">
+                            <li class="active"></li>
+                            <li></li>
+                            <!-- <li></li>
+                            <li></li>
+                            <li></li> -->
+                        </ul>
+                        
                     </div>
-                    <div class="buttons">
-                        <button id="prev_img" class="cursor-pointer bg-black"> < </button>
-                        <button id="next_img" class="cursor-pointer bg-black"> > </button>
-                    </div>
-                    <ul class="dots">
-                        <li class="active"></li>
-                        <li></li>
-                        <!-- <li></li>
-                        <li></li>
-                        <li></li> -->
-                    </ul>
-                    
                 </div>
-            </div>
-            <!-- 3 Option -->
-            <div class="option mt-10">
-                <div class="title flex justify-center text-[32px]">
-                    <h2 class="font-semibold">Easy <span class="text-[#37B7C3]">Step </span>for your care</h2>
+                <!-- 3 Option -->
+                <div class="option mt-10">
+                    <div class="title flex justify-center text-[32px]">
+                        <h2 class="font-semibold">Easy <span class="text-[#37B7C3]">Step </span>for your care</h2>
+                    </div>
+                    
+                    <div class="card_options grid lg:grid-cols-3 gap-10 mt-10 mb-[4rem]">
+                        <a href="products.html">
+                            <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
+                                <i class="ti ti-vaccine-bottle text-[#37B7C3]"></i>
+                                <h3 class="font-semibold text-[24px] text-[#37B7C3]">Products</h3>
+                                <p class="text-center text-[14px] text-[#878787] lg:px-20 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex fugiat </p>
+                            </div>
+                        </a>
+                        <a href="#consultation">
+                            <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
+                                <i class="ti ti-user-question text-[#37B7C3]"></i>
+                                <h3 class="font-semibold text-[24px] text-[#37B7C3]">Consultation</h3>
+                                <p class="text-center text-[14px] text-[#878787] lg:px-20 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex fugiat </p>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
+                                <i class="ti ti-stethoscope text-[#37B7C3]"></i>
+                                <h3 class="font-semibold text-[24px] text-[#37B7C3]">Health Check</h3>
+                                <p class="text-center text-[14px] text-[#878787] lg:px-20 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex fugiat </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Product Promotion -->
+                <div class="products_promo">
+                    <div class="title flex justify-start text-[24px]">
+                        <h2 class="font-semibold">Products Promotion</h2>
+                    </div>
+                    <div class="wrapper">
+                        <div class="carousel_products grid grid-cols-2 lg:grid-cols-5 gap-6 mt-6">
+                            <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                                <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
+                                <div class="content px-3">
+                                    <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                    <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                    <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                                </div>
+                            </div>
+                            <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                                <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
+                                <div class="content px-3">
+                                    <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                    <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                    <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                                </div>
+                            </div>
+                            <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                                <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
+                                <div class="content px-3">
+                                    <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                    <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                    <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                                </div>
+                            </div>
+                            <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                                <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
+                                <div class="content px-3">
+                                    <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                    <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                    <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                                </div>
+                            </div>
+                            <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
+                                <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
+                                <div class="content px-3">
+                                    <div class="name mt-2 font-semibold">Sanmol Tablet</div>
+                                    <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
+                                    <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="card_options grid lg:grid-cols-3 gap-10 mt-10 mb-[4rem]">
-                    <a href="products.html">
-                        <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
-                            <i class="ti ti-vaccine-bottle text-[#37B7C3]"></i>
-                            <h3 class="font-semibold text-[24px] text-[#37B7C3]">Products</h3>
-                            <p class="text-center text-[14px] text-[#878787] lg:px-20 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex fugiat </p>
-                        </div>
-                    </a>
-                    <a href="#consultation">
-                        <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
-                            <i class="ti ti-user-question text-[#37B7C3]"></i>
-                            <h3 class="font-semibold text-[24px] text-[#37B7C3]">Consultation</h3>
-                            <p class="text-center text-[14px] text-[#878787] lg:px-20 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex fugiat </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="card cursor-pointer py-12 bg-white rounded-2xl shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] flex justify-center items-center flex-col">
-                            <i class="ti ti-stethoscope text-[#37B7C3]"></i>
-                            <h3 class="font-semibold text-[24px] text-[#37B7C3]">Health Check</h3>
-                            <p class="text-center text-[14px] text-[#878787] lg:px-20 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex fugiat </p>
-                        </div>
-                    </a>
-                </div>
+                
             </div>
-            <!-- Product Promotion -->
-            <div class="products_promo">
-                <div class="title flex justify-start text-[24px]">
-                    <h2 class="font-semibold">Products Promotion</h2>
-                </div>
-                <div class="wrapper">
-                    <div class="carousel_products grid grid-cols-2 lg:grid-cols-5 gap-6 mt-6">
-                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
-                            <div class="content px-3">
-                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
-                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
-                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
-                            </div>
+            <!-- consultation -->
+            <div class="consultation">
+                <div class="bg_consul bg-gradient-to-r from-[#53E6F3] to-[#06B5CD] w-full mt-10 lg:mt-[10rem]">
+                    <div class="container mx-auto px-5 grid lg:grid-cols-12 gap-10">
+                        <div class="left w-full col-span-5 flex justify-center items-center">
+                            <img src="assets/images/Online Doctor-amico-blue.png" alt="">
                         </div>
-                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
-                            <div class="content px-3">
-                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
-                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
-                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
-                            </div>
-                        </div>
-                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
-                            <div class="content px-3">
-                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
-                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
-                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
-                            </div>
-                        </div>
-                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
-                            <div class="content px-3">
-                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
-                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
-                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
-                            </div>
-                        </div>
-                        <div class="card shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] rounded-2xl">
-                            <img class="w-full object-cover rounded-tl-2xl rounded-tr-2xl" src="/assets/images/sanmol2.png" alt="">
-                            <div class="content px-3">
-                                <div class="name mt-2 font-semibold">Sanmol Tablet</div>
-                                <div class="price font-bold text-[#F8AE1C] text-[18px]">Rp. 2.500</div>
-                                <div class="cart_btn rounded-xl border-2 border-[#37B7C3] flex justify-center py-2 my-3 out text-[#37B7C3] font-semibold cursor-pointer">add to cart</div>
+                        <div class="right col-span-7">
+                            <div id="consultation" class="card bg-white p-10 py-20 lg:h-[600px] flex flex-col justify-center items-center absolute border border-gray-200 max-w-[92vw] shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] lg:max-w-[800px] mt-[-3.5rem] rounded-lg">
+                                <div class="consul_text">
+                                    <p class="font-semibold">Try Our</p>
+                                    <p class="font-semibold text-[40px] text-[#37B7C3]">Online Consultation</p>
+                                    <p class="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore amet repellat suscipit autem repudiandae excepturi?</p>
+                                    <div class="consul_btn flex justify-center items-center py-2 px-5 border-2 text-[#37B7C3] border-[#37B7C3] max-w-[225px] mt-5 rounded-lg font-semibold cursor-pointer">
+                                        <p>Start Chat</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="container mx-auto px-5">
+                <!-- Health Check -->
+                <div class="bmi_check mt-[28rem] lg:mt-20">
+                    <div class="title flex justify-center text-[32px]">
+                        <h2 class="font-semibold">Want to try a <span class="text-[#37B7C3]">BMI</span> check?</h2>
+                        
+                    </div>
+
+                    <!-- result bmi -->
+                    <dialog id="bmi_result" class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box">
+                            <h3 class="text-lg font-bold">BMI Kamu</h3>
+                            <!-- result text -->
+                            <p class="resultBMI py-4"></p>
+                            <div class="modal-action">
+                            <form method="dialog">
+                                <!-- if there is a button in form, it will close the modal -->
+                                <button class="btn">Close</button>
+                            </form>
+                            </div>
+                        </div>
+                    </dialog>
+                    <div class="bmi mt-10 grid lg:grid-cols-2 gap-10">
+                        <div class="icon bg-slate-200">
+                            <img src="assets/images/bmi.jpg" alt="">
+                        </div>
+                        <div class="calculator px-2 py-2">
+                            <div class="gender grid grid-cols-2 gap-5">
+                                <label class="container_male flex justify-center items-center h-full">
+                                    <input type="radio" name="gender" gender="1" class="absolute cursor-pointer opacity-0" required>
+                                    <div class="male checkmark bg-white rounded-lg px-2 py-10 flex justify-center flex-col items-center w-full cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)]">
+                                        <span class="gender_icon flex justify-center">
+                                            <i class="ti ti-gender-male text-5xl lg:text-9xl"></i>
+                                        </span>
+                                        <div class="gender_text">Laki-Laki</div>
+                                    </div>
+                                </label>
+                                <label class="container_female flex justify-center items-center h-full">
+                                    <input type="radio" name="gender" gender="2" class="absolute cursor-pointer opacity-0" required>
+                                    <div class="male checkmark bg-white rounded-lg px-2 py-10 flex justify-center flex-col items-center w-full cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)]">
+                                        <span class="gender_icon flex justify-center">
+                                            <i class="ti ti-gender-female text-5xl lg:text-9xl"></i>
+                                        </span>
+                                    
+                                        <div class="gender_text">Perempuan</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="weigth mt-4">
+                                <div class="label">
+                                    <span class="label-text font-semibold">Berat Badan</span>
+                                </div>
+                                <label class="input input-bordered flex items-center gap-2">
+                                    <input type="text" class="grow" name="berat_badan" placeholder="Tulis disini" />
+                                    <p>kg</p>
+                                </label>
+                            </div>
+                            <div class="heigth">
+                                <div class="label">
+                                    <span class="label-text font-semibold">Tinggi Badan</span>
+                                </div>
+                                <label class="input input-bordered flex items-center gap-2">
+                                    <input type="text" class="grow" name="tinggi_badan" placeholder="Tulis disini" />
+                                    <p>cm</p>
+                                </label>
+                            </div>
+                            <div class="submit mt-4">
+                                <button type="submit" name="bmiSubmit" class="w-full bg-[#37B7C3] py-2 rounded-md text-white font-medium">Cek BMI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial -->
+                <!-- <div class="testimoni mt-12">
+                    <div class="title flex justify-center text-[32px]">
+                        <h2 class="font-semibold">What our customers <span class="text-[#37B7C3]">says</span> about us</h2>
+                    </div>
+                </div> -->
+            </div>
+            <br>
+            <br>
+        </main>
+
+        <footer></footer>
+
+        <!-- script -->
+        <script>
+            // Get the input fields and button
+            const genderInput = document.querySelectorAll('input[name="gender"]');
+            const weightInput = document.querySelector('input[name="berat_badan"]');
+            const heightInput = document.querySelector('input[name="tinggi_badan"]');
+            const submitButton = document.querySelector('button[name="bmiSubmit"]');
+            const resultDiv = document.querySelector('.resultBMI');
+
+            // Add event listener to the submit button
+            submitButton.addEventListener('click', calculateBMI);
             
-            
-        </div>
-        <!-- consultation -->
-        <div class="consultation">
-            <div class="bg_consul bg-gradient-to-r from-[#53E6F3] to-[#06B5CD] w-full mt-10 lg:mt-[10rem]">
-                <div class="container mx-auto px-5 grid lg:grid-cols-12 gap-10">
-                    <div class="left w-full col-span-5 flex justify-center items-center">
-                        <img src="assets/images/Online Doctor-amico-blue.png" alt="">
-                    </div>
-                    <div class="right col-span-7">
-                        <div id="consultation" class="card bg-white p-10 py-20 lg:h-[600px] flex flex-col justify-center items-center absolute border border-gray-200 max-w-[92vw] shadow-[0_2px_4px_0_rgba(60,64,67,0.3)] lg:max-w-[800px] mt-[-3.5rem] rounded-lg">
-                            <div class="consul_text">
-                                <p class="font-semibold">Try Our</p>
-                                <p class="font-semibold text-[40px] text-[#37B7C3]">Online Consultation</p>
-                                <p class="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore amet repellat suscipit autem repudiandae excepturi?</p>
-                                <div class="consul_btn flex justify-center items-center py-2 px-5 border-2 text-[#37B7C3] border-[#37B7C3] max-w-[225px] mt-5 rounded-lg font-semibold cursor-pointer">
-                                    <p>Start Chat</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            // Function to calculate BMI
+            function calculateBMI() {
+            let gender;
+            const weight = parseFloat(weightInput.value);
+            const height = parseFloat(heightInput.value);
 
-        <div class="container mx-auto px-5">
-            <!-- Health Check -->
-            <div class="bmi_check mt-[28rem] lg:mt-20">
-                <div class="title flex justify-center text-[32px]">
-                    <h2 class="font-semibold">Want to try a <span class="text-[#37B7C3]">BMI</span> check?</h2>
-                    
-                </div>
+            // console.log(gender);
 
-                <!-- result bmi -->
-                <dialog id="bmi_result" class="modal modal-bottom sm:modal-middle">
-                    <div class="modal-box">
-                        <h3 class="text-lg font-bold">BMI Kamu</h3>
-                        <!-- result text -->
-                        <p class="resultBMI py-4"></p>
-                        <div class="modal-action">
-                        <form method="dialog">
-                            <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn">Close</button>
-                        </form>
-                        </div>
-                    </div>
-                </dialog>
-                <div class="bmi mt-10 grid lg:grid-cols-2 gap-10">
-                    <div class="icon bg-slate-200">
-                        <img src="assets/images/bmi.jpg" alt="">
-                    </div>
-                    <div class="calculator px-2 py-2">
-                        <div class="gender grid grid-cols-2 gap-5">
-                            <label class="container_male flex justify-center items-center h-full">
-                                <input type="radio" name="gender" gender="1" class="absolute cursor-pointer opacity-0" required>
-                                <div class="male checkmark bg-white rounded-lg px-2 py-10 flex justify-center flex-col items-center w-full cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)]">
-                                    <span class="gender_icon flex justify-center">
-                                        <i class="ti ti-gender-male text-5xl lg:text-9xl"></i>
-                                    </span>
-                                    <div class="gender_text">Laki-Laki</div>
-                                </div>
-                            </label>
-                            <label class="container_female flex justify-center items-center h-full">
-                                <input type="radio" name="gender" gender="2" class="absolute cursor-pointer opacity-0" required>
-                                <div class="male checkmark bg-white rounded-lg px-2 py-10 flex justify-center flex-col items-center w-full cursor-pointer shadow-[0_2px_4px_0_rgba(60,64,67,0.3)]">
-                                    <span class="gender_icon flex justify-center">
-                                        <i class="ti ti-gender-female text-5xl lg:text-9xl"></i>
-                                    </span>
-                                
-                                    <div class="gender_text">Perempuan</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="weigth mt-4">
-                            <div class="label">
-                                <span class="label-text font-semibold">Berat Badan</span>
-                            </div>
-                            <label class="input input-bordered flex items-center gap-2">
-                                <input type="text" class="grow" name="berat_badan" placeholder="Tulis disini" />
-                                <p>kg</p>
-                            </label>
-                        </div>
-                        <div class="heigth">
-                            <div class="label">
-                                <span class="label-text font-semibold">Tinggi Badan</span>
-                            </div>
-                            <label class="input input-bordered flex items-center gap-2">
-                                <input type="text" class="grow" name="tinggi_badan" placeholder="Tulis disini" />
-                                <p>cm</p>
-                            </label>
-                        </div>
-                        <div class="submit mt-4">
-                            <button type="submit" name="bmiSubmit" class="w-full bg-[#37B7C3] py-2 rounded-md text-white font-medium">Cek BMI</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Testimonial -->
-            <div class="testimoni mt-12">
-                <div class="title flex justify-center text-[32px]">
-                    <h2 class="font-semibold">What our customers <span class="text-[#37B7C3]">says</span> about us</h2>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-    </main>
+            genderInput.forEach( x => {
+                if(x.checked){
+                    gender = x.getAttribute('gender');
+                    // console.log(gender);
+                }
+            })
 
-    <footer></footer>
-
-    <!-- script -->
-     <script>
-        // Get the input fields and button
-        const genderInput = document.querySelectorAll('input[name="gender"]');
-        const weightInput = document.querySelector('input[name="berat_badan"]');
-        const heightInput = document.querySelector('input[name="tinggi_badan"]');
-        const submitButton = document.querySelector('button[name="bmiSubmit"]');
-        const resultDiv = document.querySelector('.resultBMI');
-
-        // Add event listener to the submit button
-        submitButton.addEventListener('click', calculateBMI);
-        
-        // Function to calculate BMI
-        function calculateBMI() {
-        let gender;
-        const weight = parseFloat(weightInput.value);
-        const height = parseFloat(heightInput.value);
-
-        // console.log(gender);
-
-        genderInput.forEach( x => {
-            if(x.checked){
-                gender = x.getAttribute('gender');
-                // console.log(gender);
-            }
-        })
-
-        if (gender == null || isNaN(weight) || isNaN(height)) {
-            // alert('Please enter valid gender, weight and height values');
-            Swal.fire({
-                title: "Invalid data input",
-                text: "Please enter valid gender, weight and height values!",
-                icon: "warning"
-            });
-            return;
-        } else {
-            bmi_result.showModal();
-        }
-        
-
-        const bmi = weight / (height / 100) ** 2;
-        const bmiCategory = getBMICategory(bmi);
-        resultDiv.innerHTML = `Your BMI is ${bmi.toFixed(2)} (${bmiCategory})`;
-        }
-
-        // Function to get BMI category
-        function getBMICategory(bmi) {
-            if (bmi < 18.5) {
-                return 'Underweight';
-            } else if (bmi < 25) {
-                return 'Normal weight';
-            } else if (bmi < 30) {
-                return 'Overweight';
+            if (gender == null || isNaN(weight) || isNaN(height)) {
+                // alert('Please enter valid gender, weight and height values');
+                Swal.fire({
+                    title: "Invalid data input",
+                    text: "Please enter valid gender, weight and height values!",
+                    icon: "warning"
+                });
+                return;
             } else {
-                return 'Obese';
+                bmi_result.showModal();
             }
-        }
-     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons-react/dist/index.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/home_slider.js"></script>
-    <script src="templates/header.js"></script>
-    <script src="templates/footer.js"></script>
-</body>
-</html>
+            
+
+            const bmi = weight / (height / 100) ** 2;
+            const bmiCategory = getBMICategory(bmi);
+            resultDiv.innerHTML = `Your BMI is ${bmi.toFixed(2)} (${bmiCategory})`;
+            }
+
+            // Function to get BMI category
+            function getBMICategory(bmi) {
+                if (bmi < 18.5) {
+                    return 'Underweight';
+                } else if (bmi < 25) {
+                    return 'Normal weight';
+                } else if (bmi < 30) {
+                    return 'Overweight';
+                } else {
+                    return 'Obese';
+                }
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons-react/dist/index.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/home_slider.js"></script>
+        <script src="templates/header.js"></script>
+        <script src="templates/footer.js"></script>
+    </body>
+    </html>
