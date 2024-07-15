@@ -1,7 +1,7 @@
 const footer = document.querySelector("footer")
 
 footer.innerHTML = `
-    <div class="top w-full bg-slate-600 py-10 bottom-0 left-0">
+    <div class="top w-full bg-slate-600 py-10 bottom-0 left-0 mt-10">
         <div class="container mx-auto px-5">
             <div class="head pb-6">
                 <img src="assets/svg/logo.svg" alt="" class="w-60">
