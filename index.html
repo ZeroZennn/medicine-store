@@ -146,7 +146,7 @@
             <!-- consultation -->
             <div class="consultation">
                 <dialog id="consultationModal" class="modal">
-                    <div class="modal-box w-5/12 max-w-5xl">
+                    <div class="modal-box lg:w-5/12 lg:max-w-5xl">
                         <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-4 top-4 text-xl">✕</button>
                         </form>
@@ -213,15 +213,12 @@
                     <!-- result bmi -->
                     <dialog id="bmi_result" class="modal modal-bottom sm:modal-middle">
                         <div class="modal-box">
-                            <h3 class="text-lg font-bold">BMI Kamu</h3>
+                            <form method="dialog">
+                                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                            <h3 class="text-lg font-bold text-center">BMI Kamu</h3>
                             <!-- result text -->
                             <p class="resultBMI py-4"></p>
-                            <div class="modal-action">
-                            <form method="dialog">
-                                <!-- if there is a button in form, it will close the modal -->
-                                <button class="btn">Close</button>
-                            </form>
-                            </div>
                         </div>
                     </dialog>
                     <div class="bmi mt-10 grid lg:grid-cols-2 gap-10">
@@ -329,7 +326,16 @@
 
             const bmi = weight / (height / 100) ** 2;
             const bmiCategory = getBMICategory(bmi);
-            resultDiv.innerHTML = `Your BMI is ${bmi.toFixed(2)} (${bmiCategory})`;
+            resultDiv.innerHTML = `
+                    <div class="flex flex-col justify-center items-center gap-2">
+                        <p class="text-2xl font-semibold">${bmi.toFixed(2)} </p>
+                        <p>(${bmiCategory})</p>    
+                    </div>
+                    
+                    
+                    
+                    
+                `;
             }
 
             // Function to get BMI category

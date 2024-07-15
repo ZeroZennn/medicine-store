@@ -420,11 +420,15 @@ function logout() {
         if (result.isConfirmed) {
           Swal.fire({
             title: "Berhasil Logout",
-            text: "Your file has been deleted.",
-            icon: "success"
-          });
+            text: "Kamu akan kembali ke halaman utama",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1300
+        }) .then(() => {
             setCookie("username", "", null , null , null, 1);
             location.href = 'index.html';
+        })
+        
         }
       });
 }
