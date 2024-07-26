@@ -28,12 +28,16 @@ async function isLogin() {
     if (cookie != '') {
         await fetchDB("users")
             .then(data => {
-                loginInfo = data.find(x => x.username == cookie && cookie == 'admin');
+                loginInfo = data.find(x => x.username == cookie && cookie == "admin");
             }) .catch(error => {
                 console.error("Error fetching user data:", error);
             }
         );
     } else {
+        alert("you are not admin")
+        location.href = "../"
+    }
+    if (!loginInfo) {
         alert("you are not admin")
         location.href = "../"
     }

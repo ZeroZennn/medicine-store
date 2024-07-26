@@ -26,18 +26,14 @@ user_detail.innerHTML = `
         <div class="user_name text-center mt-4 text-[1.5rem] font-semibold text-gray-600">
             <p id="profile_username" >${user.name}</p>
         </div>
-        <div class="user_email grid grid-cols-2 mt-5">
-            <p>
-                email
-            </p>
+        <div class="user_email flex gap-4 mt-5">
+            
             <p>
                 ${user.email}
             </p>
         </div>
-        <div class="user_number grid grid-cols-2 mt-2">
-            <p>
-                No Hp
-            </p>
+        <div class="user_number flex gap-4 mt-2">
+            
             <p>
                 ${user.no_telp}
             </p>

@@ -12,8 +12,8 @@
     ],
     "subTotal": 3000,
     "additionalPrice": 15000,
-    "notes": "",
-    "paymentType": "Dana",
+    "notes": "notes test",
+    "paymentType": "BCA",
     "status": "Berlangsung",
     "detail": "Dikonfirmasi dan Dikirim oleh Penjual",
     "amount": 18000

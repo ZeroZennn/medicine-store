@@ -16,6 +16,42 @@ imageEle.innerHTML = `
     </div>
     <!-- product info -->
     <div class="product_info px-4">
+    <dialog id="consultationModal" class="modal">
+                    <div class="modal-box lg:w-5/12 lg:max-w-5xl">
+                        <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-4 top-4 text-xl">✕</button>
+                        </form>
+                        <h3 class="text-xl text-gray-600 font-bold mb-4">Konsultasi</h3>
+                        <div class="h-[50vh] flex flex-col">
+                            <div class="bg-gray-100 flex-1 overflow-y-scroll">
+                                <div class="px-4 py-2">
+                                    <div class="flex items-center mb-2">
+                                        <img class="w-8 h-8 rounded-full mr-2" src="https://picsum.photos/50/50" alt="User Avatar">
+                                        <div class="font-medium">MediCran</div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 shadow mb-2 max-w-sm">
+                                        Hi, how can I help you?
+                                    </div>
+                                    <div class="flex items-center justify-end">
+                                        <div class="bg-[#37B7C3] text-white rounded-lg p-2 shadow mr-2 max-w-sm">
+                                            Sure, I can help with that.
+                                        </div>
+                                        <img class="w-8 h-8 rounded-full" src="https://picsum.photos/50/50" alt="User Avatar">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-2">
+                                <div class="flex items-center">
+                                    <input class="w-full border rounded-full py-2 px-4 mr-2" type="text" placeholder="Type your message...">
+                                    <button class="bg-[#37B7C3] hover:bg-[#1d929c] text-white font-medium py-2 px-4 rounded-full">
+                                Send
+                              </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </dialog>
         <div class="product_name text-[1.5rem] lg:text-[2rem] font-semibold text-gray-600">${productToShow.name}</div>
         <div class="product_label grid grid-cols-4 text-[16px] mt-4 gap-4">
             <p class="col-span-2 lg:col-span-1 font-semibold text-gray-500">Label Produk</p>
@@ -32,7 +68,7 @@ imageEle.innerHTML = `
             <p class="col-span-2 lg:col-span-1">100</p>
         </div>
         <div class="buttons grid lg:grid-cols-2 gap-2 lg:gap-10 mt-10 lg:mt-4">
-            <button class="border-2 border-[#37B7C3] text-[1rem] py-2 rounded-lg text-[#37B7C3] font-medium">Chat</button>
+            <button class="border-2 border-[#37B7C3] text-[1rem] py-2 rounded-lg text-[#37B7C3] font-medium" onclick="consultationModal.showModal()">Chat</button>
             <button product-id="${productToShow.id}" id="add_cart" class="bg-[#37B7C3] text-[1rem] py-2 rounded-lg text-white">Add to Cart</button>
         </div>
     </div>

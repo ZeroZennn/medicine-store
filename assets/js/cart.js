@@ -365,8 +365,6 @@ let carts;
       await updateCartQty(user.id);
   }
 
-
-
   startCart();
   updateSelectAll();
   updateCartDetail();

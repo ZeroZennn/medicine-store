@@ -178,11 +178,6 @@ header.innerHTML = `
                 <div id="islogin_div" class="hidden">
                     <ul class="flex flex-row font-medium">
                         <li>
-                            <a href="./notif" class="flex items-center">
-                                <i class="ti ti-bell text-white text-[30px] mx-2"></i>
-                            </a>
-                        </li>
-                        <li>
                             <a href="cart.html" class="flex items-center">
                                 <i class="ti ti-shopping-cart text-white text-[30px] mr-3"></i>
                                 <span id="qtyCart" class="absolute mt-[-1.5rem] ms-[1.5rem] bg-red-600 flex justify-center items-center px-[5px] text-[12px] rounded-md text-white font-semibold" ></span>
@@ -208,12 +203,14 @@ header.innerHTML = `
                                     <li>
                                         <div class="border border-gray-200"></div>
                                     </li>
-
-                                    <li>
-                                        <a href="profile.html" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                                    <li id="adminEle">
+                                        <a id="adminEle" href="admin/" class="block px-4 py-2 hover:bg-gray-100">Admin Dashboard</a>
                                     </li>
-                                    <li>
-                                        <a href="cart.html" class="block px-4 py-2 hover:bg-gray-100">Carts</a>
+                                    <li id="userEle">
+                                        <a id="userEle" href="profile.html" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                                    </li>
+                                    <li id="userEle">
+                                        <a id="userEle" href="cart.html" class="block px-4 py-2 hover:bg-gray-100">Carts</a>
                                     </li>
                                     
                                     <li>
@@ -225,8 +222,20 @@ header.innerHTML = `
                                 </ul>
                             </div>
                         </li>
+                    </ul>  
+                </div>
+                <div class="items-center justify-between flex lg:hidden mx-auto mt-5">
+                    <ul class="flex flex-row font-medium gap-6">
+                        <li>
+                            <a href="./" class="block py-2 mx-2 text-white">Home</a>
+                        </li>
+                        <li>
+                            <a href="products.html" class="block py-2 mx-2 text-white">Products</a>
+                        </li>
+                        <li>
+                            <a href="about.html" class="block py-2 mx-2 text-white">About Us</a>
+                        </li>
                     </ul>
-                    
                 </div>
                 
             </div>
@@ -369,6 +378,7 @@ async function handleRegister(event) {
             title: response.msg,
         })
     }
+    location.reload();
     
 }
 
@@ -407,11 +417,15 @@ function logout() {
         if (result.isConfirmed) {
           Swal.fire({
             title: "Berhasil Logout",
-            text: "Your file has been deleted.",
-            icon: "success"
-          });
+            text: "Kamu Akan diarahkan ke halaman utama.",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1300
+          }).then(() => {
             setCookie("username", "", null , null , null, 1);
             location.href = 'index.html';
+        });
+            
         }
       });
 }
@@ -456,6 +470,15 @@ async function main() {
         name.innerHTML = user.name;
         email.innerHTML = user.email;
         await updateCartQty(user.id)
+        if (user.username != "admin") {
+            document.querySelectorAll("#adminEle").forEach(cb => {
+                cb.setAttribute("class", "hidden")
+            })
+        } else {   
+            document.querySelectorAll("#userEle").forEach(cb => {
+                cb.setAttribute("class", "hidden")
+            })
+        }
     } else {
         loginDialog();
     }
