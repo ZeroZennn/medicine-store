@@ -1,7 +1,5 @@
-let carts;
 (async () => {
   await getUser();
-
   if (!user) {
       alert("Please login first");
       location.href = "index.html";
@@ -23,7 +21,7 @@ let carts;
   const radio_payment = document.querySelectorAll(".payment_type");
 
   async function startCart() {
-    carts = await fetchDB("carts");
+    let carts = await fetchDB("carts");
     const cart = carts.find(x => x.user_id == user.id);
     productCartEle.innerHTML = !cart ? '' : cart.product.map(item => {
       let product = getProduct(item.id)
