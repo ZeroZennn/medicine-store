@@ -55,17 +55,10 @@ searchEle.addEventListener("input", (event) => {
     getProduct(1, 10, event.target.value)
 });
 
-// FILTER
-// const category = [...new Set(products.map((item) =>
-//     {return item}))];
-
 // GET PRODUCT
 function getProduct(pages, items, searchName = '') {
     const start = (pages - 1) * items;
     let productToShow = products
-    // if (getArg('category') != null) {
-    //     productToShow = category.filter(x => (x.drugs_category == getArg("category")))
-    // }
     if (searchName != null) {
         const fuse = new Fuse(productToShow, options)
         productToShow = (fuse.search(searchName)).map((item) => item.item)
@@ -84,7 +77,6 @@ function handlePagination(event) {
     if (!target) return;
 
     const page = target.getAttribute('data-page');
-    // const totalPages = Math.ceil(products.length / productsPerPage);
 
     if (page === "prev" && currentPage > 1) {
         currentPage--;

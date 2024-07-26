@@ -83,11 +83,6 @@ async function updateCartQty(user_id) {
   qtyCart.innerHTML = qty;
 }
 
-function getArg(argName) {
-  const param = new URLSearchParams(window.location.search);
-  return param.get(argName);
-}
-
 // Add to cart
 async function addToCart(productId, increase = null) {
   try {
@@ -104,16 +99,4 @@ async function addToCart(productId, increase = null) {
     console.error('Error fetching data:', error);
   }
   increase == null ? await updateCartQty(user.id) : false;
-}
-
-async function getImage(productId) {
-  let result;
-  await fetchDB('products')
-    .then(product => {
-      const products = product.find(x => x.id == productId);
-      result = products.image
-    }
-  )
-  console.log(result)
-  return result;
 }
