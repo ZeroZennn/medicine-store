@@ -1,3 +1,4 @@
+let user;
 
 async function fetchDB(table) {
   try {
@@ -39,7 +40,6 @@ const Toast = Swal.mixin({
   timer: 1500,
   timerProgressBar: true,
 })
-let user;
 
 async function isLogin() {
   let cookie = document.cookie;
