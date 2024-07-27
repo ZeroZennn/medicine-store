@@ -159,7 +159,7 @@
       "notes": notes.value,
       "product": product,
       "subTotal": drugsPrice,
-      "additionalPrice": 15000,
+      "additionalPrice": 10000,
       "paymentType": payment_type
     }
     await checkout(data, all)
@@ -234,7 +234,7 @@
         <!-- total Ongkir -->
         <div class="total_cart flex justify-between mt-2">
           <p class="text-[14px] text-gray-500">Total Ongkir</p>
-          <p class="text-[14px] text-gray-500">${checkbox_checked ? rupiah('10000'): 'Rp. -'}</p>
+          <p class="text-[14px] text-gray-500">${checkbox_checked ? rupiah('5000'): 'Rp. -'}</p>
         </div>
         <!-- Biaya Pelayanan -->
         <div class="total_cart flex justify-between mt-2">
@@ -246,7 +246,7 @@
         <!-- total belanja -->
         <div class="shopping_total flex justify-between mt-4">
           <h3 class="font-semibold">Total Belanja</h3>
-          <h3 class="font-semibold">${checkbox_checked ? rupiah(total + 15000) : 'Rp. -'}</h3>
+          <h3 class="font-semibold">${checkbox_checked ? rupiah(total + 10000) : 'Rp. -'}</h3>
         </div>
         <!-- alamat -->
         <div class="address_wrap p-4 bg-gray-100 rounded-lg mt-4">
@@ -261,19 +261,6 @@
     `
     total += 15000;
     checkout_price.innerText = total ? rupiah(total) : 'Rp. -'
-  }
-
-  async function deleteCart(productId, deleteAll = false) {
-      await fetch(`http://localhost:3000/carts/delete/${productId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'auth': JSON.stringify(user)
-        },
-        body: JSON.stringify({ all: deleteAll })
-      });
-
-      await updateCartQty(user.id);
   }
 
   async function selectCartItemHandler() {
@@ -294,6 +281,27 @@
         updateCartPaymentDetail();
       });
     })
+  }
+
+  async function updateCartItemQtyHandler() {
+    document.querySelectorAll('.minus').forEach(button => {
+      button.onclick = async function() {
+        let productId = this.getAttribute('product-id');
+        await addToCart(productId, false)
+        const qty = document.getElementById(`product_qty_${productId}`).innerText--;
+        if ((qty - 1) == 0) document.getElementById(`cart_product_${productId}`).remove();
+        await updateCartPaymentDetail();
+      }
+    });
+
+    document.querySelectorAll('.plus').forEach(button => {
+      button.onclick = async function() {
+        let productId = this.getAttribute('product-id');
+        await addToCart(productId, true);
+        document.getElementById(`product_qty_${productId}`).innerText++;
+        await updateCartPaymentDetail();
+      }
+    });
   }
 
   async function deleteAllButtonHandler() {
@@ -344,30 +352,21 @@
       } else {
         await deleteCart(0, true);
         location.reload();
-        deleteAllButtonHandler();
       }
     })
   }
 
-  async function updateCartItemQtyHandler() {
-    document.querySelectorAll('.minus').forEach(button => {
-      button.onclick = async function() {
-        let productId = this.getAttribute('product-id');
-        await addToCart(productId, false)
-        const qty = document.getElementById(`product_qty_${productId}`).innerText--;
-        if ((qty - 1) == 0) document.getElementById(`cart_product_${productId}`).remove();
-        await updateCartPaymentDetail();
-      }
+  async function deleteCart(productId, deleteAll = false) {
+    await fetch(`http://localhost:3000/carts/delete/${productId}`, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'auth': JSON.stringify(user)
+      },
+      body: JSON.stringify({ all: deleteAll })
     });
 
-    document.querySelectorAll('.plus').forEach(button => {
-      button.onclick = async function() {
-        let productId = this.getAttribute('product-id');
-        await addToCart(productId, true);
-        document.getElementById(`product_qty_${productId}`).innerText++;
-        await updateCartPaymentDetail();
-      }
-    });
+    await updateCartQty(user.id);
   }
 
   startCart();

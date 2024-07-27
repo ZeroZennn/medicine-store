@@ -240,35 +240,35 @@ header.innerHTML = `
                 
             </div>
         </nav>
-`
+`;
 
 function loginDialog() {
-    const login = document.getElementById('login_open');
-    const dialog = document.getElementById('dialog');
-    const closeButton = document.getElementById('close');
-    const overlay = document.getElementById('overlay');
-    const form = document.getElementById('login_form');
+ const login = document.getElementById("login_open");
+ const dialog = document.getElementById("dialog");
+ const closeButton = document.getElementById("close");
+ const overlay = document.getElementById("overlay");
+ const form = document.getElementById("login_form");
 
-    form.addEventListener('submit', (event) => {
-        event.preventDefault()
-    })
+ form.addEventListener("submit", (event) => {
+  event.preventDefault();
+ });
 
-    login.addEventListener("click", function() {
-        dialog.classList.remove('hidden');
-        overlay.classList.remove('hidden');
-    });
+ login.addEventListener("click", function () {
+  dialog.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+ });
 
-    closeButton.addEventListener('click', function () {
-        dialog.classList.add('hidden');
-        overlay.classList.add('hidden');
-    });
+ closeButton.addEventListener("click", function () {
+  dialog.classList.add("hidden");
+  overlay.classList.add("hidden");
+ });
 
-    window.onclick = function(event) {
-        if (event.target == overlay) {
-            dialog.classList.add('hidden');
-            overlay.classList.add('hidden');
-        }
-    }
+ window.onclick = function (event) {
+  if (event.target == overlay) {
+   dialog.classList.add("hidden");
+   overlay.classList.add("hidden");
+  }
+ };
 }
 
 // Login Form Slider
@@ -279,209 +279,221 @@ const bullets = document.querySelectorAll(".bullets span");
 const images = document.querySelectorAll(".image");
 
 inputs.forEach((inp) => {
-  inp.addEventListener("focus", () => {
-    inp.classList.add("active");
-  });
-  inp.addEventListener("blur", () => {
-    if (inp.value != "") return;
-    inp.classList.remove("active");
-  });
+ inp.addEventListener("focus", () => {
+  inp.classList.add("active");
+ });
+ inp.addEventListener("blur", () => {
+  if (inp.value != "") return;
+  inp.classList.remove("active");
+ });
 });
 
 toggle_login_btn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    mainEle.classList.toggle("sign-up-mode");
-    inputs.forEach(cb => {
-        cb.value = ""
-      })
+ btn.addEventListener("click", () => {
+  mainEle.classList.toggle("sign-up-mode");
+  inputs.forEach((cb) => {
+   cb.value = "";
   });
+ });
 });
 
 function moveSlider() {
-  let index = this.dataset.value;
+ let index = this.dataset.value;
 
-  let currentImage = document.querySelector(`.img-${index}`);
-  images.forEach((img) => img.classList.remove("show"));
-  currentImage.classList.add("show");
+ let currentImage = document.querySelector(`.img-${index}`);
+ images.forEach((img) => img.classList.remove("show"));
+ currentImage.classList.add("show");
 
-  const textSlider = document.querySelector(".text-group");
-  textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
+ const textSlider = document.querySelector(".text-group");
+ textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
 
-  bullets.forEach((bull) => bull.classList.remove("active"));
-  this.classList.add("active");
-  inputs.forEach(cb => {
-      cb.value = ""
-    })
+ bullets.forEach((bull) => bull.classList.remove("active"));
+ this.classList.add("active");
+ inputs.forEach((cb) => {
+  cb.value = "";
+ });
 }
 
 bullets.forEach((bullet) => {
-  bullet.addEventListener("click", moveSlider);
+ bullet.addEventListener("click", moveSlider);
 });
 
 // Handle Login
 function handleLogin(event) {
-    event.preventDefault();
-    const username = document.getElementById("username").value
-    const password = document.getElementById("password").value
-    fetchDB("users")
-      .then(user => {
-        const auth = user.filter(x => x.username == username && x.password == password)[0]
-        if (auth) {
-            setCookie(auth.username, null, 1, null, null);
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Berhasil Login',
-                showConfirmButton: false,
-                timer: 1800
-                })
-                .then(() => {
-                    location.reload();
-            })
-            
-        } else { 
-            Swal.fire({
-                title: "Oops...",
-                text: "Username atau password salah",
-                icon: "error"
-            });
-        }
-      }
-    ) .catch(error => {
-        console.error("Error fetching user data:", error);
-      }
-    );
+ event.preventDefault();
+ const username = document.getElementById("username").value;
+ const password = document.getElementById("password").value;
+ fetchDB("users")
+  .then((user) => {
+   const auth = user.filter(
+    (x) => x.username == username && x.password == password
+   )[0];
+   if (auth) {
+    setCookie(auth.username, null, 1, null, null);
+    Swal.fire({
+     position: "center",
+     icon: "success",
+     title: "Berhasil Login",
+     showConfirmButton: false,
+     timer: 1800,
+    }).then(() => {
+     location.reload();
+    });
+   } else {
+    Swal.fire({
+     title: "Oops...",
+     text: "Username atau password salah",
+     icon: "error",
+    });
+   }
+  })
+  .catch((error) => {
+   console.error("Error fetching user data:", error);
+  });
 }
 
 async function handleRegister(event) {
-    event.preventDefault();
-    const username = document.getElementById("username-register").value
-    const password = document.getElementById("password-register").value
-    const email = document.getElementById("email-register").value
+ event.preventDefault();
+ const username = document.getElementById("username-register").value;
+ const password = document.getElementById("password-register").value;
+ const email = document.getElementById("email-register").value;
 
-    const res = await fetch(`http://localhost:3000/register`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email, username: username, password: password })
-      });
-    const response = await res.json()
-    if (res.status == 409) {
-        await Toast.fire({
-            icon: 'error',
-            title: response.msg,
-        })
-    } else if (res.status == 200) {
-        await Toast.fire({
-            icon: 'success',
-            title: response.msg,
-        })
-    }
-    location.reload();
-    
+ const res = await fetch(`http://localhost:3000/register`, {
+  method: "POST",
+  headers: {
+   "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+   email: email,
+   username: username,
+   password: password,
+  }),
+ });
+ const response = await res.json();
+ if (res.status == 409) {
+  await Toast.fire({
+   icon: "error",
+   title: response.msg,
+  });
+ } else if (res.status == 200) {
+  await Toast.fire({
+   icon: "success",
+   title: response.msg,
+  });
+ }
+ location.reload();
 }
 
 // Set Cookie for Login
-function setCookie(value, expireDays, expireHours, expireMinutes, expireSeconds) {
-    var expireDate = new Date();
-    if (expireDays) {
-        expireDate.setDate(expireDate.getDate() + expireDays);
-    }
-    if (expireHours) {
-        expireDate.setHours(expireDate.getHours() + expireHours);
-    }
-    if (expireMinutes) {
-        expireDate.setMinutes(expireDate.getMinutes() + expireMinutes);
-    }
-    if (expireSeconds) {
-        expireDate.setSeconds(expireDate.getSeconds() + expireSeconds);
-    }
-    document.cookie = "username" +"="+ value +
-        ";domain="+ window.location.hostname +
-        ";path=/"+
-        ";expires="+expireDate.toUTCString();
+function setCookie(
+ value,
+ expireDays,
+ expireHours,
+ expireMinutes,
+ expireSeconds
+) {
+ var expireDate = new Date();
+ if (expireDays) {
+  expireDate.setDate(expireDate.getDate() + expireDays);
+ }
+ if (expireHours) {
+  expireDate.setHours(expireDate.getHours() + expireHours);
+ }
+ if (expireMinutes) {
+  expireDate.setMinutes(expireDate.getMinutes() + expireMinutes);
+ }
+ if (expireSeconds) {
+  expireDate.setSeconds(expireDate.getSeconds() + expireSeconds);
+ }
+ document.cookie =
+  "username" +
+  "=" +
+  value +
+  ";domain=" +
+  window.location.hostname +
+  ";path=/" +
+  ";expires=" +
+  expireDate.toUTCString();
 }
 
 // Handle Logout then refresh
 function logout() {
-    Swal.fire({
-        title: "Apakah kamu yakin?",
-        text: "Kamu akan logout !",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#ACACAC",
-        confirmButtonText: "Logout"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "Berhasil Logout",
-            text: "Kamu Akan diarahkan ke halaman utama.",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 1300
-          }).then(() => {
-            setCookie("username", "", null , null , null, 1);
-            location.href = 'index.html';
-        });
-            
-        }
-      });
+ Swal.fire({
+  title: "Apakah kamu yakin?",
+  text: "Kamu akan logout !",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#d33",
+  cancelButtonColor: "#ACACAC",
+  confirmButtonText: "Logout",
+ }).then((result) => {
+  if (result.isConfirmed) {
+   Swal.fire({
+    title: "Berhasil Logout",
+    text: "Kamu Akan diarahkan ke halaman utama.",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1300,
+   }).then(() => {
+    setCookie("username", "", null, null, null, 1);
+    location.href = "index.html";
+   });
+  }
+ });
 }
 
 // dropdown user
-document.addEventListener('DOMContentLoaded', function() {
-    const dropdownUserBtn = document.getElementById('dropdownUserBtn');
-    const dropdownUser = document.getElementById('dropdownUser');
+document.addEventListener("DOMContentLoaded", function () {
+ const dropdownUserBtn = document.getElementById("dropdownUserBtn");
+ const dropdownUser = document.getElementById("dropdownUser");
 
-    dropdownUserBtn.addEventListener('mouseenter', () => {
-        dropdownUser.classList.remove('hidden');
-    });
+ dropdownUserBtn.addEventListener("mouseenter", () => {
+  dropdownUser.classList.remove("hidden");
+ });
 
-    dropdownUserBtn.addEventListener('mouseleave', () => {
-        setTimeout(() => {
-            if (!dropdownUser.matches(':hover')) {
-                dropdownUser.classList.add('hidden');
-            }
-        }, 100);
-    });
+ dropdownUserBtn.addEventListener("mouseleave", () => {
+  setTimeout(() => {
+   if (!dropdownUser.matches(":hover")) {
+    dropdownUser.classList.add("hidden");
+   }
+  }, 100);
+ });
 
-    dropdownUser.addEventListener('mouseleave', () => {
-        dropdownUser.classList.add('hidden');
-    });
+ dropdownUser.addEventListener("mouseleave", () => {
+  dropdownUser.classList.add("hidden");
+ });
 
-    dropdownUser.addEventListener('mouseenter', () => {
-        dropdownUser.classList.remove('hidden');
-    });
+ dropdownUser.addEventListener("mouseenter", () => {
+  dropdownUser.classList.remove("hidden");
+ });
 });
 
 async function main() {
-    await getUser();
-    if (user) {
-        const login_div = document.getElementById('login_div');
-        const islogin_div = document.getElementById('islogin_div');
-        const username = document.getElementById('login_username');
-        const name = document.querySelector('.name')
-        const email = document.querySelector('.email')
-        login_div.classList.add('hidden');
-        islogin_div.classList.remove('hidden');
-        username.innerHTML = user.username;
-        name.innerHTML = user.name;
-        email.innerHTML = user.email;
-        await updateCartQty(user.id)
-        if (user.username != "admin") {
-            document.querySelectorAll("#adminEle").forEach(cb => {
-                cb.setAttribute("class", "hidden")
-            })
-        } else {   
-            document.querySelectorAll("#userEle").forEach(cb => {
-                cb.setAttribute("class", "hidden")
-            })
-        }
-    } else {
-        loginDialog();
-    }
+ await getUser();
+ if (user) {
+  const login_div = document.getElementById("login_div");
+  const islogin_div = document.getElementById("islogin_div");
+  const username = document.getElementById("login_username");
+  const name = document.querySelector(".name");
+  const email = document.querySelector(".email");
+  login_div.classList.add("hidden");
+  islogin_div.classList.remove("hidden");
+  username.innerHTML = user.username;
+  name.innerHTML = user.name;
+  email.innerHTML = user.email;
+  await updateCartQty(user.id);
+  if (user.username != "admin") {
+   document.querySelectorAll("#adminEle").forEach((cb) => {
+    cb.setAttribute("class", "hidden");
+   });
+  } else {
+   document.querySelectorAll("#userEle").forEach((cb) => {
+    cb.setAttribute("class", "hidden");
+   });
+  }
+ } else {
+  loginDialog();
+ }
 }
 
 main();

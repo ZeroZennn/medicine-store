@@ -11,36 +11,11 @@
       }
     ],
     "subTotal": 3000,
-    "additionalPrice": 15000,
-    "notes": "notes test",
-    "paymentType": "BCA",
-    "status": "Berlangsung",
-    "detail": "Dikonfirmasi dan Dikirim oleh Penjual",
-    "amount": 18000
-  },
-  {
-    "transaction_id": "tr1_2",
-    "user_id": 1,
-    "product": [
-      {
-        "id": 2,
-        "name": "Panadol",
-        "qty": 4,
-        "price": 3000
-      },
-      {
-        "id": 3,
-        "name": "Amoxicillin",
-        "qty": 1,
-        "price": 15000
-      }
-    ],
-    "subTotal": 27000,
-    "additionalPrice": 15000,
+    "additionalPrice": 10000,
     "notes": "",
     "paymentType": "BCA",
     "status": "Berlangsung",
     "detail": "Menunggu Penjual",
-    "amount": 42000
+    "amount": 13000
   }
 ]

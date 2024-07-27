@@ -289,33 +289,26 @@
 
         <!-- script -->
         <script>
-            // Get the input fields and button
             const genderInput = document.querySelectorAll('input[name="gender"]');
             const weightInput = document.querySelector('input[name="berat_badan"]');
             const heightInput = document.querySelector('input[name="tinggi_badan"]');
             const submitButton = document.querySelector('button[name="bmiSubmit"]');
             const resultDiv = document.querySelector('.resultBMI');
 
-            // Add event listener to the submit button
             submitButton.addEventListener('click', calculateBMI);
             
-            // Function to calculate BMI
             function calculateBMI() {
             let gender;
             const weight = parseFloat(weightInput.value);
             const height = parseFloat(heightInput.value);
 
-            // console.log(gender);
-
             genderInput.forEach( x => {
                 if(x.checked){
                     gender = x.getAttribute('gender');
-                    // console.log(gender);
                 }
             })
 
             if (gender == null || isNaN(weight) || isNaN(height)) {
-                // alert('Please enter valid gender, weight and height values');
                 Swal.fire({
                     title: "Invalid data input",
                     text: "Please enter valid gender, weight and height values!",
@@ -332,7 +325,6 @@
             resultDiv.innerHTML = `Your BMI is ${bmi.toFixed(2)} (${bmiCategory})`;
             }
 
-            // Function to get BMI category
             function getBMICategory(bmi) {
                 if (bmi < 18.5) {
                     return 'Underweight';

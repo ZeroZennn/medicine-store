@@ -7,7 +7,6 @@ const port = 3000;
 app.use(cors())
 app.use(express.json());
 
-// check credential if exist the API will continue
 async function checkUser(creds) {
   try {
     const data = await fs.readFile('data/users.json', 'utf8');
@@ -45,7 +44,6 @@ async function checkAdmin(creds) {
   }
 }
 
-// Function to create or update qty carts
 async function carts(creds, body, data) {
   let cart = JSON.parse(data);
   const checkUserId = cart.findIndex(x => x.user_id == creds.id);
@@ -83,7 +81,6 @@ async function carts(creds, body, data) {
   return cart;
 }
 
-// Create or update qty of carts
 app.post('/carts', async (req, res) => {
   try {
     const creds = JSON.parse(req.headers.auth);
@@ -110,7 +107,6 @@ app.post('/carts', async (req, res) => {
   }
 });
 
-// Delete from cart logic
 app.delete('/carts/delete/:id', async (req, res) => {
   try {
     const creds = JSON.parse(req.headers.auth);
@@ -267,12 +263,6 @@ app.post('/transactions', async (req, res) => {
   }
 });
 
-async function updateTransactions(creds, body, data) {
-  
-
-  console.log(filter)
-}
-
 app.put('/transactions', async (req, res) => {
   try {
     const creds = JSON.parse(req.headers.auth);
@@ -384,5 +374,5 @@ app.put('/user', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
+  console.log(`Server is running on http://localhost:${port}`);
+});

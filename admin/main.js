@@ -66,7 +66,15 @@ row.innerHTML = transactions.data.map((item, index) => {
             <td>${item.name}</td>
             <td>${item.detail}</td>
             <td class="p-1 flex gap-2">
-            <button trans-id="${item.transaction_id}" id="verif_button" class="cursor-pointer text-green-500 flex justify-center border rounded border-green-500 px-4 p-1">Verif</button>
+            <button 
+                trans-id="${item.transaction_id}"
+                id="verif_button"
+                class="cursor-pointer text-green-500
+                flex justify-center border
+                rounded border-green-500 px-4 p-1"
+                >
+                Verif
+            </button>
             </td>
         </tr>
     `);
